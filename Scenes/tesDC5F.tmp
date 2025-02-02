@@ -21,10 +21,10 @@ func _input(event: InputEvent) -> void:
 				characters[currentchar].set_meta(\"active\", currentchar == i)
 
 
-# folyamatosan futó funkció ami a jelenleg kiválasztott karaktert követi, életet is kiírja hudra
+# folyamatosan futó funkció ami a jelenleg kiválasztott karaktert követi
 func _process(_delta: float) -> void:
 	playercam.position = characters[globalcurrentchar].position
-	playerhealth.text = str(characters[globalcurrentchar].health) + \"/\" + str(characters[globalcurrentchar].maxhealth)
+	playerhealth.text = characters[globalcurrentchar].health + \"/\" + characters[globalcurrentchar].maxhealth
 "
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rwiv2"]
