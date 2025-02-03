@@ -11,6 +11,7 @@ script/source = "extends Node2D
 @onready var characters = [get_node(\"character1\"), get_node(\"character2\"), get_node(\"character3\")]
 @onready var playercam = get_node(\"Camera2D\")
 @onready var playerhealth = $GUI/CurrentCharacter/HealthLabel
+@onready var health = $GUI/CurrentCharacter/Health
 var globalcurrentchar = 0
 # karakterválasztásért felelős funkció, loopol a charlisten megnézi melyik gombot nyomtuk meg, irányítást átadja, kamerának megadja melyiket kell követnie
 func _input(event: InputEvent) -> void:
@@ -20,11 +21,11 @@ func _input(event: InputEvent) -> void:
 			for currentchar in range(characters.size()):
 				characters[currentchar].set_meta(\"active\", currentchar == i)
 
-
 # folyamatosan futó funkció ami a jelenleg kiválasztott karaktert követi, életet is kiírja hudra
 func _process(_delta: float) -> void:
 	playercam.position = characters[globalcurrentchar].position
 	playerhealth.text = str(characters[globalcurrentchar].health) + \"/\" + str(characters[globalcurrentchar].maxhealth)
+	health.size.x = float(characters[globalcurrentchar].health / float(characters[globalcurrentchar].maxhealth)) * $GUI/CurrentCharacter/HealthBG.size.x # átméretezi a healthbart a játékos jelenlegi karakterének életerejével megfelelőnek
 "
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rwiv2"]
@@ -34,6 +35,7 @@ size = Vector2(64, 64)
 script = SubResource("GDScript_omve5")
 
 [node name="Background" type="ColorRect" parent="."]
+z_index = -1
 offset_right = 1920.0
 offset_bottom = 1080.0
 color = Color(0.678431, 0.678431, 0.678431, 1)
@@ -71,8 +73,10 @@ color = Color(0, 1, 0, 1)
 shape = SubResource("RectangleShape2D_rwiv2")
 
 [node name="character1" type="CharacterBody2D" parent="."]
+z_index = 1
 position = Vector2(670, 964)
 collision_layer = 2
+input_pickable = true
 script = ExtResource("3_8mhay")
 metadata/active = true
 
@@ -101,26 +105,26 @@ offset_bottom = 40.0
 
 [node name="HealthBG" type="ColorRect" parent="GUI/CurrentCharacter"]
 layout_mode = 0
-offset_left = 72.0
-offset_top = 89.0
-offset_right = 415.0
-offset_bottom = 117.0
+offset_left = 48.0
+offset_top = 64.0
+offset_right = 348.0
+offset_bottom = 94.0
 color = Color(0, 0, 0, 1)
 
 [node name="Health" type="ColorRect" parent="GUI/CurrentCharacter"]
 self_modulate = Color(1, 0, 0, 1)
 layout_mode = 0
-offset_left = 72.0
-offset_top = 89.0
-offset_right = 415.0
-offset_bottom = 117.0
+offset_left = 48.0
+offset_top = 64.0
+offset_right = 348.0
+offset_bottom = 94.0
 
 [node name="HealthLabel" type="Label" parent="GUI/CurrentCharacter"]
 layout_mode = 0
-offset_left = 72.0
-offset_top = 45.0
-offset_right = 415.0
-offset_bottom = 89.0
+offset_left = 48.0
+offset_top = 20.0
+offset_right = 347.0
+offset_bottom = 64.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 31
 text = "0/0"
