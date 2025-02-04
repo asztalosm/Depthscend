@@ -1,0 +1,41 @@
+[gd_scene load_steps=4 format=3 uid="uid://bbr64q8hg7fde"]
+
+[ext_resource type="Script" path="res://Scenes/character_3.gd" id="1_myxxc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cdwh7"]
+size = Vector2(27, 30)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2xmsr"]
+size = Vector2(32, 68)
+
+[node name="character3" type="CharacterBody2D"]
+position = Vector2(1178, 964)
+collision_layer = 2
+input_pickable = true
+script = ExtResource("1_myxxc")
+metadata/active = false
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -16.0
+offset_top = -32.0
+offset_right = 16.0
+offset_bottom = 32.0
+color = Color(0, 1, 0, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_desired_distance = 4.0
+target_desired_distance = 24.0
+simplify_path = true
+radius = 70.0
+debug_enabled = true
+
+[node name="WallCollision" type="CollisionShape2D" parent="."]
+position = Vector2(0, 15)
+shape = SubResource("RectangleShape2D_cdwh7")
+
+[node name="hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+position = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_2xmsr")

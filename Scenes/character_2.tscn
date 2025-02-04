@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://d1maoccsy4oe4"]
+
+[ext_resource type="Script" path="res://Scenes/character_2.gd" id="1_asb81"]
+[ext_resource type="Texture2D" uid="uid://cd2x0jjcgnwr1" path="res://Sprites/mischievouslilguy.svg" id="2_ndwyl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xko1q"]
+size = Vector2(28.5, 30)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_its7r"]
+size = Vector2(32, 54)
+
+[node name="character2" type="CharacterBody2D"]
+position = Vector2(963, 964)
+collision_layer = 2
+script = ExtResource("1_asb81")
+metadata/active = false
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(2, -25)
+texture = ExtResource("2_ndwyl")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_desired_distance = 4.0
+target_desired_distance = 24.0
+simplify_path = true
+radius = 70.0
+debug_enabled = true
+
+[node name="WallCollision" type="CollisionShape2D" parent="."]
+position = Vector2(-0.25, -10)
+shape = SubResource("RectangleShape2D_xko1q")
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(2, -25)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-2, 5)
+shape = SubResource("RectangleShape2D_its7r")

@@ -1,21 +1,31 @@
-class_name character2 extends CharacterBody2D
+extends CharacterBody2D
 #itt ezek az exportok globális változók lesznek amiket el lehet érni más scriptekből
-@export var speed = 300
-@export var health = 96
-@export var maxhealth = 100
-var target = position
-var enemy = "./Enemytest"
+@export var speed = 250
+@export var health = 70
+@export var maxhealth = 70
+@export var playerpos = self.position
+@export var accel = 35
+var dir := Vector2()
+#változó ami akkor jön létre amikor létrejön a karakter
+@onready var navagent := $NavigationAgent2D as NavigationAgent2D 
 
 func _input(event):
-	if event.is_action_pressed("click") and get_meta("active"):
-		target = get_global_mouse_position()
-		
+	if health < 0:
+		set_meta("isDead", true)
+	if event.is_action_pressed("click") and get_meta("active") and not get_meta("isDead"):
+		var target = get_global_mouse_position()
+		navagent.target_position = target
+	
+
+
 func _physics_process(_delta: float) -> void:
-	velocity = position.direction_to(target) * speed
-	if position.distance_to(target) > 10:
+	if health > 0:
+		dir = navagent.get_next_path_position() - global_position
+		if dir.length_squared() > 1.0:
+			dir = dir.normalized()
+		velocity = velocity.lerp(dir * speed, accel * _delta)
 		move_and_slide()
-		enemy.connect("area_entered",self,"_hit_enemy")
-
-
-func _hit_enemy(area) -> void:
-	print("hit enemy")
+	else:
+		visible = false
+		set_meta("active", false)
+		set_meta("isDead", true)
