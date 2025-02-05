@@ -1,0 +1,62 @@
+[gd_scene load_steps=7 format=3 uid="uid://dwou5g30xc3eq"]
+
+[ext_resource type="Texture2D" uid="uid://gg3633i0yga4" path="res://Sprites/squid.svg" id="1_allmh"]
+[ext_resource type="Script" path="res://Scenes/Characters/Enemies/Scripts/squink.gd" id="2_n5x0s"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rgb5s"]
+radius = 98.9616
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xc4uj"]
+radius = 264.728
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4ff36"]
+radius = 14.2222
+height = 49.1312
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sera8"]
+
+[node name="squink2" type="CharacterBody2D"]
+script = ExtResource("2_n5x0s")
+
+[node name="ExplosionSize" type="Area2D" parent="."]
+scale = Vector2(0.8, 0.8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExplosionSize"]
+shape = SubResource("CircleShape2D_rgb5s")
+
+[node name="Detection" type="Area2D" parent="."]
+collision_layer = 32
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detection"]
+position = Vector2(2, 0)
+shape = SubResource("CircleShape2D_xc4uj")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
+[node name="Hurtbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(2.26262, 0.323231)
+shape = SubResource("CapsuleShape2D_4ff36")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_sera8")
+disabled = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_allmh")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.25
+autostart = true
+
+[node name="ExplosionTimer" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+
+[connection signal="area_entered" from="ExplosionSize" to="." method="_on_explosion_size_area_entered"]
+[connection signal="area_entered" from="Detection" to="." method="_on_detection_area_entered"]
+[connection signal="area_exited" from="Detection" to="." method="_on_detection_area_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="ExplosionTimer" to="." method="_on_explosion_timer_timeout"]

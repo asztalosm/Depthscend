@@ -1,0 +1,62 @@
+[gd_scene load_steps=7 format=3 uid="uid://d1maoccsy4oe4"]
+
+[ext_resource type="Script" path="res://Scenes/Characters/Playable/Scripts/character_2.gd" id="1_asb81"]
+[ext_resource type="Texture2D" uid="uid://cd2x0jjcgnwr1" path="res://Sprites/mischievouslilguy.svg" id="2_ndwyl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xko1q"]
+size = Vector2(28.5, 14)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_its7r"]
+size = Vector2(32, 54)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xu5q2"]
+size = Vector2(1, 0)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_opwov"]
+radius = 64.1249
+
+[node name="character2" type="CharacterBody2D"]
+position = Vector2(963, 964)
+collision_layer = 2
+script = ExtResource("1_asb81")
+metadata/active = false
+metadata/isDead = false
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(2, -25)
+texture = ExtResource("2_ndwyl")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_desired_distance = 4.0
+target_desired_distance = 24.0
+simplify_path = true
+radius = 70.0
+
+[node name="ZoneCollision" type="Area2D" parent="."]
+position = Vector2(-0.25, -1)
+collision_layer = 16
+collision_mask = 16
+
+[node name="WallCollision" type="CollisionShape2D" parent="ZoneCollision"]
+shape = SubResource("RectangleShape2D_xko1q")
+
+[node name="HitCollision" type="Area2D" parent="."]
+position = Vector2(2, -25)
+collision_layer = 33
+collision_mask = 33
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitCollision"]
+position = Vector2(-2, 5)
+shape = SubResource("RectangleShape2D_its7r")
+debug_color = Color(1, 1, 1, 0.42)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(9.5, 2)
+shape = SubResource("RectangleShape2D_xu5q2")
+disabled = true
+
+[node name="AutoAttackRange" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AutoAttackRange"]
+position = Vector2(0, -20)
+shape = SubResource("CircleShape2D_opwov")
