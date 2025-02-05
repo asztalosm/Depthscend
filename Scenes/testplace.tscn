@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://dfy3v7er3vajh"]
+[gd_scene load_steps=16 format=4 uid="uid://dfy3v7er3vajh"]
 
 [ext_resource type="PackedScene" uid="uid://d1maoccsy4oe4" path="res://Scenes/character_2.tscn" id="1_mw7xr"]
 [ext_resource type="PackedScene" uid="uid://bbr64q8hg7fde" path="res://Scenes/character_3.tscn" id="2_tbex5"]
@@ -8,8 +8,9 @@
 [ext_resource type="Texture2D" uid="uid://dy6chttifdta8" path="res://Textures/tempfloor2.png" id="6_c5xkf"]
 [ext_resource type="Script" path="res://Scenes/characterscript.gd" id="7_qu1l0"]
 [ext_resource type="Script" path="res://Scenes/camera_2d.gd" id="8_00o8a"]
-[ext_resource type="Texture2D" uid="uid://udortutn51el" path="res://Scenes/bg4.png" id="9_0riqs"]
+[ext_resource type="Texture2D" uid="uid://udortutn51el" path="res://Textures/bg4.png" id="9_0riqs"]
 [ext_resource type="Texture2D" uid="uid://dhjicjumagj1k" path="res://Sprites/chest.png" id="10_7v6uv"]
+[ext_resource type="PackedScene" uid="uid://dwou5g30xc3eq" path="res://squink.tscn" id="11_fe60k"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8rjp8"]
 texture = ExtResource("5_ctvlr")
@@ -51,8 +52,6 @@ z_index = 99
 position = Vector2(648, 968)
 collision_layer = 4
 collision_mask = 0
-health = 100
-maxhealth = 100
 metadata/isDead = false
 
 [node name="character1" parent="Characters" instance=ExtResource("3_a1niy")]
@@ -160,5 +159,9 @@ position = Vector2(432, 592)
 [node name="Timer" type="Timer" parent="Map/TileMapLayer/DamageArea"]
 wait_time = 1.5
 autostart = true
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="squink" parent="Enemies" instance=ExtResource("11_fe60k")]
 
 [connection signal="timeout" from="Map/TileMapLayer/DamageArea/Timer" to="Map/TileMapLayer/DamageArea" method="_on_timer_timeout"]

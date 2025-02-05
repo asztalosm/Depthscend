@@ -1,7 +1,7 @@
 extends CharacterBody2D
 #itt ezek az exportok globális változók lesznek amiket el lehet érni más scriptekből
 @export var speed = 250
-@export var health = 70
+@export var health = 10
 @export var maxhealth = 70
 @export var playerpos = self.position
 @export var accel = 35
