@@ -15,7 +15,8 @@ func _input(event):
 	if event.is_action_pressed("click") and get_meta("active") and not get_meta("isDead"):
 		var target = get_global_mouse_position()
 		navagent.target_position = target
-	
+
+var target = position
 
 
 func _physics_process(_delta: float) -> void:

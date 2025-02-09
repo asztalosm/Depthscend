@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://bbr64q8hg7fde"]
+
+[ext_resource type="Script" path="res://Scenes/character_3.gd" id="1_myxxc"]
+
+[node name="character3" type="CharacterBody2D"]
+position = Vector2(1180, 964)
+collision_layer = 2
+input_pickable = true
+script = ExtResource("1_myxxc")
+metadata/active = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+scale = Vector2(1.01758, 0.998047)
+polygon = PackedVector2Array(-31.4473, -32.0626, -31.4473, 32.0626, 31.4473, 32.0626, 31.4473, -32.0626)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+color = Color(0, 1, 0, 1)
+metadata/_edit_use_anchors_ = true

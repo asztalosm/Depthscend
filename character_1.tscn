@@ -1,0 +1,49 @@
+[gd_scene load_steps=5 format=3 uid="uid://btd7uso6md01v"]
+
+[ext_resource type="Script" path="res://Scenes/character_1.gd" id="1_q2xhr"]
+[ext_resource type="Texture2D" uid="uid://c3f01kkfx403b" path="res://Sprites/pixil-frame-0_3.png" id="2_q68n1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_24g0f"]
+size = Vector2(27, 30)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sydsr"]
+size = Vector2(32, 68)
+
+[node name="character1" type="CharacterBody2D"]
+z_index = 1
+position = Vector2(666, 963)
+collision_layer = 4
+collision_mask = 4
+input_pickable = true
+script = ExtResource("1_q2xhr")
+metadata/active = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-3.05176e-05, -1.52588e-05)
+scale = Vector2(1.90625, 1.90625)
+texture = ExtResource("2_q68n1")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_desired_distance = 4.0
+target_desired_distance = 24.0
+simplify_path = true
+radius = 70.0
+debug_enabled = true
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.2
+autostart = true
+
+[node name="WallCollision" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 19)
+shape = SubResource("RectangleShape2D_24g0f")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_sydsr")
+
+[connection signal="target_reached" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_target_reached"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]

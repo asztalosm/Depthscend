@@ -1,3 +1,4 @@
+
 [gd_scene load_steps=16 format=4 uid="uid://dfy3v7er3vajh"]
 
 [ext_resource type="PackedScene" uid="uid://d1maoccsy4oe4" path="res://Scenes/character_2.tscn" id="1_mw7xr"]
@@ -11,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://udortutn51el" path="res://Textures/bg4.png" id="9_0riqs"]
 [ext_resource type="Texture2D" uid="uid://dhjicjumagj1k" path="res://Sprites/chest.png" id="10_7v6uv"]
 [ext_resource type="PackedScene" uid="uid://dwou5g30xc3eq" path="res://squink.tscn" id="11_fe60k"]
+
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8rjp8"]
 texture = ExtResource("5_ctvlr")
@@ -37,6 +39,7 @@ sources/0 = SubResource("TileSetAtlasSource_8rjp8")
 sources/1 = SubResource("TileSetAtlasSource_5fa16")
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_k5rra"]
+
 vertices = PackedVector2Array(287, 687, 287, 1055.26, 223.344, 2720.93, 161, 1055.3, 161, 641, 177, 641, 177, 351.344, -63.3906, -5677.06, 1039, 354.969, 1025, 463, 463, 463, 1039, 575, 1025, 575, 463, 609, 801, 687, 687, 641, 687, 609, 911, 641, 879, 687, 911, 687, 879, 751, 847, 751, 801, 817, 847, 911, 815, 911, 815, 1071, 719, 1071, 719, 1103, 593, 1103, 593, 1071, 465, 1071, 465, 817)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4, 5), PackedInt32Array(6, 7, 8, 9, 10), PackedInt32Array(8, 11, 12, 9), PackedInt32Array(0, 5, 6, 10, 13), PackedInt32Array(14, 0, 13, 15), PackedInt32Array(13, 16, 15), PackedInt32Array(14, 15, 17, 18), PackedInt32Array(17, 19, 18), PackedInt32Array(14, 18, 20, 21), PackedInt32Array(22, 14, 21, 23, 24), PackedInt32Array(24, 25, 26), PackedInt32Array(26, 27, 28, 29), PackedInt32Array(29, 30, 31, 22, 24), PackedInt32Array(29, 24, 26)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(432, 784, 768, 784, 768, 720, 320, 720, 320, 1056, 223, 3594, 128, 1056, 128, 608, 144, 608, 144, 352, -115, -6143, 1072, 352, 1072, 608, 992, 608, 992, 496, 496, 496, 496, 576, 720, 576, 720, 608, 944, 608, 944, 720, 912, 720, 912, 784, 880, 784, 880, 944, 848, 944, 848, 1104, 752, 1104, 752, 1136, 560, 1136, 560, 1104, 432, 1104)])
@@ -68,6 +71,7 @@ collision_mask = 0
 metadata/isDead = false
 
 [node name="Camera2D" type="Camera2D" parent="Characters"]
+
 top_level = true
 position = Vector2(960, 540)
 process_callback = 0
@@ -165,3 +169,4 @@ autostart = true
 [node name="squink" parent="Enemies" instance=ExtResource("11_fe60k")]
 
 [connection signal="timeout" from="Map/TileMapLayer/DamageArea/Timer" to="Map/TileMapLayer/DamageArea" method="_on_timer_timeout"]
+
