@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://d1maoccsy4oe4"]
+[gd_scene load_steps=16 format=3 uid="uid://d1maoccsy4oe4"]
 
 [ext_resource type="Script" path="res://Scenes/Characters/Playable/Scripts/character_2.gd" id="1_asb81"]
 [ext_resource type="Texture2D" uid="uid://cd2x0jjcgnwr1" path="res://Sprites/mischievouslilguy.svg" id="2_ndwyl"]
+[ext_resource type="Texture2D" uid="uid://dfwrcr40xwpus" path="res://Textures/sword-slash_spritesheet.png" id="3_6pe0w"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xko1q"]
-size = Vector2(28.5, 14)
+size = Vector2(22, 2)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_its7r"]
 size = Vector2(32, 54)
@@ -15,15 +16,73 @@ size = Vector2(1, 0)
 [sub_resource type="CircleShape2D" id="CircleShape2D_opwov"]
 radius = 64.1249
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_3y3hj"]
+atlas = ExtResource("3_6pe0w")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1qeq1"]
+atlas = ExtResource("3_6pe0w")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tvkcy"]
+atlas = ExtResource("3_6pe0w")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bple6"]
+atlas = ExtResource("3_6pe0w")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xeatg"]
+atlas = ExtResource("3_6pe0w")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_12yxo"]
+atlas = ExtResource("3_6pe0w")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ul5o"]
+atlas = ExtResource("3_6pe0w")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_540r5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3y3hj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1qeq1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tvkcy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bple6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xeatg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_12yxo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0ul5o")
+}],
+"loop": false,
+"name": &"default",
+"speed": 12.0
+}]
+
 [node name="character2" type="CharacterBody2D"]
 position = Vector2(963, 964)
 collision_layer = 2
+collision_mask = 2
 script = ExtResource("1_asb81")
 metadata/active = false
 metadata/isDead = false
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(2, -25)
+position = Vector2(2, -31)
 texture = ExtResource("2_ndwyl")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
@@ -32,16 +91,18 @@ target_desired_distance = 24.0
 simplify_path = true
 radius = 70.0
 
-[node name="ZoneCollision" type="Area2D" parent="."]
-position = Vector2(-0.25, -1)
-collision_layer = 16
-collision_mask = 16
+[node name="ZoneHitBox" type="Area2D" parent="."]
+position = Vector2(-0.25, -7)
+collision_layer = 17
+collision_mask = 0
+monitoring = false
 
-[node name="WallCollision" type="CollisionShape2D" parent="ZoneCollision"]
+[node name="WallCollision" type="CollisionShape2D" parent="ZoneHitBox"]
+position = Vector2(1.25, 7)
 shape = SubResource("RectangleShape2D_xko1q")
 
 [node name="HitCollision" type="Area2D" parent="."]
-position = Vector2(2, -25)
+position = Vector2(2, -31)
 collision_layer = 33
 collision_mask = 33
 
@@ -51,12 +112,27 @@ shape = SubResource("RectangleShape2D_its7r")
 debug_color = Color(1, 1, 1, 0.42)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(9.5, 2)
+position = Vector2(9.5, -4)
 shape = SubResource("RectangleShape2D_xu5q2")
 disabled = true
 
 [node name="AutoAttackRange" type="Area2D" parent="."]
+position = Vector2(0, -6)
+collision_layer = 256
+collision_mask = 256
+monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AutoAttackRange"]
 position = Vector2(0, -20)
 shape = SubResource("CircleShape2D_opwov")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="AutoAttackRange"]
+sprite_frames = SubResource("SpriteFrames_540r5")
+
+[node name="AttackCooldown" type="Timer" parent="."]
+wait_time = 0.4
+autostart = true
+
+[connection signal="area_entered" from="AutoAttackRange" to="." method="_on_auto_attack_range_area_entered"]
+[connection signal="area_exited" from="AutoAttackRange" to="." method="_on_auto_attack_range_area_exited"]
+[connection signal="timeout" from="AttackCooldown" to="." method="_on_attack_cooldown_timeout"]

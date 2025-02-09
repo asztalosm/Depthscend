@@ -5,6 +5,7 @@ extends Node2D
 @onready var health = $GUI/CurrentCharacter/Health
 @onready var currentcharacter = $GUI/CurrentCharacter
 @onready var DeathScreen = $GUI/DeathScreen
+@onready var Cursor = $Cursor
 var globalcurrentchar = 0
 # karakterválasztásért felelős funkció, loopol a charlisten megnézi melyik gombot nyomtuk meg, irányítást átadja, kamerának megadja melyiket kell követnie
 func _input(event: InputEvent) -> void:
@@ -16,6 +17,8 @@ func _input(event: InputEvent) -> void:
 				globalcurrentchar = i
 				for currentchar in range(characters.size()):
 					characters[currentchar].set_meta("active", currentchar == i)
+					
+					
 
 # folyamatosan futó funkció ami a jelenleg kiválasztott karaktert követi, életet is kiírja hudra
 func _process(_delta: float) -> void:
@@ -29,4 +32,4 @@ func _process(_delta: float) -> void:
 		playerhealth.text = str(characters[globalcurrentchar].health) + "/" + str(characters[globalcurrentchar].maxhealth)
 		var tween = health.create_tween()
 		tween.tween_property(health, "size:x", float(characters[globalcurrentchar].health / float(characters[globalcurrentchar].maxhealth)) * $GUI/CurrentCharacter/HealthBG.size.x, 0.2)   # átméretezi a healthbart a játékos jelenlegi karakterének életerejével megfelelőnek
-	
+		Cursor.position = get_global_mouse_position()

@@ -15,11 +15,13 @@ height = 49.1312
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_sera8"]
 
-[node name="squink2" type="CharacterBody2D"]
+[node name="squink" type="CharacterBody2D"]
 script = ExtResource("2_n5x0s")
 
 [node name="ExplosionSize" type="Area2D" parent="."]
 scale = Vector2(0.8, 0.8)
+collision_layer = 0
+collision_mask = 288
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ExplosionSize"]
 shape = SubResource("CircleShape2D_rgb5s")
@@ -29,12 +31,13 @@ collision_layer = 32
 collision_mask = 32
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detection"]
-position = Vector2(2, 0)
 shape = SubResource("CircleShape2D_xc4uj")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 
 [node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 256
+collision_mask = 256
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
 position = Vector2(2.26262, 0.323231)
@@ -44,19 +47,44 @@ shape = SubResource("CapsuleShape2D_4ff36")
 shape = SubResource("CircleShape2D_sera8")
 disabled = true
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite" type="Sprite2D" parent="."]
 texture = ExtResource("1_allmh")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.25
 autostart = true
 
-[node name="ExplosionTimer" type="Timer" parent="."]
-wait_time = 1.5
-one_shot = true
+[node name="Health" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = 1.0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HealthBar" type="ColorRect" parent="Health"]
+layout_mode = 0
+offset_left = -29.0
+offset_top = -31.0
+offset_right = 31.0
+offset_bottom = -26.0
+color = Color(1, 0, 0, 0.588235)
+
+[node name="Label" type="Label" parent="Health"]
+layout_mode = 0
+offset_left = -29.0
+offset_top = -43.0
+offset_right = 71.0
+offset_bottom = -20.0
+scale = Vector2(0.6, 0.6)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 4
+text = "0/0"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="area_entered" from="ExplosionSize" to="." method="_on_explosion_size_area_entered"]
+[connection signal="area_exited" from="ExplosionSize" to="." method="_on_explosion_size_area_exited"]
 [connection signal="area_entered" from="Detection" to="." method="_on_detection_area_entered"]
-[connection signal="area_exited" from="Detection" to="." method="_on_detection_area_exited"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
-[connection signal="timeout" from="ExplosionTimer" to="." method="_on_explosion_timer_timeout"]

@@ -1,22 +1,22 @@
 extends CharacterBody2D
 #itt ezek az exportok globális változók lesznek amiket el lehet érni más scriptekből
-@export var speed = 250
+@export var speed = 200
 @export var health = 30
 @export var maxhealth = 70
-@export var playerpos = self.position
-@export var accel = 35
+@export var damage = 2
+var accel = 35
 var dir := Vector2()
 #változó ami akkor jön létre amikor létrejön a karakter
 @onready var navagent := $NavigationAgent2D as NavigationAgent2D 
+@onready var projectile := $Projectile as Area2D
+var target = self.position # hack hogy ne mozduljon el a karakter spawnoláskol és menjen el 0,0-ra
+
 
 func _input(event):
-	if health < 0:
-		set_meta("isDead", true)
+	#movement
 	if event.is_action_pressed("click") and get_meta("active") and not get_meta("isDead"):
-		var target = get_global_mouse_position()
+		target = get_global_mouse_position()
 		navagent.target_position = target
-	
-
 
 func _physics_process(_delta: float) -> void:
 	if health > 0:
