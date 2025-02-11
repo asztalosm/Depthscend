@@ -1,0 +1,171 @@
+[gd_scene load_steps=12 format=3 uid="uid://32mqbxap2xs3"]
+
+[ext_resource type="Script" path="res://Scenes/Misc/characterscript.gd" id="1_pohhn"]
+[ext_resource type="PackedScene" uid="uid://d1maoccsy4oe4" path="res://Scenes/Characters/Playable/character_2.tscn" id="2_cj02r"]
+[ext_resource type="PackedScene" uid="uid://btd7uso6md01v" path="res://Scenes/Characters/Playable/character_1.tscn" id="3_4n2d1"]
+[ext_resource type="PackedScene" uid="uid://bbr64q8hg7fde" path="res://Scenes/Characters/Playable/character_3.tscn" id="4_l2wkl"]
+[ext_resource type="Script" path="res://Scenes/Misc/camera_2d.gd" id="5_pff0d"]
+[ext_resource type="Texture2D" uid="uid://udortutn51el" path="res://Textures/bg4.png" id="6_8570g"]
+[ext_resource type="Texture2D" uid="uid://bwhgb085kx00b" path="res://Textures/healthbar.svg" id="7_iqvkd"]
+[ext_resource type="Texture2D" uid="uid://dpw82p20srsto" path="res://Textures/skull2.png" id="7_q5ewc"]
+[ext_resource type="Texture2D" uid="uid://bcc8v1uvhrgct" path="res://Textures/healthbarunder.svg" id="7_tl2x8"]
+[ext_resource type="Texture2D" uid="uid://bvr7ya6vawx5l" path="res://Textures/healthbarover.svg" id="8_o3037"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yipiy"]
+size = Vector2(10, 10)
+
+[node name="Characters" type="Node2D"]
+script = ExtResource("1_pohhn")
+
+[node name="character1" parent="." instance=ExtResource("3_4n2d1")]
+z_index = 99
+position = Vector2(576, 960)
+collision_layer = 4
+collision_mask = 0
+
+[node name="character2" parent="." instance=ExtResource("2_cj02r")]
+z_index = 99
+position = Vector2(648, 968)
+collision_layer = 4
+collision_mask = 0
+
+[node name="character3" parent="." instance=ExtResource("4_l2wkl")]
+z_index = 99
+position = Vector2(728, 968)
+collision_layer = 4
+
+[node name="Cursor" type="Area2D" parent="."]
+z_index = 200
+collision_layer = 256
+collision_mask = 256
+monitorable = false
+
+[node name="ColorRect" type="ColorRect" parent="Cursor"]
+offset_right = 5.0
+offset_bottom = 5.0
+color = Color(1, 1, 1, 0.784314)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cursor"]
+position = Vector2(5, 5)
+shape = SubResource("RectangleShape2D_yipiy")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+top_level = true
+position = Vector2(960, 540)
+zoom = Vector2(0.8, 0.8)
+process_callback = 0
+position_smoothing_enabled = true
+position_smoothing_speed = 8.0
+rotation_smoothing_enabled = true
+script = ExtResource("5_pff0d")
+
+[node name="Background" type="TextureRect" parent="Camera2D"]
+self_modulate = Color(0.0354448, 0.113299, 0.127364, 1)
+z_index = -100
+texture_filter = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -2000.0
+offset_top = -1000.0
+offset_right = 6640.0
+offset_bottom = 7640.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+texture = ExtResource("6_8570g")
+stretch_mode = 1
+
+[node name="GUI" type="CanvasLayer" parent="."]
+
+[node name="CurrentCharacter" type="Control" parent="GUI"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HealthBG" type="ColorRect" parent="GUI/CurrentCharacter"]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 64.0
+offset_right = 348.0
+offset_bottom = 94.0
+color = Color(0, 0, 0, 1)
+
+[node name="HealthLabel" type="Label" parent="GUI/CurrentCharacter"]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 20.0
+offset_right = 347.0
+offset_bottom = 64.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 31
+text = "0/0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Health" type="TextureProgressBar" parent="GUI/CurrentCharacter"]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 64.0
+offset_right = 348.0
+offset_bottom = 94.0
+max_value = 70.0
+step = 0.0
+value = 30.0
+texture_under = ExtResource("7_tl2x8")
+texture_over = ExtResource("8_o3037")
+texture_progress = ExtResource("7_iqvkd")
+tint_under = Color(0.592157, 0.592157, 0.592157, 1)
+tint_over = Color(0.509286, 0.509286, 0.509286, 1)
+tint_progress = Color(0.592157, 0.592157, 0.592157, 1)
+
+[node name="DeathScreen" type="Control" parent="GUI"]
+visible = false
+modulate = Color(1, 1, 1, 0)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="GUI/DeathScreen"]
+layout_mode = 0
+offset_right = 1919.0
+offset_bottom = 1079.0
+color = Color(0, 0, 0, 0.705882)
+
+[node name="TextureRect" type="TextureRect" parent="GUI/DeathScreen"]
+layout_mode = 0
+offset_left = 880.0
+offset_top = 240.0
+offset_right = 1040.0
+offset_bottom = 400.0
+texture = ExtResource("7_q5ewc")
+
+[node name="TextureRect2" type="TextureRect" parent="GUI/DeathScreen"]
+layout_mode = 0
+offset_left = 795.0
+offset_top = 275.0
+offset_right = 915.0
+offset_bottom = 395.0
+texture = ExtResource("7_q5ewc")
+
+[node name="TextureRect3" type="TextureRect" parent="GUI/DeathScreen"]
+layout_mode = 0
+offset_left = 1005.0
+offset_top = 286.0
+offset_right = 1114.0
+offset_bottom = 395.0
+texture = ExtResource("7_q5ewc")
+
+[node name="ColorRect2" type="ColorRect" parent="GUI/DeathScreen"]
+layout_mode = 0
+offset_left = 780.0
+offset_top = 390.0
+offset_right = 1140.0
+offset_bottom = 410.0
+color = Color(0.168627, 0.168627, 0.168627, 0.654902)

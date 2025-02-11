@@ -1,0 +1,136 @@
+[gd_scene load_steps=16 format=3 uid="uid://btd7uso6md01v"]
+
+[ext_resource type="Script" path="res://Scenes/Characters/Playable/Scripts/character_1.gd" id="1_q2xhr"]
+[ext_resource type="Texture2D" uid="uid://c3f01kkfx403b" path="res://Sprites/pixil-frame-0_3.png" id="2_q68n1"]
+[ext_resource type="Texture2D" uid="uid://dfwrcr40xwpus" path="res://Textures/sword-slash_spritesheet.png" id="3_2ok6o"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sydsr"]
+size = Vector2(51, 105)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_24g0f"]
+size = Vector2(35.5, 6)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hk48o"]
+radius = 99.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s70xe"]
+atlas = ExtResource("3_2ok6o")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_htuqa"]
+atlas = ExtResource("3_2ok6o")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jgfnj"]
+atlas = ExtResource("3_2ok6o")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s8skr"]
+atlas = ExtResource("3_2ok6o")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0n2jr"]
+atlas = ExtResource("3_2ok6o")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8sidn"]
+atlas = ExtResource("3_2ok6o")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4rt3v"]
+atlas = ExtResource("3_2ok6o")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8bx5h"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s70xe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_htuqa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jgfnj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s8skr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0n2jr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8sidn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4rt3v")
+}],
+"loop": false,
+"name": &"default",
+"speed": 24.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_20j34"]
+size = Vector2(36, 6)
+
+[node name="character1" type="CharacterBody2D"]
+z_index = 1
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("1_q2xhr")
+metadata/active = true
+metadata/isDead = false
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-3.06252, -51.0938)
+scale = Vector2(2.99479, 2.99479)
+texture = ExtResource("2_q68n1")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_desired_distance = 4.0
+target_desired_distance = 24.0
+simplify_path = true
+radius = 70.0
+
+[node name="Hitbox" type="Area2D" parent="."]
+position = Vector2(-16.0625, -32.0938)
+collision_layer = 34
+collision_mask = 34
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(14.5, -17.5)
+shape = SubResource("RectangleShape2D_sydsr")
+
+[node name="ZoneHitbox" type="Area2D" parent="."]
+position = Vector2(-16.0625, -32.0938)
+collision_layer = 17
+monitoring = false
+
+[node name="WallCollision" type="CollisionShape2D" parent="ZoneHitbox"]
+position = Vector2(16.25, 32)
+shape = SubResource("RectangleShape2D_24g0f")
+
+[node name="AutoAttackRange" type="Area2D" parent="."]
+position = Vector2(-16.0625, -32.0938)
+collision_layer = 256
+collision_mask = 256
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AutoAttackRange"]
+position = Vector2(13, -19)
+shape = SubResource("CircleShape2D_hk48o")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="AutoAttackRange"]
+sprite_frames = SubResource("SpriteFrames_8bx5h")
+
+[node name="AttackCooldown" type="Timer" parent="."]
+wait_time = 1.7
+autostart = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_20j34")
+disabled = true
+
+[connection signal="area_entered" from="AutoAttackRange" to="." method="_on_auto_attack_range_area_entered"]
+[connection signal="area_exited" from="AutoAttackRange" to="." method="_on_auto_attack_range_area_exited"]
+[connection signal="timeout" from="AttackCooldown" to="." method="_on_attack_cooldown_timeout"]

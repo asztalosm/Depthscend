@@ -1,0 +1,61 @@
+[gd_scene load_steps=5 format=3 uid="uid://8gie7rovk5r1"]
+
+[ext_resource type="Script" path="res://Scenes/Characters/Enemies/attack_dummy.gd" id="1_g77i0"]
+[ext_resource type="Texture2D" uid="uid://buxwbnp4lfyht" path="res://Textures/trainingdummy.png" id="1_lxhti"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cxv78"]
+radius = 8.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4vbm1"]
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+position = Vector2(684, 58)
+scale = Vector2(2, 2)
+script = ExtResource("1_g77i0")
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 256
+collision_mask = 256
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0, -3)
+shape = SubResource("CircleShape2D_cxv78")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_lxhti")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_4vbm1")
+disabled = true
+
+[node name="Health" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = 1.0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HealthBar" type="ColorRect" parent="Health"]
+layout_mode = 0
+offset_left = -29.0
+offset_top = -31.0
+offset_right = 31.0
+offset_bottom = -26.0
+color = Color(1, 0, 0, 0.588235)
+
+[node name="Label" type="Label" parent="Health"]
+layout_mode = 0
+offset_left = -29.0
+offset_top = -43.0
+offset_right = 71.0
+offset_bottom = -20.0
+scale = Vector2(0.6, 0.6)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 4
+text = "0/0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
