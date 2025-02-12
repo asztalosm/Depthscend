@@ -14,6 +14,8 @@ var target = self.position # hack hogy ne mozduljon el a karakter spawnoláskol 
 var healhitboxchars = []
 @onready var healprogbar := $HealRange/TextureProgressBar
 @onready var healcooldown := $HealCooldown
+@onready var animatedsprite := $AnimatedSprite2D
+var currentsprite = 0
 
 func tweenhealth():
 	healprogbar.value = 0
@@ -30,14 +32,29 @@ func _input(event):
 	if event.is_action_pressed("click") and get_meta("active") and not get_meta("isDead"):
 		target = get_global_mouse_position()
 		navagent.target_position = target
+		
+	if event.is_action_pressed("changesprite"):
+		if animatedsprite.frame != 7:
+			animatedsprite.frame += 1
+		else:
+			animatedsprite.frame = 0
 
 func _physics_process(_delta: float) -> void:
 	if health > 0:
 		dir = navagent.get_next_path_position() - global_position
+		navagent.target_desired_distance = 30
 		if dir.length_squared() > 1.0:
 			dir = dir.normalized()
-		velocity = velocity.lerp(dir * speed, accel * _delta)
-		move_and_slide()
+		if !navagent.is_target_reached():
+			velocity = velocity.lerp(dir * speed, accel * _delta)
+			move_and_slide()
+		if dir.length_squared() > 1:
+			var angletocursor = rad_to_deg(self.get_angle_to(navagent.get_next_path_position())) - 90
+			if angletocursor < 0:
+				angletocursor += 360 
+			currentsprite = ceil(angletocursor / 45)
+			animatedsprite.frame = currentsprite -1
+			print(angletocursor)
 	else:
 		visible = false
 		set_meta("active", false)

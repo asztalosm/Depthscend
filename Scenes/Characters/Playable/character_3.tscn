@@ -1,10 +1,17 @@
-[gd_scene load_steps=11 format=3 uid="uid://bbr64q8hg7fde"]
+[gd_scene load_steps=19 format=3 uid="uid://bbr64q8hg7fde"]
 
 [ext_resource type="Script" path="res://Scenes/Characters/Playable/Scripts/character_3.gd" id="1_myxxc"]
 [ext_resource type="Script" path="res://Scenes/Characters/Playable/projectile.gd" id="2_4ms6l"]
-[ext_resource type="Texture2D" uid="uid://276k2fp14b4c" path="res://Textures/healrange.png" id="3_8p853"]
-[ext_resource type="Texture2D" uid="uid://4omfojv3o20" path="res://Textures/healprogress.png" id="4_aiy7r"]
+[ext_resource type="Texture2D" uid="uid://c83ynlvklq4jb" path="res://Textures/healunder.svg" id="4_0q8xu"]
 [ext_resource type="Texture2D" uid="uid://dfvwd26hcv560" path="res://Sprites/priestess_leftfront.png" id="4_swb62"]
+[ext_resource type="Texture2D" uid="uid://cv3ay8ds8ioid" path="res://Textures/healprogress.svg" id="5_3gmsv"]
+[ext_resource type="Texture2D" uid="uid://dancm16xg0ycy" path="res://Sprites/priestess_front.png" id="6_wy0vq"]
+[ext_resource type="Texture2D" uid="uid://dr48scpyc15qm" path="res://Sprites/priestess_rightfront.png" id="7_lyjsc"]
+[ext_resource type="Texture2D" uid="uid://nmabpowaofkf" path="res://Sprites/priestess_right.png" id="8_56bqi"]
+[ext_resource type="Texture2D" uid="uid://d04jwuunbk8bb" path="res://Sprites/priestess_rightback.png" id="9_f3r8r"]
+[ext_resource type="Texture2D" uid="uid://c3p42dghvch30" path="res://Sprites/priestess_back.png" id="10_lm7dk"]
+[ext_resource type="Texture2D" uid="uid://cw1ojo8ktm6f3" path="res://Sprites/priestess_leftback.png" id="11_ctfn3"]
+[ext_resource type="Texture2D" uid="uid://b7gj8h0060h00" path="res://Sprites/priestess_left.png" id="12_3apww"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2xmsr"]
 size = Vector2(43, 118)
@@ -21,6 +28,38 @@ size = Vector2(24.5, 6)
 [sub_resource type="CircleShape2D" id="CircleShape2D_4sqb4"]
 radius = 263.002
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_h1jj7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_wy0vq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_lyjsc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_3apww")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_ctfn3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_lm7dk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_f3r8r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_56bqi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_swb62")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="character3" type="CharacterBody2D"]
 position = Vector2(1178, 964)
 collision_layer = 0
@@ -30,6 +69,7 @@ metadata/active = false
 metadata/isDead = false
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(0.148396, -28.2111)
 scale = Vector2(0.981076, 0.981076)
 texture = ExtResource("4_swb62")
@@ -45,14 +85,12 @@ metadata/_edit_use_anchors_ = true
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 path_desired_distance = 4.0
-target_desired_distance = 24.0
-simplify_path = true
+target_desired_distance = 30.0
 radius = 70.0
 debug_path_custom_point_size = 0.0
 debug_path_custom_line_width = 1.0
 
 [node name="HitCollision" type="Area2D" parent="."]
-position = Vector2(0, -28)
 collision_layer = 34
 collision_mask = 34
 
@@ -61,7 +99,6 @@ position = Vector2(-10.5, 1)
 shape = SubResource("RectangleShape2D_2xmsr")
 
 [node name="ZoneHitbox" type="Area2D" parent="."]
-position = Vector2(0, -28)
 collision_layer = 16
 collision_mask = 0
 monitoring = false
@@ -72,12 +109,12 @@ shape = SubResource("RectangleShape2D_cdwh7")
 
 [node name="Projectile" type="Area2D" parent="."]
 z_index = 200
-position = Vector2(0, -28)
 scale = Vector2(2, 2)
 collision_layer = 0
 collision_mask = 768
 input_pickable = false
 script = ExtResource("2_4ms6l")
+metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Projectile"]
 shape = SubResource("RectangleShape2D_3i43i")
@@ -100,7 +137,7 @@ metadata/_edit_use_anchors_ = true
 [node name="AttackCooldown" type="Timer" parent="Projectile"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1.25, -1)
+position = Vector2(-1.25, 27)
 shape = SubResource("RectangleShape2D_r38ka")
 disabled = true
 
@@ -112,36 +149,39 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -20.0
-offset_top = -20.0
+offset_top = 8.0
 offset_right = 20.0
-offset_bottom = 20.0
+offset_bottom = 48.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="HealRange"]
 layout_mode = 0
-offset_left = -111.0
-offset_top = -130.0
-offset_right = 145.0
-offset_bottom = 126.0
+offset_left = -232.0
+offset_top = -260.0
+offset_right = 280.0
+offset_bottom = 252.0
 rotation = -6.28319
-scale = Vector2(2, 2)
 pivot_offset = Vector2(128, 128)
 fill_mode = 4
-texture_under = ExtResource("3_8p853")
-texture_progress = ExtResource("4_aiy7r")
-tint_progress = Color(1, 1, 1, 0.392157)
+texture_under = ExtResource("4_0q8xu")
+texture_progress = ExtResource("5_3gmsv")
+tint_under = Color(0, 0.301961, 0, 0.627451)
 
 [node name="HealRangeHitbox" type="Area2D" parent="."]
-position = Vector2(-20, -20)
+position = Vector2(-20, 8)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HealRangeHitbox"]
-position = Vector2(20, -8)
+position = Vector2(25, -1)
 shape = SubResource("CircleShape2D_4sqb4")
 
 [node name="HealCooldown" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 15.0
 autostart = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-10, 1)
+sprite_frames = SubResource("SpriteFrames_h1jj7")
 
 [connection signal="area_entered" from="Projectile" to="Projectile" method="_on_area_entered"]
 [connection signal="body_entered" from="Projectile" to="Projectile" method="_on_body_entered"]

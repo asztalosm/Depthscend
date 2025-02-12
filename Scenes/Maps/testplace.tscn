@@ -1,10 +1,11 @@
-[gd_scene load_steps=14 format=4 uid="uid://dfy3v7er3vajh"]
+[gd_scene load_steps=15 format=4 uid="uid://dfy3v7er3vajh"]
 
 [ext_resource type="PackedScene" uid="uid://32mqbxap2xs3" path="res://Scenes/Characters/Playable/characters.tscn" id="1_rvwj5"]
 [ext_resource type="Script" path="res://Scenes/Maps/map.gd" id="2_y7e54"]
 [ext_resource type="PackedScene" uid="uid://8gie7rovk5r1" path="res://Scenes/Characters/Enemies/AttackDummy.tscn" id="6_ksc8h"]
 [ext_resource type="Texture2D" uid="uid://du3kynyeqy6rp" path="res://Textures/tempfloor.png" id="7_3sl66"]
 [ext_resource type="Texture2D" uid="uid://dy6chttifdta8" path="res://Textures/tempfloor2.png" id="8_wrwvq"]
+[ext_resource type="Script" path="res://Scenes/Maps/pause_menu.gd" id="8_xi6o2"]
 [ext_resource type="PackedScene" uid="uid://dpcveyqyw3du4" path="res://Scenes/Misc/damage_area.tscn" id="10_cqn1i"]
 [ext_resource type="PackedScene" uid="uid://dwou5g30xc3eq" path="res://Scenes/Characters/Enemies/squink.tscn" id="11_dd1nh"]
 
@@ -82,3 +83,20 @@ position = Vector2(241, 59)
 scale = Vector2(1.54688, 1.54688)
 
 [node name="trainingdummy" parent="Enemies" instance=ExtResource("6_ksc8h")]
+
+[node name="PauseMenu" type="Control" parent="."]
+process_mode = 3
+process_thread_group = 1
+process_thread_group_order = 0
+process_thread_messages = 0
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("8_xi6o2")
+
+[node name="ColorRect" type="ColorRect" parent="PauseMenu"]
+layout_mode = 0
+offset_right = 129.0
+offset_bottom = 47.0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://32mqbxap2xs3"]
+[gd_scene load_steps=11 format=3 uid="uid://32mqbxap2xs3"]
 
 [ext_resource type="Script" path="res://Scenes/Misc/characterscript.gd" id="1_pohhn"]
 [ext_resource type="PackedScene" uid="uid://d1maoccsy4oe4" path="res://Scenes/Characters/Playable/character_2.tscn" id="2_cj02r"]
@@ -10,9 +10,6 @@
 [ext_resource type="Texture2D" uid="uid://dpw82p20srsto" path="res://Textures/skull2.png" id="7_q5ewc"]
 [ext_resource type="Texture2D" uid="uid://bcc8v1uvhrgct" path="res://Textures/healthbarunder.svg" id="7_tl2x8"]
 [ext_resource type="Texture2D" uid="uid://bvr7ya6vawx5l" path="res://Textures/healthbarover.svg" id="8_o3037"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_yipiy"]
-size = Vector2(10, 10)
 
 [node name="Characters" type="Node2D"]
 script = ExtResource("1_pohhn")
@@ -33,21 +30,6 @@ collision_mask = 0
 z_index = 99
 position = Vector2(728, 968)
 collision_layer = 4
-
-[node name="Cursor" type="Area2D" parent="."]
-z_index = 200
-collision_layer = 256
-collision_mask = 256
-monitorable = false
-
-[node name="ColorRect" type="ColorRect" parent="Cursor"]
-offset_right = 5.0
-offset_bottom = 5.0
-color = Color(1, 1, 1, 0.784314)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Cursor"]
-position = Vector2(5, 5)
-shape = SubResource("RectangleShape2D_yipiy")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 top_level = true
