@@ -61,27 +61,12 @@ animations = [{
 }]
 
 [node name="character3" type="CharacterBody2D"]
-position = Vector2(1178, 964)
+position = Vector2(1177, 964)
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_myxxc")
 metadata/active = false
 metadata/isDead = false
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(0.148396, -28.2111)
-scale = Vector2(0.981076, 0.981076)
-texture = ExtResource("4_swb62")
-
-[node name="ColorRect" type="ColorRect" parent="."]
-visible = false
-offset_left = -16.0
-offset_top = -60.0
-offset_right = 16.0
-offset_bottom = 4.0
-color = Color(0, 1, 0, 1)
-metadata/_edit_use_anchors_ = true
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 path_desired_distance = 4.0
@@ -91,6 +76,7 @@ debug_path_custom_point_size = 0.0
 debug_path_custom_line_width = 1.0
 
 [node name="HitCollision" type="Area2D" parent="."]
+position = Vector2(1, -27)
 collision_layer = 34
 collision_mask = 34
 
@@ -99,6 +85,7 @@ position = Vector2(-10.5, 1)
 shape = SubResource("RectangleShape2D_2xmsr")
 
 [node name="ZoneHitbox" type="Area2D" parent="."]
+position = Vector2(1, -27)
 collision_layer = 16
 collision_mask = 0
 monitoring = false
@@ -109,6 +96,7 @@ shape = SubResource("RectangleShape2D_cdwh7")
 
 [node name="Projectile" type="Area2D" parent="."]
 z_index = 200
+position = Vector2(1, -27)
 scale = Vector2(2, 2)
 collision_layer = 0
 collision_mask = 768
@@ -137,7 +125,7 @@ metadata/_edit_use_anchors_ = true
 [node name="AttackCooldown" type="Timer" parent="Projectile"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1.25, 27)
+position = Vector2(-0.25, 0)
 shape = SubResource("RectangleShape2D_r38ka")
 disabled = true
 
@@ -148,10 +136,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = 8.0
-offset_right = 20.0
-offset_bottom = 48.0
+offset_left = -19.0
+offset_top = -19.0
+offset_right = 21.0
+offset_bottom = 21.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -169,7 +157,7 @@ texture_progress = ExtResource("5_3gmsv")
 tint_under = Color(0, 0.301961, 0, 0.627451)
 
 [node name="HealRangeHitbox" type="Area2D" parent="."]
-position = Vector2(-20, 8)
+position = Vector2(-19, -19)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HealRangeHitbox"]
 position = Vector2(25, -1)
@@ -180,7 +168,7 @@ wait_time = 15.0
 autostart = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(-10, 1)
+position = Vector2(-15, -27)
 sprite_frames = SubResource("SpriteFrames_h1jj7")
 
 [connection signal="area_entered" from="Projectile" to="Projectile" method="_on_area_entered"]
