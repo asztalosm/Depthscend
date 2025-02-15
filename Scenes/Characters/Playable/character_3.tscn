@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bbr64q8hg7fde"]
+[gd_scene load_steps=23 format=3 uid="uid://bbr64q8hg7fde"]
 
 [ext_resource type="Script" path="res://Scenes/Characters/Playable/Scripts/character_3.gd" id="1_myxxc"]
 [ext_resource type="Script" path="res://Scenes/Characters/Playable/projectile.gd" id="2_4ms6l"]
@@ -21,6 +21,26 @@ size = Vector2(40, 5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3i43i"]
 size = Vector2(6, 6)
+
+[sub_resource type="Gradient" id="Gradient_nn7bc"]
+offsets = PackedFloat32Array(0, 0.231707)
+colors = PackedColorArray(1, 0, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_mnavg"]
+gradient = SubResource("Gradient_nn7bc")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="Gradient" id="Gradient_66lxp"]
+offsets = PackedFloat32Array(0, 0.99187)
+colors = PackedColorArray(1, 0, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_6eaq0"]
+gradient = SubResource("Gradient_66lxp")
+width = 4
+height = 4
+fill = 1
+fill_from = Vector2(0.5, 0.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r38ka"]
 size = Vector2(24.5, 6)
@@ -76,7 +96,7 @@ debug_path_custom_point_size = 0.0
 debug_path_custom_line_width = 1.0
 
 [node name="HitCollision" type="Area2D" parent="."]
-position = Vector2(1, -27)
+position = Vector2(1, -38)
 collision_layer = 34
 collision_mask = 34
 
@@ -85,7 +105,7 @@ position = Vector2(-10.5, 1)
 shape = SubResource("RectangleShape2D_2xmsr")
 
 [node name="ZoneHitbox" type="Area2D" parent="."]
-position = Vector2(1, -27)
+position = Vector2(1, -38)
 collision_layer = 16
 collision_mask = 0
 monitoring = false
@@ -96,7 +116,7 @@ shape = SubResource("RectangleShape2D_cdwh7")
 
 [node name="Projectile" type="Area2D" parent="."]
 z_index = 200
-position = Vector2(1, -27)
+position = Vector2(1, -38)
 scale = Vector2(2, 2)
 collision_layer = 0
 collision_mask = 768
@@ -108,6 +128,7 @@ metadata/_edit_group_ = true
 shape = SubResource("RectangleShape2D_3i43i")
 
 [node name="ColorRect" type="ColorRect" parent="Projectile"]
+visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -124,8 +145,18 @@ metadata/_edit_use_anchors_ = true
 
 [node name="AttackCooldown" type="Timer" parent="Projectile"]
 
+[node name="PointLight2D" type="PointLight2D" parent="Projectile"]
+texture = SubResource("GradientTexture2D_mnavg")
+
+[node name="TextureRect" type="TextureRect" parent="Projectile"]
+offset_left = -3.0
+offset_top = -3.0
+offset_right = 3.0
+offset_bottom = 3.0
+texture = SubResource("GradientTexture2D_6eaq0")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.25, 0)
+position = Vector2(-0.25, -11)
 shape = SubResource("RectangleShape2D_r38ka")
 disabled = true
 
@@ -137,9 +168,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -19.0
-offset_top = -19.0
+offset_top = -30.0
 offset_right = 21.0
-offset_bottom = 21.0
+offset_bottom = 10.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -157,10 +188,10 @@ texture_progress = ExtResource("5_3gmsv")
 tint_under = Color(0, 0.301961, 0, 0.627451)
 
 [node name="HealRangeHitbox" type="Area2D" parent="."]
-position = Vector2(-19, -19)
+position = Vector2(-19, -30)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HealRangeHitbox"]
-position = Vector2(25, -1)
+position = Vector2(25, -4)
 shape = SubResource("CircleShape2D_4sqb4")
 
 [node name="HealCooldown" type="Timer" parent="."]
@@ -168,7 +199,7 @@ wait_time = 15.0
 autostart = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(-15, -27)
+position = Vector2(-15, -38)
 sprite_frames = SubResource("SpriteFrames_h1jj7")
 
 [connection signal="area_entered" from="Projectile" to="Projectile" method="_on_area_entered"]

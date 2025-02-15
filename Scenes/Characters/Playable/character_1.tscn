@@ -1,7 +1,8 @@
-[gd_scene load_steps=16 format=3 uid="uid://btd7uso6md01v"]
+[gd_scene load_steps=18 format=3 uid="uid://btd7uso6md01v"]
 
 [ext_resource type="Script" path="res://Scenes/Characters/Playable/Scripts/character_1.gd" id="1_q2xhr"]
 [ext_resource type="Texture2D" uid="uid://c3f01kkfx403b" path="res://Sprites/pixil-frame-0_3.png" id="2_q68n1"]
+[ext_resource type="Texture2D" uid="uid://d4nvqwhn6dsuh" path="res://Textures/attackcooldown.png" id="2_y8tvg"]
 [ext_resource type="Texture2D" uid="uid://dfwrcr40xwpus" path="res://Textures/sword-slash_spritesheet.png" id="3_2ok6o"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sydsr"]
@@ -73,6 +74,9 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_20j34"]
 size = Vector2(36, 6)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_onal3"]
+size = Vector2(154, 119.477)
+
 [node name="character1" type="CharacterBody2D"]
 z_index = 1
 collision_layer = 3
@@ -80,6 +84,19 @@ collision_mask = 3
 script = ExtResource("1_q2xhr")
 metadata/active = true
 metadata/isDead = false
+
+[node name="AttackProgress" type="TextureProgressBar" parent="."]
+offset_left = -31.0
+offset_top = -42.0
+offset_right = 1.0
+offset_bottom = -10.0
+scale = Vector2(2, 2)
+value = 100.0
+fill_mode = 4
+texture_under = ExtResource("2_y8tvg")
+texture_progress = ExtResource("2_y8tvg")
+tint_under = Color(1, 1, 1, 0.176471)
+tint_progress = Color(1, 1, 1, 0.705882)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-3.06252, -51.0938)
@@ -124,12 +141,30 @@ shape = SubResource("CircleShape2D_hk48o")
 sprite_frames = SubResource("SpriteFrames_8bx5h")
 
 [node name="AttackCooldown" type="Timer" parent="."]
-wait_time = 1.7
+wait_time = 2.25
 autostart = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_20j34")
 disabled = true
+
+[node name="SwordHitbox" type="Area2D" parent="."]
+visible = false
+position = Vector2(-3, -51)
+collision_layer = 256
+collision_mask = 256
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SwordHitbox"]
+position = Vector2(0, -50.2617)
+shape = SubResource("RectangleShape2D_onal3")
+
+[node name="ColorRect" type="ColorRect" parent="SwordHitbox"]
+offset_left = -77.0
+offset_top = -110.0
+offset_right = 77.0
+offset_bottom = 9.0
+color = Color(1, 1, 0, 0.392157)
 
 [connection signal="area_entered" from="AutoAttackRange" to="." method="_on_auto_attack_range_area_entered"]
 [connection signal="area_exited" from="AutoAttackRange" to="." method="_on_auto_attack_range_area_exited"]

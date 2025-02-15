@@ -42,7 +42,7 @@ rotation_smoothing_enabled = true
 script = ExtResource("5_pff0d")
 
 [node name="Background" type="TextureRect" parent="Camera2D"]
-self_modulate = Color(0.0354448, 0.113299, 0.127364, 1)
+self_modulate = Color(0, 0.0985459, 0.100124, 1)
 z_index = -100
 texture_filter = 1
 anchors_preset = 8

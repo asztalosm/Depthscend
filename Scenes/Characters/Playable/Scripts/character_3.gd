@@ -52,9 +52,8 @@ func _physics_process(_delta: float) -> void:
 			var angletocursor = rad_to_deg(self.get_angle_to(navagent.get_next_path_position())) - 90
 			if angletocursor < 0:
 				angletocursor += 360 
-			currentsprite = ceil(angletocursor / 45)
-			animatedsprite.frame = currentsprite -1
-			print(angletocursor)
+			currentsprite = round(angletocursor / 45)
+			animatedsprite.frame = currentsprite
 	else:
 		visible = false
 		set_meta("active", false)
