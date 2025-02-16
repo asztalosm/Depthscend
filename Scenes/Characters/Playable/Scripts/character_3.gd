@@ -1,7 +1,8 @@
 extends CharacterBody2D
 #itt ezek az exportok globális változók lesznek amiket el lehet érni más scriptekből
+@export var oxygen = 1000
 @export var speed = 200
-@export var health = 65
+@export var health = 70
 @export var maxhealth = 70
 @export var damage = 2
 var accel = 35
@@ -32,13 +33,8 @@ func _input(event):
 	if event.is_action_pressed("click") and get_meta("active") and not get_meta("isDead"):
 		target = get_global_mouse_position()
 		navagent.target_position = target
-		
-	if event.is_action_pressed("changesprite"):
-		if animatedsprite.frame != 7:
-			animatedsprite.frame += 1
-		else:
-			animatedsprite.frame = 0
-
+	
+	
 func _physics_process(_delta: float) -> void:
 	if health > 0:
 		dir = navagent.get_next_path_position() - global_position

@@ -1,7 +1,7 @@
 extends Area2D
-@export var speed = 750
+@export var speed = 500
 var cooledattack = true # attack cooldown bool
-@onready var attackcooldown = $AttackCooldown as Timer
+@onready var attackcooldown = self.get_parent().get_node("AttackCooldown")
 var target = position
 var velocity = null
 var angle = 0.0
@@ -24,6 +24,9 @@ func _input(event: InputEvent) -> void:
 		attackcooldown.start()
 		target = get_global_mouse_position()
 		angle = position.angle_to_point(target)
+		self.get_parent().get_node("AttackProgress").value = 0
+		var attackprogresstween = get_tree().create_tween()
+		attackprogresstween.tween_property(self.get_parent().get_node("AttackProgress"), "value", 100, attackcooldown.time_left)
 
 func _on_attack_cooldown_timeout() -> void: # "despawns" projectile
 	cooledattack = true
@@ -32,7 +35,7 @@ func _on_attack_cooldown_timeout() -> void: # "despawns" projectile
 	target = position
 
 
-func _on_area_entered(area: Area2D) -> void:
+func _on_area_entered(area: Area2D) -> void: #damages enemy
 	visible = false
 	if area.get_parent().get_parent().name == "Characters":
 		pass
@@ -43,7 +46,7 @@ func _on_area_entered(area: Area2D) -> void:
 		
 
 
-func _on_body_entered(_body: Node2D) -> void:
+func _on_body_entered(_body: Node2D) -> void: # wall collision detection
 	visible = false
 	position = Vector2(0, 0)
 	target = position

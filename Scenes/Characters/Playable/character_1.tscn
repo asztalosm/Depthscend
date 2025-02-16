@@ -146,7 +146,6 @@ autostart = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_20j34")
-disabled = true
 
 [node name="SwordHitbox" type="Area2D" parent="."]
 visible = false

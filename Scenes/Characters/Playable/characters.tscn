@@ -1,11 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://32mqbxap2xs3"]
+[gd_scene load_steps=9 format=3 uid="uid://32mqbxap2xs3"]
 
 [ext_resource type="Script" path="res://Scenes/Misc/characterscript.gd" id="1_pohhn"]
 [ext_resource type="PackedScene" uid="uid://d1maoccsy4oe4" path="res://Scenes/Characters/Playable/character_2.tscn" id="2_cj02r"]
 [ext_resource type="PackedScene" uid="uid://btd7uso6md01v" path="res://Scenes/Characters/Playable/character_1.tscn" id="3_4n2d1"]
 [ext_resource type="PackedScene" uid="uid://bbr64q8hg7fde" path="res://Scenes/Characters/Playable/character_3.tscn" id="4_l2wkl"]
-[ext_resource type="Script" path="res://Scenes/Misc/camera_2d.gd" id="5_pff0d"]
-[ext_resource type="Texture2D" uid="uid://udortutn51el" path="res://Textures/bg4.png" id="6_8570g"]
 [ext_resource type="Texture2D" uid="uid://bwhgb085kx00b" path="res://Textures/healthbar.svg" id="7_iqvkd"]
 [ext_resource type="Texture2D" uid="uid://dpw82p20srsto" path="res://Textures/skull2.png" id="7_q5ewc"]
 [ext_resource type="Texture2D" uid="uid://bcc8v1uvhrgct" path="res://Textures/healthbarunder.svg" id="7_tl2x8"]
@@ -13,6 +11,11 @@
 
 [node name="Characters" type="Node2D"]
 script = ExtResource("1_pohhn")
+
+[node name="character3" parent="." instance=ExtResource("4_l2wkl")]
+z_index = 99
+position = Vector2(728, 968)
+collision_layer = 4
 
 [node name="character1" parent="." instance=ExtResource("3_4n2d1")]
 z_index = 99
@@ -26,11 +29,6 @@ position = Vector2(648, 968)
 collision_layer = 4
 collision_mask = 0
 
-[node name="character3" parent="." instance=ExtResource("4_l2wkl")]
-z_index = 99
-position = Vector2(728, 968)
-collision_layer = 4
-
 [node name="Camera2D" type="Camera2D" parent="."]
 top_level = true
 position = Vector2(960, 540)
@@ -39,26 +37,6 @@ process_callback = 0
 position_smoothing_enabled = true
 position_smoothing_speed = 8.0
 rotation_smoothing_enabled = true
-script = ExtResource("5_pff0d")
-
-[node name="Background" type="TextureRect" parent="Camera2D"]
-self_modulate = Color(0, 0.0985459, 0.100124, 1)
-z_index = -100
-texture_filter = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -2000.0
-offset_top = -1000.0
-offset_right = 6640.0
-offset_bottom = 7640.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(2, 2)
-texture = ExtResource("6_8570g")
-stretch_mode = 1
 
 [node name="GUI" type="CanvasLayer" parent="."]
 
@@ -67,6 +45,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+metadata/_edit_use_anchors_ = true
 
 [node name="HealthBG" type="ColorRect" parent="GUI/CurrentCharacter"]
 layout_mode = 0
@@ -75,6 +54,7 @@ offset_top = 64.0
 offset_right = 348.0
 offset_bottom = 94.0
 color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="HealthLabel" type="Label" parent="GUI/CurrentCharacter"]
 layout_mode = 0
@@ -89,6 +69,7 @@ theme_override_font_sizes/font_size = 31
 text = "0/0"
 horizontal_alignment = 1
 vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="Health" type="TextureProgressBar" parent="GUI/CurrentCharacter"]
 layout_mode = 0
@@ -105,6 +86,7 @@ texture_progress = ExtResource("7_iqvkd")
 tint_under = Color(0.592157, 0.592157, 0.592157, 1)
 tint_over = Color(0.509286, 0.509286, 0.509286, 1)
 tint_progress = Color(0.592157, 0.592157, 0.592157, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="DeathScreen" type="Control" parent="GUI"]
 visible = false

@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://bbr64q8hg7fde"]
+[gd_scene load_steps=24 format=3 uid="uid://bbr64q8hg7fde"]
 
 [ext_resource type="Script" path="res://Scenes/Characters/Playable/Scripts/character_3.gd" id="1_myxxc"]
 [ext_resource type="Script" path="res://Scenes/Characters/Playable/projectile.gd" id="2_4ms6l"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://c3p42dghvch30" path="res://Sprites/priestess_back.png" id="10_lm7dk"]
 [ext_resource type="Texture2D" uid="uid://cw1ojo8ktm6f3" path="res://Sprites/priestess_leftback.png" id="11_ctfn3"]
 [ext_resource type="Texture2D" uid="uid://b7gj8h0060h00" path="res://Sprites/priestess_left.png" id="12_3apww"]
+[ext_resource type="Texture2D" uid="uid://d4nvqwhn6dsuh" path="res://Textures/attackcooldown.png" id="13_whrlw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2xmsr"]
 size = Vector2(43, 118)
@@ -41,9 +42,6 @@ width = 4
 height = 4
 fill = 1
 fill_from = Vector2(0.5, 0.5)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_r38ka"]
-size = Vector2(24.5, 6)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4sqb4"]
 radius = 263.002
@@ -80,17 +78,32 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r38ka"]
+size = Vector2(15.25, 5)
+
 [node name="character3" type="CharacterBody2D"]
 position = Vector2(1177, 964)
-collision_layer = 0
-collision_mask = 0
 script = ExtResource("1_myxxc")
 metadata/active = false
 metadata/isDead = false
 
+[node name="AttackProgress" type="TextureProgressBar" parent="."]
+offset_left = -36.0
+offset_top = -22.0
+offset_right = -4.0
+offset_bottom = 10.0
+scale = Vector2(2, 2)
+value = 100.0
+fill_mode = 4
+texture_under = ExtResource("13_whrlw")
+texture_progress = ExtResource("13_whrlw")
+tint_under = Color(1, 1, 1, 0.176471)
+tint_progress = Color(1, 1, 1, 0.705882)
+
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 path_desired_distance = 4.0
 target_desired_distance = 30.0
+simplify_path = true
 radius = 70.0
 debug_path_custom_point_size = 0.0
 debug_path_custom_line_width = 1.0
@@ -116,6 +129,7 @@ shape = SubResource("RectangleShape2D_cdwh7")
 
 [node name="Projectile" type="Area2D" parent="."]
 z_index = 200
+z_as_relative = false
 position = Vector2(1, -38)
 scale = Vector2(2, 2)
 collision_layer = 0
@@ -143,9 +157,9 @@ grow_vertical = 2
 color = Color(1, 0, 1, 1)
 metadata/_edit_use_anchors_ = true
 
-[node name="AttackCooldown" type="Timer" parent="Projectile"]
-
 [node name="PointLight2D" type="PointLight2D" parent="Projectile"]
+z_index = 200
+z_as_relative = false
 texture = SubResource("GradientTexture2D_mnavg")
 
 [node name="TextureRect" type="TextureRect" parent="Projectile"]
@@ -154,11 +168,6 @@ offset_top = -3.0
 offset_right = 3.0
 offset_bottom = 3.0
 texture = SubResource("GradientTexture2D_6eaq0")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.25, -11)
-shape = SubResource("RectangleShape2D_r38ka")
-disabled = true
 
 [node name="HealRange" type="Control" parent="."]
 layout_mode = 3
@@ -202,9 +211,16 @@ autostart = true
 position = Vector2(-15, -38)
 sprite_frames = SubResource("SpriteFrames_h1jj7")
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-4, 21)
+shape = SubResource("RectangleShape2D_r38ka")
+disabled = true
+
+[node name="AttackCooldown" type="Timer" parent="."]
+
 [connection signal="area_entered" from="Projectile" to="Projectile" method="_on_area_entered"]
 [connection signal="body_entered" from="Projectile" to="Projectile" method="_on_body_entered"]
-[connection signal="timeout" from="Projectile/AttackCooldown" to="Projectile" method="_on_attack_cooldown_timeout"]
 [connection signal="area_entered" from="HealRangeHitbox" to="." method="_on_heal_range_hitbox_area_entered"]
 [connection signal="area_exited" from="HealRangeHitbox" to="." method="_on_heal_range_hitbox_area_exited"]
 [connection signal="timeout" from="HealCooldown" to="." method="_on_heal_cooldown_timeout"]
+[connection signal="timeout" from="AttackCooldown" to="Projectile" method="_on_attack_cooldown_timeout"]
