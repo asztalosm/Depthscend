@@ -16,8 +16,27 @@ var inattackzone = []
 @onready var attackcooldown = $AttackCooldown
 var attacked = false
 @onready var attackprogress = $AttackProgress
+var currentsprite = 0
+@onready var animatedsprite = $AnimatedSprite2D
+var moveangle = 0
+
+
+
+func _get_input():
+	if get_meta("active") and !get_meta("isDead"):
+		var inputdir = Input.get_vector("kb_A", "kb_D", "kb_W", "kb_S")
+		velocity = inputdir * speed
+		moveangle = rad_to_deg(inputdir.angle()) - 90
+		if moveangle < 0:
+			moveangle += 360 
+		if inputdir != Vector2(0,0):
+			currentsprite = round(moveangle / 45)
 
 func _input(event):
+	if event.is_action("kb_A") or event.is_action("kb_D") or event.is_action("kb_S") or event.is_action("kb_W"):
+		navagent.target_position = position
+
+
 	if event.is_action_pressed("click") and get_meta("active") and not get_meta("isDead"):
 		target = get_global_mouse_position()
 		navagent.target_position = target
@@ -42,10 +61,27 @@ func _input(event):
 func _physics_process(_delta: float) -> void:
 	if health > 0: # mozgás
 		dir = navagent.get_next_path_position() - global_position
-		if dir.length_squared() > 1.0:
-			dir = dir.normalized()
-		velocity = velocity.lerp(dir * speed, accel * _delta)
+		if !get_meta("active") and navagent.is_target_reached():
+			velocity = Vector2(0,0)
+		_get_input()
+		if !navagent.is_navigation_finished():
+			if dir.length_squared() > 1.0:
+				dir = dir.normalized()
+			if !navagent.is_target_reached():
+				velocity = velocity.lerp(dir * speed, accel * _delta * 1.75)
+			if dir.length_squared() > 1:
+				var angletocursor = rad_to_deg(self.get_angle_to(navagent.get_next_path_position())) - 90
+				if angletocursor < 0:
+					angletocursor += 360 
+				currentsprite = round(angletocursor / 45)
+		animatedsprite.frame = currentsprite
+		
+		# 	dir = navagent.get_next_path_position() - global_position
+		# 	if dir.length_squared() > 1.0:
+		# 		dir = dir.normalized()
+		# 		velocity = velocity.lerp(dir * speed, accel *_delta) * 1.75
 		move_and_slide()
+		
 		if self.get_meta("active"):
 			attackcooldown.wait_time = 1.5
 		else:

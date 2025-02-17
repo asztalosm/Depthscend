@@ -83,15 +83,16 @@ size = Vector2(15.25, 5)
 
 [node name="character3" type="CharacterBody2D"]
 position = Vector2(1177, 964)
+collision_layer = 7
+collision_mask = 7
 script = ExtResource("1_myxxc")
 metadata/active = false
 metadata/isDead = false
 
 [node name="AttackProgress" type="TextureProgressBar" parent="."]
-offset_left = -36.0
-offset_top = -22.0
-offset_right = -4.0
-offset_bottom = 10.0
+offset_left = -32.0
+offset_top = -43.0
+offset_bottom = -11.0
 scale = Vector2(2, 2)
 value = 100.0
 fill_mode = 4
@@ -109,7 +110,7 @@ debug_path_custom_point_size = 0.0
 debug_path_custom_line_width = 1.0
 
 [node name="HitCollision" type="Area2D" parent="."]
-position = Vector2(1, -38)
+position = Vector2(5, -59)
 collision_layer = 34
 collision_mask = 34
 
@@ -118,7 +119,7 @@ position = Vector2(-10.5, 1)
 shape = SubResource("RectangleShape2D_2xmsr")
 
 [node name="ZoneHitbox" type="Area2D" parent="."]
-position = Vector2(1, -38)
+position = Vector2(5, -59)
 collision_layer = 16
 collision_mask = 0
 monitoring = false
@@ -130,7 +131,7 @@ shape = SubResource("RectangleShape2D_cdwh7")
 [node name="Projectile" type="Area2D" parent="."]
 z_index = 200
 z_as_relative = false
-position = Vector2(1, -38)
+position = Vector2(5, -59)
 scale = Vector2(2, 2)
 collision_layer = 0
 collision_mask = 768
@@ -176,10 +177,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -19.0
-offset_top = -30.0
-offset_right = 21.0
-offset_bottom = 10.0
+offset_left = -15.0
+offset_top = -51.0
+offset_right = 25.0
+offset_bottom = -11.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -197,7 +198,7 @@ texture_progress = ExtResource("5_3gmsv")
 tint_under = Color(0, 0.301961, 0, 0.627451)
 
 [node name="HealRangeHitbox" type="Area2D" parent="."]
-position = Vector2(-19, -30)
+position = Vector2(-15, -51)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HealRangeHitbox"]
 position = Vector2(25, -4)
@@ -208,13 +209,11 @@ wait_time = 15.0
 autostart = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(-15, -38)
+position = Vector2(-11, -59)
 sprite_frames = SubResource("SpriteFrames_h1jj7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-4, 21)
 shape = SubResource("RectangleShape2D_r38ka")
-disabled = true
 
 [node name="AttackCooldown" type="Timer" parent="."]
 

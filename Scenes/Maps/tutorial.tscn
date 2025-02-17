@@ -1,11 +1,11 @@
-[gd_scene load_steps=18 format=4 uid="uid://dmy87sdckqipc"]
+[gd_scene load_steps=20 format=4 uid="uid://dmy87sdckqipc"]
 
 [ext_resource type="Texture2D" uid="uid://crjiiddxx6cuc" path="res://Textures/temptutorialdungeontileset.png" id="1_61dma"]
 [ext_resource type="PackedScene" uid="uid://btd7uso6md01v" path="res://Scenes/Characters/Playable/character_1.tscn" id="1_b33b2"]
 [ext_resource type="Script" path="res://Scenes/Maps/tutorialcharactersrcipt.gd" id="1_vyhsh"]
-[ext_resource type="Texture2D" uid="uid://dn7thbggwno3f" path="res://Textures/mouselclick.png" id="2_2i3c8"]
 [ext_resource type="PackedScene" uid="uid://d1maoccsy4oe4" path="res://Scenes/Characters/Playable/character_2.tscn" id="2_dsrt2"]
 [ext_resource type="Script" path="res://Scenes/Maps/door_button.gd" id="2_sk583"]
+[ext_resource type="Texture2D" uid="uid://boef60del00cv" path="res://Textures/mousetemplate.png" id="3_51r3y"]
 [ext_resource type="Texture2D" uid="uid://b4337j0rc57y5" path="res://Textures/arrow.png" id="3_bmg8c"]
 [ext_resource type="PackedScene" uid="uid://bbr64q8hg7fde" path="res://Scenes/Characters/Playable/character_3.tscn" id="3_ico7d"]
 [ext_resource type="Texture2D" uid="uid://bcc8v1uvhrgct" path="res://Textures/healthbarunder.svg" id="4_lbvnx"]
@@ -75,15 +75,23 @@ physics_layer_0/collision_mask = 512
 sources/0 = SubResource("TileSetAtlasSource_w82oy")
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_d0ifj"]
-vertices = PackedVector2Array(202, 554, 341.891, 554, 339.508, 778, 202, 778, 688, 778, 688, 840, 712, 840, 712, 778, 2262, 778, 2262, 1814, 138, 1814, 138, 1088, 712, 1088, 688, 1008, 688, 1080, 138, 1080, 138, 778, 712, 1008)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(2, 4, 5), PackedInt32Array(6, 7, 8, 9), PackedInt32Array(9, 10, 11, 12), PackedInt32Array(13, 14, 15, 16, 3), PackedInt32Array(13, 3, 2, 5), PackedInt32Array(13, 5, 6, 17), PackedInt32Array(17, 6, 9), PackedInt32Array(17, 9, 12)])
+vertices = PackedVector2Array(202, 554, 341.891, 554, 339.508, 778, 202, 778, 688, 778, 688, 824, 678, 1022, 712, 824, 712, 778, 2262, 778, 2262, 1814, 722, 1022, 138, 1814, 138, 1098, 722, 1098, 678, 1070, 138, 1070, 138, 778)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(2, 4, 5, 6), PackedInt32Array(7, 8, 9, 10, 11), PackedInt32Array(10, 12, 13, 14), PackedInt32Array(6, 15, 16, 17, 3), PackedInt32Array(6, 3, 2), PackedInt32Array(11, 6, 5, 7), PackedInt32Array(11, 10, 14)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(128, 768, 192, 768, 192, 544, 352, 544, 349.615, 768, 2272, 768, 2272, 1824, 128, 1824)])
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_31rv5"]
-size = Vector2(40, 192)
+size = Vector2(40, 200)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b8mg5"]
 size = Vector2(48, 48)
+
+[sub_resource type="Gradient" id="Gradient_1iqxd"]
+colors = PackedColorArray(0, 1, 0, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_c80og"]
+gradient = SubResource("Gradient_1iqxd")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
 
 [node name="Tutorial" type="Node2D"]
 
@@ -96,17 +104,18 @@ tile_set = SubResource("TileSet_lhxfp")
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="Map"]
 navigation_polygon = SubResource("NavigationPolygon_d0ifj")
 
-[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="Map/NavigationRegion2D"]
-visible = false
-vertices = PackedVector2Array(136, 1080, 688, 1080, 688, 1008, 712, 1008, 712, 1088, 136, 1088)
+[node name="NavigationObstacle2D2" type="NavigationObstacle2D" parent="Map/NavigationRegion2D"]
+vertices = PackedVector2Array(136, 1088, 128, 1088, 128, 768, 192, 768, 192, 544, 352, 544, 352, 768, 712, 768, 712, 824, 688, 824, 688, 776, 344, 776, 344, 552, 200, 552, 200, 776, 136, 776)
 affect_navigation_mesh = true
 carve_navigation_mesh = true
 
-[node name="NavigationObstacle2D2" type="NavigationObstacle2D" parent="Map/NavigationRegion2D"]
-visible = false
-vertices = PackedVector2Array(136, 1088, 128, 1088, 128, 768, 192, 768, 192, 544, 352, 544, 352, 768, 712, 768, 712, 840, 688, 840, 688, 776, 344, 776, 344, 552, 200, 552, 200, 776, 136, 776)
-affect_navigation_mesh = true
-carve_navigation_mesh = true
+[node name="StaticBody2D" type="StaticBody2D" parent="Map/NavigationRegion2D"]
+position = Vector2(128, 1080)
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Map/NavigationRegion2D/StaticBody2D"]
+polygon = PackedVector2Array(0, 0, 568, 0, 568, -48, 576, -48, 576, 8, 0, 8)
 
 [node name="Room1" type="Node2D" parent="Map"]
 
@@ -115,7 +124,7 @@ collision_layer = 516
 collision_mask = 551
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Room1/StaticBody2D"]
-position = Vector2(700, 928)
+position = Vector2(700, 932)
 shape = SubResource("RectangleShape2D_31rv5")
 
 [node name="ColorRect" type="ColorRect" parent="Map/Room1/StaticBody2D"]
@@ -127,6 +136,8 @@ color = Color(0.201527, 0.201527, 0.201527, 1)
 
 [node name="DoorButton" type="Area2D" parent="Map/Room1"]
 position = Vector2(272, 608)
+collision_layer = 0
+monitorable = false
 script = ExtResource("2_sk583")
 
 [node name="ColorRect" type="ColorRect" parent="Map/Room1/DoorButton"]
@@ -149,7 +160,7 @@ shape = SubResource("RectangleShape2D_b8mg5")
 
 [node name="Mouselclick" type="Sprite2D" parent="Map/Room1/DoorButton"]
 position = Vector2(128, 32)
-texture = ExtResource("2_2i3c8")
+texture = ExtResource("3_51r3y")
 
 [node name="Arrow1" type="Sprite2D" parent="Map/Room1/DoorButton"]
 position = Vector2(0, 64)
@@ -163,13 +174,19 @@ rotation = 1.57079
 scale = Vector2(2, 2)
 texture = ExtResource("3_bmg8c")
 
+[node name="PointLight2D" type="PointLight2D" parent="Map/Room1/DoorButton"]
+texture = SubResource("GradientTexture2D_c80og")
+
+[node name="MouseHint" type="Timer" parent="Map/Room1/DoorButton"]
+autostart = true
+
 [node name="Characters2" type="Node2D" parent="."]
 scale = Vector2(1.01308, 1.00303)
 script = ExtResource("1_vyhsh")
 
 [node name="character1" parent="Characters2" instance=ExtResource("1_b33b2")]
 z_index = 99
-position = Vector2(315.869, 893.294)
+position = Vector2(300.075, 965.076)
 collision_layer = 4
 collision_mask = 4
 
@@ -290,3 +307,4 @@ offset_bottom = 410.0
 color = Color(0.168627, 0.168627, 0.168627, 0.654902)
 
 [connection signal="area_entered" from="Map/Room1/DoorButton" to="Map/Room1/DoorButton" method="_on_area_entered"]
+[connection signal="timeout" from="Map/Room1/DoorButton/MouseHint" to="Map/Room1/DoorButton" method="_on_mouse_hint_timeout"]
