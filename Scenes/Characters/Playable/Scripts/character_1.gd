@@ -33,7 +33,7 @@ func _get_input():
 			currentsprite = round(moveangle / 45)
 
 func _input(event):
-	if event.is_action("kb_A") or event.is_action("kb_D") or event.is_action("kb_S") or event.is_action("kb_W"):
+	if event.is_action("kb_A") or event.is_action("kb_D") or event.is_action("kb_S") or event.is_action("kb_W") and get_meta("active"):
 		navagent.target_position = position
 
 

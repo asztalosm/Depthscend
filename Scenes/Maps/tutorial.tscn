@@ -75,12 +75,12 @@ physics_layer_0/collision_mask = 512
 sources/0 = SubResource("TileSetAtlasSource_w82oy")
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_d0ifj"]
-vertices = PackedVector2Array(202, 554, 341.891, 554, 339.508, 778, 202, 778, 688, 778, 688, 824, 678, 1022, 712, 824, 712, 778, 2262, 778, 2262, 1814, 722, 1022, 138, 1814, 138, 1098, 722, 1098, 678, 1070, 138, 1070, 138, 778)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(2, 4, 5, 6), PackedInt32Array(7, 8, 9, 10, 11), PackedInt32Array(10, 12, 13, 14), PackedInt32Array(6, 15, 16, 17, 3), PackedInt32Array(6, 3, 2), PackedInt32Array(11, 6, 5, 7), PackedInt32Array(11, 10, 14)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(128, 768, 192, 768, 192, 544, 352, 544, 349.615, 768, 2272, 768, 2272, 1824, 128, 1824)])
+vertices = PackedVector2Array(334, 786, 686, 786, 686, 834, 714, 834, 714, 778, 2262, 778, 2262, 1814, 138, 1814, 138, 1098, 714, 1098, 686, 1022, 686, 1070, 146, 1070, 146, 786, 210, 786, 210, 562, 334, 562, 714, 1022)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2), PackedInt32Array(3, 4, 5, 6), PackedInt32Array(6, 7, 8, 9), PackedInt32Array(10, 11, 12, 13, 14), PackedInt32Array(14, 15, 16, 0), PackedInt32Array(10, 14, 0, 2), PackedInt32Array(10, 2, 3, 17), PackedInt32Array(17, 3, 6), PackedInt32Array(17, 6, 9)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(128, 768, 192, 768, 192, 544, 352, 544, 349.615, 768, 685.71, 768, 2272, 768, 2272, 1824, 128, 1824)])
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_31rv5"]
-size = Vector2(40, 200)
+size = Vector2(40, 208)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b8mg5"]
 size = Vector2(48, 48)
@@ -105,6 +105,7 @@ tile_set = SubResource("TileSet_lhxfp")
 navigation_polygon = SubResource("NavigationPolygon_d0ifj")
 
 [node name="NavigationObstacle2D2" type="NavigationObstacle2D" parent="Map/NavigationRegion2D"]
+visible = false
 vertices = PackedVector2Array(136, 1088, 128, 1088, 128, 768, 192, 768, 192, 544, 352, 544, 352, 768, 712, 768, 712, 824, 688, 824, 688, 776, 344, 776, 344, 552, 200, 552, 200, 776, 136, 776)
 affect_navigation_mesh = true
 carve_navigation_mesh = true
@@ -115,19 +116,19 @@ collision_layer = 4
 collision_mask = 0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Map/NavigationRegion2D/StaticBody2D"]
-polygon = PackedVector2Array(0, 0, 568, 0, 568, -48, 576, -48, 576, 8, 0, 8)
+polygon = PackedVector2Array(8, -304, 8, 0, 568, 0, 568, -48, 576, -48, 576, 8, 0, 8, 0, -312, 64, -312, 64, -536, 224, -536, 224, -312, 576, -312, 576, -256, 568, -256, 568, -304, 216, -304, 216, -528, 72, -528, 72, -304)
 
 [node name="Room1" type="Node2D" parent="Map"]
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Map/Room1"]
+[node name="Door" type="StaticBody2D" parent="Map/Room1"]
 collision_layer = 516
 collision_mask = 551
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Room1/StaticBody2D"]
-position = Vector2(700, 932)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Room1/Door"]
+position = Vector2(700, 928)
 shape = SubResource("RectangleShape2D_31rv5")
 
-[node name="ColorRect" type="ColorRect" parent="Map/Room1/StaticBody2D"]
+[node name="ColorRect" type="ColorRect" parent="Map/Room1/Door"]
 offset_left = 680.0
 offset_top = 824.0
 offset_right = 720.0

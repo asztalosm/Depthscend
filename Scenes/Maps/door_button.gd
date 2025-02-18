@@ -2,7 +2,7 @@ extends Area2D
 var mousehintclicked = false
 
 func _on_area_entered(_area: Area2D) -> void:
-	var door = self.get_parent().get_node("StaticBody2D")
+	var door = self.get_parent().get_node("Door")
 	door.queue_free()
 	set_deferred("monitoring", false)
 	$ColorRect.color = Color(255,0,0)
