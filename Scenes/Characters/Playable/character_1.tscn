@@ -179,6 +179,7 @@ shape = SubResource("RectangleShape2D_sydsr")
 
 [node name="ZoneHitbox" type="Area2D" parent="."]
 position = Vector2(-16, -37.4999)
+collision_layer = 17
 collision_mask = 0
 monitoring = false
 

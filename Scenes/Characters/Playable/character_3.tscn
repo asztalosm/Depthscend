@@ -83,8 +83,8 @@ size = Vector2(15.25, 5)
 
 [node name="character3" type="CharacterBody2D"]
 position = Vector2(1177, 964)
-collision_layer = 7
-collision_mask = 7
+collision_layer = 3
+collision_mask = 3
 script = ExtResource("1_myxxc")
 metadata/active = false
 metadata/isDead = false
@@ -196,6 +196,7 @@ fill_mode = 4
 texture_under = ExtResource("4_0q8xu")
 texture_progress = ExtResource("5_3gmsv")
 tint_under = Color(0, 0.301961, 0, 0.627451)
+tint_over = Color(1, 1, 1, 0.666667)
 
 [node name="HealRangeHitbox" type="Area2D" parent="."]
 position = Vector2(-15, -51)

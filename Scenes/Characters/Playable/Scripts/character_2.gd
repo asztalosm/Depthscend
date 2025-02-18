@@ -80,7 +80,14 @@ func _physics_process(_delta: float) -> void:
 #nincs animation - 				currentsprite = round(angletocursor / 45)
 #nincs animation - 		animatedsprite.frame = currentsprite
 		move_and_slide()
-	
+		if self.get_meta("active"):
+			attackcooldown.wait_time = 1.5
+		else:
+			attackcooldown.wait_time = 2.25
+	else: #megöli a játékost
+		visible = false
+		set_meta("active", false)
+		set_meta("isDead", true)
 
 
 func _on_attack_cooldown_timeout():

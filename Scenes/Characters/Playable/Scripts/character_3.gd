@@ -36,6 +36,7 @@ func _input(event):
 	
 	
 func _physics_process(_delta: float) -> void:
+	dir = Vector2.ZERO
 	if health > 0:
 		dir = navagent.get_next_path_position() - global_position
 		navagent.target_desired_distance = 30
@@ -57,12 +58,13 @@ func _physics_process(_delta: float) -> void:
 		
 
 func _on_heal_cooldown_timeout() -> void:
-	for characters in healhitboxchars:
-		if characters.maxhealth > characters.health:
-			characters.health += 1
-	if self.maxhealth > self.health:
-		self.health += 1
-	tweenhealth()
+	if !get_meta("isDead"):
+		for characters in healhitboxchars:
+			if characters.maxhealth > characters.health and !characters.get_meta("isDead"):
+				characters.health += 1
+		if self.maxhealth > self.health:
+			self.health += 1
+		tweenhealth()
 	
 
 func _on_heal_range_hitbox_area_entered(area: Area2D) -> void:
