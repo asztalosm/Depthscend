@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://32mqbxap2xs3"]
+[gd_scene load_steps=10 format=3 uid="uid://32mqbxap2xs3"]
 
 [ext_resource type="Script" path="res://Scenes/Misc/characterscript.gd" id="1_pohhn"]
 [ext_resource type="PackedScene" uid="uid://d1maoccsy4oe4" path="res://Scenes/Characters/Playable/character_2.tscn" id="2_cj02r"]
 [ext_resource type="PackedScene" uid="uid://btd7uso6md01v" path="res://Scenes/Characters/Playable/character_1.tscn" id="3_4n2d1"]
+[ext_resource type="Script" path="res://Scenes/Characters/Playable/Scripts/character_1.gd" id="3_ybhpn"]
 [ext_resource type="PackedScene" uid="uid://bbr64q8hg7fde" path="res://Scenes/Characters/Playable/character_3.tscn" id="4_l2wkl"]
 [ext_resource type="Texture2D" uid="uid://bwhgb085kx00b" path="res://Textures/healthbar.svg" id="7_iqvkd"]
 [ext_resource type="Texture2D" uid="uid://dpw82p20srsto" path="res://Textures/skull2.png" id="7_q5ewc"]
@@ -12,16 +13,17 @@
 [node name="Characters" type="Node2D"]
 script = ExtResource("1_pohhn")
 
+[node name="character1" parent="." instance=ExtResource("3_4n2d1")]
+z_index = 99
+position = Vector2(520, 952)
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("3_ybhpn")
+
 [node name="character3" parent="." instance=ExtResource("4_l2wkl")]
 z_index = 99
 position = Vector2(728, 968)
 collision_layer = 4
-
-[node name="character1" parent="." instance=ExtResource("3_4n2d1")]
-z_index = 99
-position = Vector2(576, 960)
-collision_layer = 4
-collision_mask = 0
 
 [node name="character2" parent="." instance=ExtResource("2_cj02r")]
 z_index = 99

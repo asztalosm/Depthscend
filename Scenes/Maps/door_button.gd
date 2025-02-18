@@ -1,15 +1,19 @@
 extends Area2D
 var mousehintclicked = false
 
-func _on_area_entered(_area: Area2D) -> void:
-	var door = self.get_parent().get_node("StaticBody2D")
+func _on_area_entered(area: Area2D) -> void:
+	var door = self.get_parent().get_node("Door")
 	door.queue_free()
 	set_deferred("monitoring", false)
 	$ColorRect.color = Color(255,0,0)
-	$Arrow1.visible = false
+	$Arrow1.queue_free()
 	$Arrow2.visible = true
-	$Mouselclick.visible = false
+	$Mouselclick.queue_free()
 	$PointLight2D.queue_free()
+	$MouseHint.queue_free()
+	area.get_parent().get_node("Keys").visible = true
+	area.get_parent().canwasdmove = true
+	area.get_parent().canmousemove = false
 
 func _on_mouse_hint_timeout() -> void:
 	if !mousehintclicked:

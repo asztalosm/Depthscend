@@ -4,7 +4,7 @@ extends CharacterBody2D
 @export var speed = 250
 @export var health = 70
 @export var maxhealth = 70
-@export var damage = 2
+@export var damage = 4
 var accel = 35
 var dir := Vector2()
 #változó ami akkor jön létre amikor létrejön a karakter
@@ -16,30 +16,36 @@ var inattackzone = []
 @onready var attackcooldown = $AttackCooldown
 var attacked = false
 @onready var attackprogress = $AttackProgress
-#nincs animation - var currentsprite = 0
-#nincs animation - @onready var animatedsprite = $AnimatedSprite2D
-#nincs animation - var moveangle = 0
+var currentsprite = 0
+@onready var animatedsprite = $AnimatedSprite2D
+var moveangle = 0
+@export var canwasdmove = false # tutorial variable
+@export var canmousemove = true
+@export var canmouseattack = false
+
+func _ready() -> void:
+	attackprogress.visible = false
 
 func _get_input():
-	if get_meta("active") and !get_meta("isDead"):
+	if get_meta("active") and !get_meta("isDead") and canwasdmove:
 		var inputdir = Input.get_vector("kb_A", "kb_D", "kb_W", "kb_S")
 		velocity = inputdir * speed
-#nincs animation - 		moveangle = rad_to_deg(inputdir.angle()) - 90
-#nincs animation - 		if moveangle < 0:
-#nincs animation - 			moveangle += 360 
-#nincs animation - 		if inputdir != Vector2(0,0):
-#nincs animation - 			currentsprite = round(moveangle / 45)
+		moveangle = rad_to_deg(inputdir.angle()) - 90
+		if moveangle < 0:
+			moveangle += 360 
+		if inputdir != Vector2(0,0):
+			currentsprite = round(moveangle / 45)
 
-func _input(event): # pathfinding
-	
+func _input(event):
 	if event.is_action("kb_A") and get_meta("active") or event.is_action("kb_D") and get_meta("active") or event.is_action("kb_S") and get_meta("active") or event.is_action("kb_W") and get_meta("active"):
-		navagent.target_position = position
-	#stops pathfinding when WASD is pressed
-	
-	if event.is_action_pressed("click") and get_meta("active") and not get_meta("isDead"):
+		if canwasdmove:
+			navagent.target_position = position
+
+
+	if event.is_action_pressed("click") and get_meta("active") and not get_meta("isDead") and canmousemove:
 		target = get_global_mouse_position()
 		navagent.target_position = target
-	if event.is_action_pressed("rclick") and get_meta("active") and not get_meta("isDead"):
+	if event.is_action_pressed("rclick") and get_meta("active") and not get_meta("isDead") and canmouseattack: #attack override
 		if !attacked:
 			attackprogress.value = 0
 			swordhitbox.visible = true
@@ -57,39 +63,45 @@ func _input(event): # pathfinding
 		else:
 			pass
 		
-		
-
-
-
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
+	velocity = Vector2.ZERO
 	_get_input()
 	if health > 0: # mozgás
 		dir = navagent.get_next_path_position() - global_position
 		if !get_meta("active") and navagent.is_target_reached():
 			velocity = Vector2(0,0)
-		_get_input()
 		if !navagent.is_navigation_finished():
 			if dir.length_squared() > 1.0:
 				dir = dir.normalized()
 			if !navagent.is_target_reached():
-				velocity = velocity.lerp(dir * speed, accel * _delta * 1.75)
-#nincs animation - 			if dir.length_squared() > 1:
-#nincs animation - 				var angletocursor = rad_to_deg(self.get_angle_to(navagent.get_next_path_position())) - 90
-#nincs animation - 				if angletocursor < 0:
-#nincs animation - 					angletocursor += 360 
-#nincs animation - 				currentsprite = round(angletocursor / 45)
-#nincs animation - 		animatedsprite.frame = currentsprite
+				velocity = velocity.lerp(dir * speed, accel * delta * 1.75)
+			if dir.length_squared() > 1:
+				var angletocursor = rad_to_deg(self.get_angle_to(navagent.get_next_path_position())) - 90
+				if angletocursor < 0:
+					angletocursor += 360 
+				currentsprite = round(angletocursor / 45)
+		animatedsprite.frame = currentsprite
+		
+		# 	dir = navagent.get_next_path_position() - global_position
+		# 	if dir.length_squared() > 1.0:
+		# 		dir = dir.normalized()
+		# 		velocity = velocity.lerp(dir * speed, accel *_delta) * 1.75
 		move_and_slide()
+		
+		if self.get_meta("active"):
+			attackcooldown.wait_time = 1.5
+		else:
+			attackcooldown.wait_time = 2.25
+	else: #megöli a játékost
+		visible = false
+		set_meta("active", false)
+		set_meta("isDead", true)
+
 	
 
 
 func _on_attack_cooldown_timeout():
 	attacked = false
-	for i in inattackzone:
-		AttackSprite.play()
-		await get_tree().create_timer(0.3).timeout
-		AttackSprite.frame = 0
-		i.get_parent().health -= 2
 
 func _on_auto_attack_range_area_entered(area: Area2D) -> void: #attackrangeben lévő enemyk sebzése
 	inattackzone.append(area)

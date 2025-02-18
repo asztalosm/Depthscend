@@ -21,7 +21,6 @@ var currentsprite = 0
 var moveangle = 0
 
 
-
 func _get_input():
 	if get_meta("active") and !get_meta("isDead"):
 		var inputdir = Input.get_vector("kb_A", "kb_D", "kb_W", "kb_S")
@@ -33,7 +32,7 @@ func _get_input():
 			currentsprite = round(moveangle / 45)
 
 func _input(event):
-	if event.is_action("kb_A") or event.is_action("kb_D") or event.is_action("kb_S") or event.is_action("kb_W"):
+	if event.is_action("kb_A") and get_meta("active") or event.is_action("kb_D") and get_meta("active") or event.is_action("kb_S") and get_meta("active") or event.is_action("kb_W") and get_meta("active"):
 		navagent.target_position = position
 
 
@@ -59,11 +58,12 @@ func _input(event):
 			pass
 		
 func _physics_process(_delta: float) -> void:
+	velocity = Vector2.ZERO
+	_get_input()
 	if health > 0: # mozgás
 		dir = navagent.get_next_path_position() - global_position
 		if !get_meta("active") and navagent.is_target_reached():
 			velocity = Vector2(0,0)
-		_get_input()
 		if !navagent.is_navigation_finished():
 			if dir.length_squared() > 1.0:
 				dir = dir.normalized()
