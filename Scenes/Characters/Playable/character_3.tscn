@@ -18,7 +18,7 @@
 size = Vector2(43, 118)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cdwh7"]
-size = Vector2(40, 5)
+size = Vector2(32, 5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3i43i"]
 size = Vector2(6, 6)
@@ -83,8 +83,8 @@ size = Vector2(15.25, 5)
 
 [node name="character3" type="CharacterBody2D"]
 position = Vector2(1177, 964)
-collision_layer = 3
-collision_mask = 3
+collision_layer = 0
+collision_mask = 5
 script = ExtResource("1_myxxc")
 metadata/active = false
 metadata/isDead = false
@@ -125,7 +125,7 @@ collision_mask = 0
 monitoring = false
 
 [node name="WallCollision" type="CollisionShape2D" parent="ZoneHitbox"]
-position = Vector2(-9, 58.5)
+position = Vector2(-5, 58.5)
 shape = SubResource("RectangleShape2D_cdwh7")
 
 [node name="Projectile" type="Area2D" parent="."]
@@ -137,7 +137,6 @@ collision_layer = 0
 collision_mask = 768
 input_pickable = false
 script = ExtResource("2_4ms6l")
-metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Projectile"]
 shape = SubResource("RectangleShape2D_3i43i")
@@ -195,11 +194,13 @@ pivot_offset = Vector2(128, 128)
 fill_mode = 4
 texture_under = ExtResource("4_0q8xu")
 texture_progress = ExtResource("5_3gmsv")
-tint_under = Color(0, 0.301961, 0, 0.627451)
+tint_under = Color(0, 0.4, 0, 0.627451)
 tint_over = Color(1, 1, 1, 0.666667)
+tint_progress = Color(1, 1, 1, 0.8)
 
 [node name="HealRangeHitbox" type="Area2D" parent="."]
 position = Vector2(-15, -51)
+monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HealRangeHitbox"]
 position = Vector2(25, -4)
@@ -213,10 +214,10 @@ autostart = true
 position = Vector2(-11, -59)
 sprite_frames = SubResource("SpriteFrames_h1jj7")
 
+[node name="AttackCooldown" type="Timer" parent="."]
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_r38ka")
-
-[node name="AttackCooldown" type="Timer" parent="."]
 
 [connection signal="area_entered" from="Projectile" to="Projectile" method="_on_area_entered"]
 [connection signal="body_entered" from="Projectile" to="Projectile" method="_on_body_entered"]

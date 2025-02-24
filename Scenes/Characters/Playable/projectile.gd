@@ -17,7 +17,7 @@ func _process(delta: float) -> void:
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("rclick") and self.get_parent().get_meta("active") and !self.get_parent().get_meta("isDead") and cooledattack:
-		self.position = get_parent().position
+		self.position = get_parent().position + Vector2(0, -60)
 		self.monitoring = true
 		cooledattack = false
 		visible = true
@@ -31,7 +31,7 @@ func _input(event: InputEvent) -> void:
 func _on_attack_cooldown_timeout() -> void: # "despawns" projectile
 	cooledattack = true
 	visible = false
-	position = Vector2(0, 0)
+	position = Vector2.ZERO
 	target = position
 
 
@@ -43,7 +43,6 @@ func _on_area_entered(area: Area2D) -> void: #damages enemy
 		area.get_parent().health -= get_parent().damage
 	else:
 		pass
-		
 
 
 func _on_body_entered(_body: Node2D) -> void: # wall collision detection

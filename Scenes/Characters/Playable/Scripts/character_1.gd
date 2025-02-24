@@ -5,82 +5,122 @@ extends CharacterBody2D
 @export var health = 70
 @export var maxhealth = 70
 @export var damage = 4
-var accel = 35
-var dir := Vector2()
+@export var hasgroundslamcharm = false
+@export var cantakedamage = true
 #változó ami akkor jön létre amikor létrejön a karakter
 @onready var navagent := $NavigationAgent2D as NavigationAgent2D
-var target = self.position
-var inattackzone = []
 @onready var AttackSprite := $AutoAttackRange/AnimatedSprite2D as AnimatedSprite2D
 @onready var swordhitbox = $SwordHitbox
 @onready var attackcooldown = $AttackCooldown
-var attacked = false
 @onready var attackprogress = $AttackProgress
-var currentsprite = 0
 @onready var animatedsprite = $AnimatedSprite2D
+@onready var attackcharge = $AttackChargeProgress
+@onready var slashanimation = $SwordHitbox/AnimatedSprite2D as AnimatedSprite2D
+@onready var groundslamhitbox = $GroundSlamHitbox
+
+var currentsprite = 0
 var moveangle = 0
+var charging = false
+var groundslamattackzone = []
+var hasnavigationtarget = false
+var target = self.position
+var inattackzone = []
+var attacked = false
+var accel = 35
+var dir := Vector2()
+
+
+func _ready() -> void:
+	set_physics_process(false)
+	await get_tree().physics_frame
+	set_physics_process(true)
 
 
 func _get_input():
 	if get_meta("active") and !get_meta("isDead"):
-		var inputdir = Input.get_vector("kb_A", "kb_D", "kb_W", "kb_S")
+		var inputdir = Input.get_vector("kb_A", "kb_D", "kb_W", "kb_S") #rotation and movement based on WASD input
+		if inputdir != Vector2.ZERO:
+			hasnavigationtarget = false
 		velocity = inputdir * speed
 		moveangle = rad_to_deg(inputdir.angle()) - 90
 		if moveangle < 0:
 			moveangle += 360 
 		if inputdir != Vector2(0,0):
-			currentsprite = round(moveangle / 45)
+			currentsprite = round(moveangle / 45) #sprite change based on direction
 
 func _input(event):
 	if event.is_action("kb_A") and get_meta("active") or event.is_action("kb_D") and get_meta("active") or event.is_action("kb_S") and get_meta("active") or event.is_action("kb_W") and get_meta("active"):
-		navagent.target_position = position
+		navagent.target_position = position  # cancels the pathfinding when WASD buttons are pressed
 
 
 	if event.is_action_pressed("click") and get_meta("active") and not get_meta("isDead"):
+		hasnavigationtarget = true
 		target = get_global_mouse_position()
-		navagent.target_position = target
-	if event.is_action_pressed("rclick") and get_meta("active") and not get_meta("isDead"): #attack override
-		if !attacked:
-			attackprogress.value = 0
-			swordhitbox.visible = true
+		navagent.target_position = target #pathfinding setup
+		
+	if event.is_action_pressed("rclick") and get_meta("active") and not get_meta("isDead") and !attacked: #attack override
+		charging = true
+		attackcharge.visible = true
+		attackcharge.value = 0
+		attackprogress.value = 0
+		
+	if event.is_action_released("rclick") and get_meta("active") and not get_meta("isDead") and attackcharge.visible and !attacked:
+		if attackcharge.value == 100 and hasgroundslamcharm: #max charged attack
+			charging = false
+			attackcharge.visible = false
 			attacked = true
-			swordhitbox.rotate(swordhitbox.get_angle_to(get_global_mouse_position()) +0.5*PI)
+			groundslamhitbox.rotate(groundslamhitbox.get_angle_to(get_global_mouse_position()) +0.5*PI)
+			groundslamhitbox.visible = true
 			attackcooldown.start()
-			AttackSprite.play()
 			await get_tree().create_timer(0.3).timeout
-			for i in inattackzone:
-				i.get_parent().health -= damage
-			swordhitbox.visible = false
-			AttackSprite.frame = 0
+			for i in groundslamattackzone:
+				i.get_parent().health -= round(damage + 4)
+			groundslamhitbox.visible = false
 			var attackcooldowntween = get_tree().create_tween()
 			attackcooldowntween.tween_property(attackprogress, "value", 100, attackcooldown.time_left)
-		else:
-			pass
-		
+			
+		else: #not max charged attack
+			slashanimation.frame = 0
+			charging = false
+			attackcharge.visible = false
+			attacked = true
+			swordhitbox.rotate(swordhitbox.get_angle_to(get_global_mouse_position()) +0.5*PI)
+			swordhitbox.visible = true
+			slashanimation.play()
+			attackcooldown.start()
+			
+			await get_tree().create_timer(0.3).timeout
+			for i in inattackzone:
+				i.get_parent().health -= round(damage + attackcharge.value / 50)
+			swordhitbox.visible = false
+			var attackcooldowntween = get_tree().create_tween()
+			attackcooldowntween.tween_property(attackprogress, "value", 100, attackcooldown.time_left)
+
+
+
+
 func _physics_process(_delta: float) -> void:
-	velocity = Vector2.ZERO
+	velocity = Vector2.ZERO # resets velocity to 0 so the character doesnt move randomly
 	_get_input()
 	if health > 0: # mozgás
 		dir = navagent.get_next_path_position() - global_position
-		if !get_meta("active") and navagent.is_target_reached():
-			velocity = Vector2(0,0)
-		if !navagent.is_navigation_finished():
+		if !navagent.is_navigation_finished() and hasnavigationtarget:
 			if dir.length_squared() > 1.0:
 				dir = dir.normalized()
 			if !navagent.is_target_reached():
-				velocity = velocity.lerp(dir * speed, accel * _delta * 1.75)
+				velocity = dir * speed
 			if dir.length_squared() > 1:
 				var angletocursor = rad_to_deg(self.get_angle_to(navagent.get_next_path_position())) - 90
 				if angletocursor < 0:
 					angletocursor += 360 
 				currentsprite = round(angletocursor / 45)
 		animatedsprite.frame = currentsprite
-		
-		# 	dir = navagent.get_next_path_position() - global_position
-		# 	if dir.length_squared() > 1.0:
-		# 		dir = dir.normalized()
-		# 		velocity = velocity.lerp(dir * speed, accel *_delta) * 1.75
 		move_and_slide()
+		
+		#charge
+		if charging:
+			attackcharge.value += 0.5
+		
 		
 		if self.get_meta("active"):
 			attackcooldown.wait_time = 1.5
@@ -97,8 +137,22 @@ func _physics_process(_delta: float) -> void:
 func _on_attack_cooldown_timeout():
 	attacked = false
 
-func _on_auto_attack_range_area_entered(area: Area2D) -> void: #attackrangeben lévő enemyk sebzése
-	inattackzone.append(area)
+func _on_auto_attack_range_area_entered(_area: Area2D) -> void: #attackrangeben lévő enemyk sebzése
+	pass
 	
-func _on_auto_attack_range_area_exited(area: Area2D) -> void:
+func _on_auto_attack_range_area_exited(_area: Area2D) -> void:
+	pass
+
+
+func _on_sword_hitbox_area_entered(area: Area2D) -> void:
+	inattackzone.append(area)
+
+
+func _on_sword_hitbox_area_exited(area: Area2D) -> void:
 	inattackzone.erase(area)
+ 
+func _on_ground_slam_hitbox_area_entered(area: Area2D) -> void:
+	groundslamattackzone.append(area)
+
+func _on_ground_slam_hitbox_area_exited(area: Area2D) -> void:
+	groundslamattackzone.erase(area)

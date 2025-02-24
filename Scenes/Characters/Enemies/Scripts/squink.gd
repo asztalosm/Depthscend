@@ -11,6 +11,7 @@ var _target = self
 @onready var detection = $Detection
 var InExplosionRadius = []
 @onready var hudhealthlabel = $Health/Label
+@export var cantakedamage = true
 
 func _on_detection_area_entered(area: Area2D) -> void:
 	if area.get_parent().name == "character1" and notTargeting or area.get_parent().name == "character2" and notTargeting or area.get_parent().name == "character3" and notTargeting: # csak abban az esetben kezd el követni JÁTÉKOST ha már nem követ egyet.
@@ -54,11 +55,16 @@ func _on_timer_timeout() -> void:
 
 func _on_explosion():
 	for i in InExplosionRadius:
-		i.health -= damage
+		if i.cantakedamage:
+			i.health -= damage
+		else:pass
 	queue_free()
 
 func _on_explosion_size_area_entered(area: Area2D) -> void:
-	InExplosionRadius.append(area.get_parent())
+	if area.get_parent() in InExplosionRadius:
+		InExplosionRadius.erase(area.get_parent())
+	else:
+		InExplosionRadius.append(area.get_parent())
 	if area.get_parent().name == "character1" or area.get_parent().name == "character2" or area.get_parent().name == "character3":
 		var tween = create_tween()
 		#színkezelés robbanáskor, változni fog mert ez jelenleg szarul néz ki, lényeg, hogy create timerben az idő megegyezzen velük + kis deadzone

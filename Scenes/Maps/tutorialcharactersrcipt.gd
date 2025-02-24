@@ -5,14 +5,13 @@ extends Node2D
 @onready var health = $GUI/CurrentCharacter/Health
 @onready var currentcharacter = $GUI/CurrentCharacter
 @onready var DeathScreen = $GUI/DeathScreen
-
-var giveaccesstomultiplecharacters = false
+var giveaccesstomultiplecharacters = true
 var globalcurrentchar = 0
 var pausedgame = false
 
 # karakterválasztásért felelős funkció, loopol a charlisten megnézi melyik gombot nyomtuk meg, irányítást átadja, kamerának megadja melyiket kell követnie
 func _input(event: InputEvent) -> void:
-	if !giveaccesstomultiplecharacters:
+	if giveaccesstomultiplecharacters:
 		for i in range(characters.size()):
 			if event.is_action_pressed("Number %d Character Selection" % (i + 1)):
 				if characters[i].health <= 0:
