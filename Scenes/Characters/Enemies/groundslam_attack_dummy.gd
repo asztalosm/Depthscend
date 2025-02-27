@@ -9,4 +9,5 @@ func _process(_delta: float) -> void:
 	HealthHud.get_node("Label").text = str(health) + "/" + str(maxhealth)
 	if health <= 0:
 		get_parent().get_node("MouseClick").queue_free()
+		get_parent().get_node("Door").queue_free()
 		queue_free()

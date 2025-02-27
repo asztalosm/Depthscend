@@ -4,7 +4,7 @@ extends CharacterBody2D
 @export var accel = 35
 @export var health = 5
 @export var maxhealth = 5
-@export var damage = 2
+@export var damage = 4
 var dir := Vector2.ZERO
 var notTargeting = true
 var _target = self
@@ -39,7 +39,7 @@ func _process(_delta: float) -> void:
 			dir = navagent.get_next_path_position() - global_position
 			if dir.length_squared() > 1.0:
 				dir = dir.normalized()
-			velocity = velocity.lerp(dir * speed, accel * _delta)
+			velocity = dir * speed
 			move_and_slide()
 		else:
 			visible = false

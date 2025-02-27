@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://d1maoccsy4oe4"]
+[gd_scene load_steps=41 format=3 uid="uid://d1maoccsy4oe4"]
 
 [ext_resource type="Script" path="res://Scenes/Characters/Playable/Scripts/character_2.gd" id="1_asb81"]
 [ext_resource type="Texture2D" uid="uid://d4nvqwhn6dsuh" path="res://Textures/attackcooldown.png" id="2_3xrjg"]
@@ -14,6 +14,8 @@
 [ext_resource type="Texture2D" uid="uid://t3nkdj3n2rvx" path="res://Sprites/rouge_backright.png" id="12_uh1fu"]
 [ext_resource type="Texture2D" uid="uid://ryshjrsjoni4" path="res://Sprites/rouge_right.png" id="13_1yvde"]
 [ext_resource type="Texture2D" uid="uid://8mxnghu28uj7" path="res://Sprites/rouge_frontright.png" id="14_b12px"]
+[ext_resource type="Script" path="res://Scenes/Characters/Playable/soul_fragment.gd" id="15_qcm6w"]
+[ext_resource type="Texture2D" uid="uid://b7go24vkihaqt" path="res://Sprites/soul.png" id="15_yacxb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oin8j"]
 size = Vector2(54, 118)
@@ -150,6 +152,25 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Gradient" id="Gradient_ofok6"]
+colors = PackedColorArray(0, 0, 0, 0.392157, 0, 0, 0, 0.392157)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_wm0ly"]
+gradient = SubResource("Gradient_ofok6")
+width = 60
+height = 4
+
+[sub_resource type="Gradient" id="Gradient_qb2fo"]
+colors = PackedColorArray(0.1976, 0.638147, 0.76, 0.941176, 0.1976, 0.638147, 0.76, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_thcy0"]
+gradient = SubResource("Gradient_qb2fo")
+width = 60
+height = 4
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g1aqx"]
+size = Vector2(16, 24)
+
 [node name="character2" type="CharacterBody2D"]
 position = Vector2(963, 964)
 collision_layer = 0
@@ -273,7 +294,42 @@ sprite_frames = SubResource("SpriteFrames_540r5")
 position = Vector2(4, -24)
 sprite_frames = SubResource("SpriteFrames_14ems")
 
+[node name="AbilityCooldown" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[node name="AbilityChargeProgress" type="TextureProgressBar" parent="."]
+visible = false
+offset_left = -30.0
+offset_top = -79.0
+offset_right = 30.0
+offset_bottom = -75.0
+texture_under = SubResource("GradientTexture2D_wm0ly")
+texture_progress = SubResource("GradientTexture2D_thcy0")
+
+[node name="SoulFragment" type="Area2D" parent="."]
+visible = false
+z_index = 30
+collision_layer = 0
+collision_mask = 258
+monitorable = false
+script = ExtResource("15_qcm6w")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SoulFragment"]
+position = Vector2(-1, -1)
+shape = SubResource("RectangleShape2D_g1aqx")
+disabled = true
+
+[node name="TextureRect" type="TextureRect" parent="SoulFragment"]
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+texture = ExtResource("15_yacxb")
+
 [connection signal="area_entered" from="Dash/DashAttackZone" to="." method="_on_dash_attack_zone_area_entered"]
 [connection signal="timeout" from="AttackCooldown" to="." method="_on_attack_cooldown_timeout"]
 [connection signal="area_entered" from="AutoAttackRange" to="." method="_on_auto_attack_range_area_entered"]
 [connection signal="area_exited" from="AutoAttackRange" to="." method="_on_auto_attack_range_area_exited"]
+[connection signal="timeout" from="AbilityCooldown" to="." method="_on_ability_cooldown_timeout"]
+[connection signal="area_entered" from="SoulFragment" to="SoulFragment" method="_on_area_entered"]

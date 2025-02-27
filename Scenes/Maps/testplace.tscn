@@ -83,6 +83,9 @@ scale = Vector2(1.54688, 1.54688)
 
 [node name="trainingdummy" parent="Enemies" instance=ExtResource("6_ksc8h")]
 
+[node name="trainingdummy2" parent="Enemies" instance=ExtResource("6_ksc8h")]
+position = Vector2(793, 142)
+
 [node name="PauseMenu" type="Control" parent="."]
 process_mode = 3
 process_thread_group = 1

@@ -6,13 +6,21 @@ extends CharacterBody2D
 @export var maxhealth = 70
 @export var damage = 2
 @export var cantakedamage = true
+@export var attacking = false
+@export var extradamage = 0
+@export var hasricochet = false
+@export var hasballlightning = false
+@export var hasexplosiveorb = false
 #változó ami akkor jön létre amikor létrejön a karakter
-@onready var navagent := $NavigationAgent2D as NavigationAgent2D 
-@onready var projectile := $Projectile as Area2D
-@onready var healhitbox := $HealRangeHitbox
-@onready var healprogbar := $HealRange/TextureProgressBar
-@onready var healcooldown := $HealCooldown
-@onready var animatedsprite := $AnimatedSprite2D
+@onready var navagent = $NavigationAgent2D as NavigationAgent2D 
+@onready var projectile = $Projectile 
+@onready var healhitbox = $HealRangeHitbox
+@onready var healprogbar = $HealRange/TextureProgressBar
+@onready var healcooldown = $HealCooldown
+@onready var animatedsprite = $AnimatedSprite2D
+@onready var attackcooldown = $AttackCooldown
+@onready var attackchargeprogress = $AttackChargeProgress
+@onready var attackprogress = $AttackProgress
 
 var accel = 35
 var dir := Vector2()
@@ -21,8 +29,10 @@ var healhitboxchars = []
 var currentsprite = 0
 var moveangle = 0
 var hasnavigationtarget = false
-
-
+var charging = false
+var attacked = false
+var angle = Vector2.ZERO
+var projectiletween : Tween
 
 func tweenhealth():
 	healprogbar.value = 0
@@ -59,13 +69,26 @@ func _input(event):
 		hasnavigationtarget = true
 		target = get_global_mouse_position()
 		navagent.target_position = target
-
+		
+	if event.is_action_pressed("rclick") and get_meta("active") and not get_meta("isDead") and !attacked and !attacking:
+		attacking = true
+		$Projectile/Area2D.monitoring = false
+		$Projectile/CollisionShape2D2.disabled = true
+		charging = true
+		projectile.setvariables()
+	if event.is_action_released("rclick") and get_meta("active") and not get_meta("isDead") and attacking:
+		charging = false
+		$Projectile/Area2D.monitoring = true
+		$Projectile/CollisionShape2D2.disabled = false
+		projectile.setvariables()
+		
 	
 func _physics_process(_delta: float) -> void:
 	velocity = Vector2.ZERO
 	_get_input()
 	
 	if health > 0:
+		
 		dir = navagent.get_next_path_position() - global_position
 		if !navagent.is_navigation_finished() and hasnavigationtarget:
 			if dir.length_squared() > 1.0:
@@ -77,8 +100,10 @@ func _physics_process(_delta: float) -> void:
 				if angletocursor < 0:
 					angletocursor += 360 
 				currentsprite = round(angletocursor / 45)
-
-		animatedsprite.frame = currentsprite
+		if attacking:
+			animatedsprite.frame = currentsprite + 8
+		else:
+			animatedsprite.frame = currentsprite
 		move_and_slide()
 	else:
 		visible = false
@@ -102,3 +127,12 @@ func _on_heal_range_hitbox_area_entered(area: Area2D) -> void:
 
 func _on_heal_range_hitbox_area_exited(area: Area2D) -> void:
 	healhitboxchars.erase(area.get_parent())
+
+
+
+func _on_attack_cooldown_timeout() -> void:
+	projectile.visible = false
+	projectile.active = false
+	projectile.nearenemy.clear()
+	attacked = false
+	projectile.position = Vector2(0,0)

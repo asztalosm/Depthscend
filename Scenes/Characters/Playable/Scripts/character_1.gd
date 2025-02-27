@@ -5,7 +5,7 @@ extends CharacterBody2D
 @export var health = 70
 @export var maxhealth = 70
 @export var damage = 4
-@export var hasgroundslamcharm = false
+@export var hasgroundslamcharm = true
 @export var cantakedamage = true
 #változó ami akkor jön létre amikor létrejön a karakter
 @onready var navagent := $NavigationAgent2D as NavigationAgent2D
@@ -34,6 +34,20 @@ func _ready() -> void:
 	set_physics_process(false)
 	await get_tree().physics_frame
 	set_physics_process(true)
+
+func groundslam() -> void:
+	charging = false
+	attackcharge.visible = false
+	attacked = true
+	groundslamhitbox.rotate(groundslamhitbox.get_angle_to(get_global_mouse_position()) +0.5*PI)
+	groundslamhitbox.visible = true
+	attackcooldown.start()
+	await get_tree().create_timer(0.3).timeout
+	for i in groundslamattackzone:
+		i.get_parent().health -= round(damage + 4)
+	groundslamhitbox.visible = false
+	var attackcooldowntween = get_tree().create_tween()
+	attackcooldowntween.tween_property(attackprogress, "value", 100, attackcooldown.time_left)
 
 
 func _get_input():
@@ -66,18 +80,7 @@ func _input(event):
 		
 	if event.is_action_released("rclick") and get_meta("active") and not get_meta("isDead") and attackcharge.visible and !attacked:
 		if attackcharge.value == 100 and hasgroundslamcharm: #max charged attack
-			charging = false
-			attackcharge.visible = false
-			attacked = true
-			groundslamhitbox.rotate(groundslamhitbox.get_angle_to(get_global_mouse_position()) +0.5*PI)
-			groundslamhitbox.visible = true
-			attackcooldown.start()
-			await get_tree().create_timer(0.3).timeout
-			for i in groundslamattackzone:
-				i.get_parent().health -= round(damage + 4)
-			groundslamhitbox.visible = false
-			var attackcooldowntween = get_tree().create_tween()
-			attackcooldowntween.tween_property(attackprogress, "value", 100, attackcooldown.time_left)
+			groundslam()
 			
 		else: #not max charged attack
 			slashanimation.frame = 0
@@ -95,7 +98,11 @@ func _input(event):
 			swordhitbox.visible = false
 			var attackcooldowntween = get_tree().create_tween()
 			attackcooldowntween.tween_property(attackprogress, "value", 100, attackcooldown.time_left)
-
+	if !self.get_meta("active"):
+		charging = false
+		attackcharge.visible = false
+		attacked = false
+		groundslamhitbox.visible = false
 
 
 

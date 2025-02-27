@@ -1,7 +1,7 @@
-[gd_scene load_steps=24 format=3 uid="uid://bbr64q8hg7fde"]
+[gd_scene load_steps=39 format=3 uid="uid://bbr64q8hg7fde"]
 
 [ext_resource type="Script" path="res://Scenes/Characters/Playable/Scripts/character_3.gd" id="1_myxxc"]
-[ext_resource type="Script" path="res://Scenes/Characters/Playable/projectile.gd" id="2_4ms6l"]
+[ext_resource type="Script" path="res://Scenes/Characters/Playable/projectile.gd" id="3_hq6b5"]
 [ext_resource type="Texture2D" uid="uid://c83ynlvklq4jb" path="res://Textures/healunder.svg" id="4_0q8xu"]
 [ext_resource type="Texture2D" uid="uid://dfvwd26hcv560" path="res://Sprites/priestess_leftfront.png" id="4_swb62"]
 [ext_resource type="Texture2D" uid="uid://cv3ay8ds8ioid" path="res://Textures/healprogress.svg" id="5_3gmsv"]
@@ -13,35 +13,23 @@
 [ext_resource type="Texture2D" uid="uid://cw1ojo8ktm6f3" path="res://Sprites/priestess_leftback.png" id="11_ctfn3"]
 [ext_resource type="Texture2D" uid="uid://b7gj8h0060h00" path="res://Sprites/priestess_left.png" id="12_3apww"]
 [ext_resource type="Texture2D" uid="uid://d4nvqwhn6dsuh" path="res://Textures/attackcooldown.png" id="13_whrlw"]
+[ext_resource type="Texture2D" uid="uid://bwdgv3n1rf1fj" path="res://Sprites/priestess_front_attack.png" id="14_kthqj"]
+[ext_resource type="Texture2D" uid="uid://biue221d7v66s" path="res://Textures/attackchargeunder.png" id="14_qmb1x"]
+[ext_resource type="Texture2D" uid="uid://dypdy82cmtx1t" path="res://Textures/attackchargeprogress.png" id="15_bng6n"]
+[ext_resource type="Texture2D" uid="uid://bu326gtcwkxn0" path="res://Sprites/priestess_rightfront_attack.png" id="15_q6q6i"]
+[ext_resource type="Texture2D" uid="uid://d2y0e5hopjiy" path="res://Sprites/priestess_left_attack.png" id="16_chwop"]
+[ext_resource type="Texture2D" uid="uid://poy62beis1c" path="res://Sprites/priestess_leftback_attack.png" id="17_8s7se"]
+[ext_resource type="Texture2D" uid="uid://thy5scas7yu8" path="res://Sprites/priestess_back_attack.png" id="18_iy0k3"]
+[ext_resource type="Texture2D" uid="uid://dgi1u1ed5oe1c" path="res://Sprites/priestess_rightback_attack.png" id="19_ulhq3"]
+[ext_resource type="Texture2D" uid="uid://b0402g4ouhrl5" path="res://Sprites/priestess_right_attack.png" id="20_28lic"]
+[ext_resource type="Texture2D" uid="uid://m4gmd65rfnx" path="res://Sprites/priestess_leftfront_attack.png" id="21_0ghdn"]
+[ext_resource type="Texture2D" uid="uid://chvsbx3rst0t6" path="res://Sprites/lightning_2.png" id="24_kbv4b"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2xmsr"]
 size = Vector2(43, 118)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cdwh7"]
 size = Vector2(32, 5)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_3i43i"]
-size = Vector2(6, 6)
-
-[sub_resource type="Gradient" id="Gradient_nn7bc"]
-offsets = PackedFloat32Array(0, 0.231707)
-colors = PackedColorArray(1, 0, 1, 1, 1, 1, 1, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_mnavg"]
-gradient = SubResource("Gradient_nn7bc")
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-
-[sub_resource type="Gradient" id="Gradient_66lxp"]
-offsets = PackedFloat32Array(0, 0.99187)
-colors = PackedColorArray(1, 0, 1, 1, 1, 1, 1, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_6eaq0"]
-gradient = SubResource("Gradient_66lxp")
-width = 4
-height = 4
-fill = 1
-fill_from = Vector2(0.5, 0.5)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4sqb4"]
 radius = 263.002
@@ -72,6 +60,30 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("4_swb62")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_kthqj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_q6q6i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_chwop")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_8s7se")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_iy0k3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_ulhq3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_28lic")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_0ghdn")
 }],
 "loop": true,
 "name": &"default",
@@ -80,6 +92,41 @@ animations = [{
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r38ka"]
 size = Vector2(15.25, 5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3i43i"]
+size = Vector2(6, 6)
+
+[sub_resource type="Gradient" id="Gradient_nn7bc"]
+offsets = PackedFloat32Array(0, 0.138211, 0.252033)
+colors = PackedColorArray(1, 1, 1, 1, 0.87, 0.87, 0.87, 0.470588, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_mnavg"]
+gradient = SubResource("Gradient_nn7bc")
+width = 256
+height = 256
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ptyjm"]
+radius = 8.73212
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1e3xq"]
+size = Vector2(2, 2)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_u7f7e"]
+radius = 48.5103
+
+[sub_resource type="Gradient" id="Gradient_3vwn7"]
+offsets = PackedFloat32Array(0.569106, 0.589431)
+colors = PackedColorArray(1, 0.683333, 0, 0.623529, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_msuq2"]
+gradient = SubResource("Gradient_3vwn7")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jmfhs"]
+radius = 155.003
 
 [node name="character3" type="CharacterBody2D"]
 position = Vector2(1177, 964)
@@ -128,47 +175,6 @@ monitoring = false
 position = Vector2(-5, 58.5)
 shape = SubResource("RectangleShape2D_cdwh7")
 
-[node name="Projectile" type="Area2D" parent="."]
-z_index = 200
-z_as_relative = false
-position = Vector2(5, -59)
-scale = Vector2(2, 2)
-collision_layer = 0
-collision_mask = 768
-input_pickable = false
-script = ExtResource("2_4ms6l")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Projectile"]
-shape = SubResource("RectangleShape2D_3i43i")
-
-[node name="ColorRect" type="ColorRect" parent="Projectile"]
-visible = false
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -2.0
-offset_top = -2.0
-offset_right = 2.0
-offset_bottom = 2.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(1, 0, 1, 1)
-metadata/_edit_use_anchors_ = true
-
-[node name="PointLight2D" type="PointLight2D" parent="Projectile"]
-z_index = 200
-z_as_relative = false
-texture = SubResource("GradientTexture2D_mnavg")
-
-[node name="TextureRect" type="TextureRect" parent="Projectile"]
-offset_left = -3.0
-offset_top = -3.0
-offset_right = 3.0
-offset_bottom = 3.0
-texture = SubResource("GradientTexture2D_6eaq0")
-
 [node name="HealRange" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 8
@@ -215,13 +221,105 @@ position = Vector2(-11, -59)
 sprite_frames = SubResource("SpriteFrames_h1jj7")
 
 [node name="AttackCooldown" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_r38ka")
 
-[connection signal="area_entered" from="Projectile" to="Projectile" method="_on_area_entered"]
-[connection signal="body_entered" from="Projectile" to="Projectile" method="_on_body_entered"]
+[node name="AttackChargeProgress" type="TextureProgressBar" parent="."]
+visible = false
+offset_left = -32.0
+offset_top = -142.0
+offset_bottom = -138.0
+scale = Vector2(2, 2)
+texture_under = ExtResource("14_qmb1x")
+texture_progress = ExtResource("15_bng6n")
+tint_under = Color(0, 0, 0, 0.427451)
+tint_progress = Color(1, 1, 1, 0.705882)
+
+[node name="Projectile" type="StaticBody2D" parent="."]
+visible = false
+position = Vector2(5, -59)
+scale = Vector2(2, 2)
+collision_layer = 512
+collision_mask = 512
+script = ExtResource("3_hq6b5")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Projectile"]
+shape = SubResource("RectangleShape2D_3i43i")
+
+[node name="PointLight2D" type="PointLight2D" parent="Projectile"]
+z_index = 200
+z_as_relative = false
+scale = Vector2(0.31836, 0.31836)
+texture = SubResource("GradientTexture2D_mnavg")
+
+[node name="TextureRect" type="TextureRect" parent="Projectile"]
+offset_left = -5.0
+offset_top = -5.0
+offset_right = 5.0
+offset_bottom = 5.0
+expand_mode = 1
+
+[node name="Area2D" type="Area2D" parent="Projectile"]
+collision_layer = 0
+collision_mask = 256
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Projectile/Area2D"]
+shape = SubResource("CircleShape2D_ptyjm")
+
+[node name="PointLight2D" type="PointLight2D" parent="Projectile/Area2D"]
+visible = false
+position = Vector2(0, 1.25)
+texture = ExtResource("24_kbv4b")
+texture_scale = 0.08
+
+[node name="WallCheck" type="Area2D" parent="Projectile"]
+collision_layer = 512
+collision_mask = 512
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Projectile/WallCheck"]
+shape = SubResource("RectangleShape2D_1e3xq")
+
+[node name="ExplosionArea" type="Area2D" parent="Projectile"]
+visible = false
+collision_layer = 0
+collision_mask = 256
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Projectile/ExplosionArea"]
+shape = SubResource("CircleShape2D_u7f7e")
+
+[node name="PointLight2D" type="PointLight2D" parent="Projectile/ExplosionArea"]
+visible = false
+position = Vector2(-1.5, -0.75001)
+scale = Vector2(1.875, 1.92969)
+texture = SubResource("GradientTexture2D_msuq2")
+
+[node name="EnemyFinder" type="Area2D" parent="Projectile"]
+collision_layer = 0
+collision_mask = 256
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Projectile/EnemyFinder"]
+shape = SubResource("CircleShape2D_jmfhs")
+
+[node name="BallLightningCooldown" type="Timer" parent="Projectile"]
+wait_time = 0.75
+
 [connection signal="area_entered" from="HealRangeHitbox" to="." method="_on_heal_range_hitbox_area_entered"]
 [connection signal="area_exited" from="HealRangeHitbox" to="." method="_on_heal_range_hitbox_area_exited"]
 [connection signal="timeout" from="HealCooldown" to="." method="_on_heal_cooldown_timeout"]
-[connection signal="timeout" from="AttackCooldown" to="Projectile" method="_on_attack_cooldown_timeout"]
+[connection signal="timeout" from="AttackCooldown" to="." method="_on_attack_cooldown_timeout"]
+[connection signal="area_entered" from="Projectile/Area2D" to="Projectile" method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Projectile/Area2D" to="Projectile" method="_on_area_2d_area_exited"]
+[connection signal="body_entered" from="Projectile/Area2D" to="Projectile" method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Projectile/WallCheck" to="Projectile" method="_on_wall_check_body_entered"]
+[connection signal="body_exited" from="Projectile/WallCheck" to="Projectile" method="_on_wall_check_body_exited"]
+[connection signal="area_entered" from="Projectile/ExplosionArea" to="Projectile" method="_on_explosion_area_area_entered"]
+[connection signal="area_exited" from="Projectile/ExplosionArea" to="Projectile" method="_on_explosion_area_area_exited"]
+[connection signal="area_entered" from="Projectile/EnemyFinder" to="Projectile" method="_on_enemy_finder_area_entered"]
+[connection signal="timeout" from="Projectile/BallLightningCooldown" to="Projectile" method="_on_ball_lightning_cooldown_timeout"]

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c3f01kkfx403b"
-path="res://.godot/imported/pixil-frame-0_3.png-f19726047244f6479e2e8cac033fd1b3.ctex"
+uid="uid://bu326gtcwkxn0"
+path="res://.godot/imported/priestess_rightfront_attack.png-10358f31e856aaac1d96349e837c908b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/pixil-frame-0_3.png"
-dest_files=["res://.godot/imported/pixil-frame-0_3.png-f19726047244f6479e2e8cac033fd1b3.ctex"]
+source_file="res://Sprites/priestess_rightfront_attack.png"
+dest_files=["res://.godot/imported/priestess_rightfront_attack.png-10358f31e856aaac1d96349e837c908b.ctex"]
 
 [params]
 

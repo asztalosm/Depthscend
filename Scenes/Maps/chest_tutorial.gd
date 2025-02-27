@@ -1,7 +1,6 @@
 extends Area2D
 var characterinarea = false
 var character = null
-
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("kb_E") and characterinarea and character != null:
 		character.hasgroundslamcharm = true
@@ -9,7 +8,7 @@ func _input(event: InputEvent) -> void:
 		var newtexturerect = TextureRect.new()
 		newtexturerect.texture = load("res://Textures/groundslamcharm.png")
 		newtexturerect.custom_minimum_size = Vector2(64,64)
-		get_parent().get_parent().get_parent().get_node("Characters/GUI/CurrentCharacter/Charms/GridContainer").add_child(newtexturerect)
+		get_parent().get_parent().get_parent().get_node("Characters/GUI/Charms/GridContainer").add_child(newtexturerect)
 		
 		queue_free()
 

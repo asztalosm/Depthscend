@@ -131,8 +131,11 @@ func _input(event):
 				swordhitbox.visible = false
 				var attackcooldowntween = get_tree().create_tween()
 				attackcooldowntween.tween_property(attackprogress, "value", 100, attackcooldown.time_left)
-			
-			
+		if !self.get_meta("active"): #resets the characters attack progress when the player changes characters
+			charging = false
+			attackcharge.visible = false
+			attacked = false
+			groundslamhitbox.visible = false
 func _physics_process(_delta: float) -> void:
 	velocity = Vector2.ZERO
 	_get_input()
