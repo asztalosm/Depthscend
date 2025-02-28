@@ -251,7 +251,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"default",
-"speed": 24.0
+"speed": 96.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r1eru"]
@@ -334,9 +334,9 @@ metadata/isDead = false
 
 [node name="AttackProgress" type="TextureProgressBar" parent="."]
 offset_left = -31.0
-offset_top = -68.4999
+offset_top = -46.4999
 offset_right = 1.00003
-offset_bottom = -36.4999
+offset_bottom = -14.4999
 scale = Vector2(2, 2)
 value = 100.0
 fill_mode = 4
@@ -347,12 +347,12 @@ tint_progress = Color(1, 1, 1, 0.705882)
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 path_desired_distance = 4.0
-target_desired_distance = 24.0
+target_desired_distance = 2.0
 simplify_path = true
 radius = 70.0
 
 [node name="Hitbox" type="Area2D" parent="."]
-position = Vector2(-16, -58)
+position = Vector2(-16, -36)
 collision_layer = 32
 collision_mask = 32
 monitoring = false
@@ -362,7 +362,7 @@ position = Vector2(14.5, -16)
 shape = SubResource("RectangleShape2D_sydsr")
 
 [node name="ZoneHitbox" type="Area2D" parent="."]
-position = Vector2(-3.8147e-06, -24)
+position = Vector2(-3.8147e-06, -2)
 collision_layer = 17
 collision_mask = 16
 monitoring = false
@@ -372,7 +372,7 @@ position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_24g0f")
 
 [node name="AutoAttackRange" type="Area2D" parent="."]
-position = Vector2(-16.0625, -58.5937)
+position = Vector2(-16.0625, -36.5937)
 collision_layer = 256
 collision_mask = 256
 monitorable = false
@@ -390,6 +390,7 @@ wait_time = 2.25
 autostart = true
 
 [node name="SwordHitbox" type="Area2D" parent="."]
+visible = false
 position = Vector2(-3, -51)
 collision_layer = 256
 collision_mask = 256
@@ -402,7 +403,6 @@ shape = SubResource("RectangleShape2D_onal3")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SwordHitbox"]
 position = Vector2(0.500006, -52)
 sprite_frames = SubResource("SpriteFrames_jeoiv")
-frame = 20
 
 [node name="GroundSlamHitbox" type="Area2D" parent="."]
 visible = false
@@ -424,14 +424,14 @@ blend_mode = 1
 texture = ExtResource("5_lh3xn")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(-3.8147e-06, -74)
+position = Vector2(-3.8147e-06, -52)
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_6frjw")
 frame = 4
 frame_progress = 0.194254
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -22.5)
+position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_20j34")
 
 [node name="AttackChargeProgress" type="TextureProgressBar" parent="."]

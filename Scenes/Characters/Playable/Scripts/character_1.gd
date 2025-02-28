@@ -123,6 +123,7 @@ func _physics_process(_delta: float) -> void:
 				currentsprite = round(angletocursor / 45)
 		animatedsprite.frame = currentsprite
 		move_and_slide()
+		position = round(position)
 		
 		#charge
 		if charging:

@@ -83,7 +83,6 @@ func _input(event):
 		if canwasdmove:
 			navagent.target_position = position
 
-
 	if event.is_action_pressed("click") and get_meta("active") and not get_meta("isDead") and canmousemove:
 		hasnavigationtarget = true
 		target = get_global_mouse_position()
@@ -160,7 +159,7 @@ func _physics_process(_delta: float) -> void:
 				currentsprite = round(angletocursor / 45)
 		animatedsprite.frame = currentsprite
 		move_and_slide()
-		
+		position = round(position)
 		if charging:
 			attackcharge.value += 0.5
 		

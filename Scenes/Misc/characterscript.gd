@@ -45,7 +45,7 @@ func _process(_delta: float) -> void:
 	else:
 		for chars in characters:
 			if chars == characters[globalcurrentchar]:
-				playercam.position = characters[globalcurrentchar].position
+				playercam.position = chars.position
 				if chars.health <= 0:
 					playerhealth.text = "💀"
 				else:

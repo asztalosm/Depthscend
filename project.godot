@@ -16,12 +16,25 @@ config/features=PackedStringArray("4.3", "Forward Plus")
 boot_splash/bg_color=Color(0, 0, 0, 1)
 boot_splash/show_image=false
 
+[debug]
+
+shapes/navigation/geometry_face_color=Color(0.5, 1, 1, 0.00392157)
+shapes/navigation/enable_edge_connections=false
+shapes/navigation/enable_edge_connections_xray=false
+shapes/navigation/enable_edge_lines=false
+shapes/navigation/enable_edge_lines_xray=false
+shapes/navigation/enable_geometry_face_random_color=false
+shapes/navigation/enable_link_connections=false
+shapes/navigation/enable_link_connections_xray=false
+shapes/navigation/enable_agent_paths=false
+shapes/navigation/enable_agent_paths_xray=false
+
 [display]
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
 window/size/mode=4
-window/stretch/mode="canvas_items"
+window/stretch/mode="viewport"
 window/stretch/aspect="expand"
 mouse_cursor/custom_image="res://Textures/dotcursor.png"
 

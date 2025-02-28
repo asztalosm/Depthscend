@@ -84,8 +84,6 @@ func soultear() -> void:
 	attackcharge.value = 0
 	swordanimation.play()
 	attacked = true
-	attackcooldown.start()
-	
 	await get_tree().create_timer(0.2).timeout
 	attackcooldown.start()
 	var attackcooldowntween = get_tree().create_tween()
@@ -96,8 +94,8 @@ func soultear() -> void:
 			if enemy.get_parent().health - damage*2 <= 0:
 				soulspread(enemy.get_parent())
 				enemy.get_parent().health -= damage*2
-	var abilitycdtween = get_tree().create_tween()
-	abilitycdtween.tween_property(abilitycdprogress, "value", 100, abilitycd.wait_time)
+			else:
+				enemy.get_parent().health -= damage*2
 	
 
 func soulspread(enemy) -> void:
@@ -112,6 +110,8 @@ func soulspread(enemy) -> void:
 		i.script = load("res://Scenes/Characters/Playable/soul_fragment.gd")
 		i.get_node("CollisionShape2D").disabled = false
 		get_parent().get_parent().add_child(i)
+	var abilitycdtween = get_tree().create_tween()
+	abilitycdtween.tween_property(abilitycdprogress, "value", 100, abilitycd.wait_time)
 
 func _get_input():
 	if get_meta("active") and !get_meta("isDead") and !dashing:
@@ -156,6 +156,8 @@ func _input(event): # pathfinding + attack
 		if attackcharge.value == 100 and hassoultearcharm and abilitycd.time_left == 0: #soultear cooldown
 			soultear()
 			abilitycdprogress.visible = true
+			var abilitycdtween = get_tree().create_tween()
+			abilitycdtween.tween_property(abilitycdprogress, "value", 100, abilitycd.wait_time)
 		else:
 			swordanimation.frame = 0
 			attackcharge.value = 0
@@ -174,7 +176,6 @@ func _input(event): # pathfinding + attack
 			swordhitbox.visible = false
 			var attackcooldowntween = get_tree().create_tween()
 			attackcooldowntween.set_parallel(true)
-			attackcooldowntween.tween_property(self, "damage", maxdamage, attackcooldown.time_left)
 			attackcooldowntween.tween_property(attackprogress, "value", 100, attackcooldown.time_left)
 		
 	if !get_meta("active"):
@@ -216,6 +217,8 @@ func _physics_process(_delta: float) -> void:
 				dashnode.rotate(dashnode.get_angle_to(get_global_mouse_position()) +0.5*PI)
 				var dashsizetween = get_tree().create_tween().set_trans(Tween.TRANS_LINEAR)
 				dashsizetween.tween_property(dashtexture, "size:y", 96, 0.4)
+			elif attackcharge.value == 100:
+				damage = maxdamage
 		if self.get_meta("active"):
 			attackcooldown.wait_time = 0.3
 
