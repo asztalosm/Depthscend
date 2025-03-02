@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://d1maoccsy4oe4"]
+[gd_scene load_steps=41 format=3 uid="uid://d1maoccsy4oe4"]
 
 [ext_resource type="Script" path="res://Scenes/Characters/Playable/Scripts/character_2.gd" id="1_asb81"]
 [ext_resource type="Texture2D" uid="uid://d4nvqwhn6dsuh" path="res://Textures/attackcooldown.png" id="2_3xrjg"]
@@ -16,7 +16,6 @@
 [ext_resource type="Texture2D" uid="uid://8mxnghu28uj7" path="res://Sprites/rouge_frontright.png" id="14_b12px"]
 [ext_resource type="Script" path="res://Scenes/Characters/Playable/soul_fragment.gd" id="15_qcm6w"]
 [ext_resource type="Texture2D" uid="uid://b7go24vkihaqt" path="res://Sprites/soul.png" id="15_yacxb"]
-[ext_resource type="Shader" uid="uid://ddt0t5tgg4xl6" path="res://Scenes/Characters/Playable/character_2.tres" id="16_ranp2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oin8j"]
 size = Vector2(54, 118)
@@ -172,9 +171,6 @@ height = 4
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g1aqx"]
 size = Vector2(16, 24)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_otqcx"]
-shader = ExtResource("16_ranp2")
-
 [node name="character2" type="CharacterBody2D"]
 position = Vector2(963, 964)
 collision_layer = 0
@@ -314,7 +310,6 @@ texture_progress = SubResource("GradientTexture2D_thcy0")
 [node name="SoulFragment" type="Area2D" parent="."]
 visible = false
 z_index = 30
-scale = Vector2(1.5, 1.5)
 collision_layer = 0
 collision_mask = 258
 monitorable = false
@@ -326,7 +321,6 @@ shape = SubResource("RectangleShape2D_g1aqx")
 disabled = true
 
 [node name="TextureRect" type="TextureRect" parent="SoulFragment"]
-material = SubResource("ShaderMaterial_otqcx")
 offset_left = -16.0
 offset_top = -16.0
 offset_right = 16.0

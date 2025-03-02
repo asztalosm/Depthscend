@@ -12,7 +12,7 @@ extends CharacterBody2D
 @export var cantakedamage = true
 
 #változó ami akkor jön létre amikor létrejön a karakter
-@onready var navagent := $NavigationAgent2D as NavigationAgent2D
+@onready var navagent = await $NavigationAgent2D
 @onready var swordhitbox = $SwordHitbox
 @onready var attackcooldown = $AttackCooldown
 @onready var attackprogress = $AttackProgress
@@ -45,7 +45,7 @@ func _ready() -> void:
 	set_physics_process(true)
 
 
-func dash() -> void:
+func dash() -> void: #basically ugyanaz mint egy normális attack csak van közbe más mozgás meg hitbox
 	abilitycd.start()
 	abilitycdprogress.value = 0
 	$Dash/DashAttackZone/CollisionShape2D.position.y = -58
@@ -74,7 +74,7 @@ func dash() -> void:
 	cantakedamage = true
 	$Dash/DashAttackZone/CollisionShape2D.position.y = 30000 # banish collisionshape to the shadow realm temporarily to clear the areas from the entered function
 	
-func soultear() -> void:
+func soultear() -> void: #soul tear attack
 	abilitycd.start()
 	abilitycdprogress.value = 0
 	charging = false
@@ -98,7 +98,8 @@ func soultear() -> void:
 				enemy.get_parent().health -= damage*2
 	
 
-func soulspread(enemy) -> void:
+func soulspread(enemy) -> void: #soul tear attack létrehoz 4 soul fragmentet ami healel karaktert vagy sebez enemyt
+	print(enemy.name)
 	var soulfraglist = []
 	for i in range(4):
 		var tempsoulfragment = soulfragment.duplicate()
@@ -126,10 +127,15 @@ func _get_input():
 			currentsprite = round(moveangle / 45)
 
 func _input(event): # pathfinding + attack
+	if event.is_action_pressed("kb_E"):
+		var charactereffect = preload("res://Shaders/characterstatuseffects.tscn").instantiate()
+		add_child(charactereffect)
+		charactereffect.texture = preload("res://Particles/Heal.png")
+		charactereffect.global_position = global_position
+		charactereffect.emitting = true
 
 	if event.is_action("kb_A") and get_meta("active") or event.is_action("kb_D") and get_meta("active") or event.is_action("kb_S") and get_meta("active") or event.is_action("kb_W") and get_meta("active"):
 		navagent.target_position = position
-	#stops pathfinding when WASD is pressed
 
 	if event.is_action_pressed("click") and get_meta("active") and not get_meta("isDead"): #pathfinding
 		hasnavigationtarget = true
@@ -259,5 +265,5 @@ func _on_ability_cooldown_timeout() -> void:
 	abilitycdprogress.visible = false
 
 
-func _on_soul_fragment_area_entered(area: Area2D) -> void:
+func _on_soul_fragment_area_entered(_area: Area2D) -> void:
 	pass # Replace with function body.

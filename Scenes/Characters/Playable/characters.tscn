@@ -13,18 +13,15 @@ script = ExtResource("1_pohhn")
 [node name="character3" parent="." instance=ExtResource("4_l2wkl")]
 z_index = 99
 position = Vector2(728, 968)
-health = 10
 
 [node name="character2" parent="." instance=ExtResource("2_cj02r")]
 z_index = 99
 position = Vector2(648, 968)
-health = 10
 
 [node name="character1" parent="." instance=ExtResource("3_4n2d1")]
 z_index = 99
 position = Vector2(520, 952)
 script = ExtResource("3_ybhpn")
-health = 10
 hasgroundslamcharm = true
 
 [node name="GUI" parent="." instance=ExtResource("6_x6elr")]

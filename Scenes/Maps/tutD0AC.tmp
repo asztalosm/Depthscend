@@ -1,8 +1,7 @@
-[gd_scene load_steps=97 format=4 uid="uid://dmy87sdckqipc"]
+[gd_scene load_steps=94 format=4 uid="uid://dmy87sdckqipc"]
 
 [ext_resource type="Texture2D" uid="uid://crjiiddxx6cuc" path="res://Textures/temptutorialdungeontileset.png" id="1_61dma"]
 [ext_resource type="PackedScene" uid="uid://btd7uso6md01v" path="res://Scenes/Characters/Playable/character_1.tscn" id="1_b33b2"]
-[ext_resource type="Shader" uid="uid://b66eiy20hh3vh" path="res://Scenes/Maps/noise.tres" id="1_cal8e"]
 [ext_resource type="Texture2D" uid="uid://ildhrkbx6tji" path="res://Tilemaps/biggergrass.png" id="1_ew6qg"]
 [ext_resource type="Script" path="res://Scenes/Maps/tutorialcharactersrcipt.gd" id="1_vyhsh"]
 [ext_resource type="Texture2D" uid="uid://bbt58ugi4nado" path="res://Tilemaps/cloud.png" id="2_0id31"]
@@ -47,7 +46,6 @@
 [ext_resource type="Script" path="res://Scenes/Maps/more_characters_checkpoint.gd" id="19_r4ry6"]
 [ext_resource type="Texture2D" uid="uid://cgtg1spmscyn2" path="res://Sprites/character2.png" id="33_0yfxr"]
 [ext_resource type="Texture2D" uid="uid://wuxc0mq1sgpu" path="res://Sprites/character3.png" id="34_may6k"]
-[ext_resource type="Texture2D" uid="uid://dn5iqofebi80s" path="res://Shaders/tutorialbackgroundnoise.tres" id="42_h5fyd"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_p3d4b"]
 texture = ExtResource("1_ew6qg")
@@ -507,10 +505,6 @@ height = 32
 fill_from = Vector2(0, 1)
 fill_to = Vector2(0, 0)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_gfrny"]
-shader = ExtResource("1_cal8e")
-shader_parameter/Texture2DParameter = ExtResource("42_h5fyd")
-
 [sub_resource type="Gradient" id="Gradient_s06bw"]
 offsets = PackedFloat32Array(0.890244, 1)
 colors = PackedColorArray(0.08, 0.08, 0.08, 1, 0, 0, 0, 0)
@@ -561,6 +555,61 @@ fill_from = Vector2(0.5, 0.5)
 [node name="Tutorial" type="Node2D"]
 
 [node name="Background" type="Node2D" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="Background"]
+offset_left = -283.0
+offset_top = 511.0
+offset_right = 1012.0
+offset_bottom = 1452.0
+color = Color(0.4897, 0.586657, 0.59, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="Background"]
+offset_left = -155.0
+offset_top = 1261.0
+offset_right = 2.0
+offset_bottom = 1301.0
+
+[node name="ColorRect3" type="ColorRect" parent="Background"]
+offset_left = -130.0
+offset_top = 1242.0
+offset_right = -29.0
+offset_bottom = 1268.0
+
+[node name="ColorRect4" type="ColorRect" parent="Background"]
+offset_left = -204.0
+offset_top = 1045.0
+offset_right = -47.0
+offset_bottom = 1085.0
+
+[node name="ColorRect5" type="ColorRect" parent="Background"]
+offset_left = -179.0
+offset_top = 1026.0
+offset_right = -78.0
+offset_bottom = 1052.0
+
+[node name="ColorRect6" type="ColorRect" parent="Background"]
+offset_left = 141.0
+offset_top = 1288.0
+offset_right = 298.0
+offset_bottom = 1328.0
+
+[node name="ColorRect7" type="ColorRect" parent="Background"]
+offset_left = 166.0
+offset_top = 1269.0
+offset_right = 267.0
+offset_bottom = 1295.0
+
+[node name="ColorRect8" type="ColorRect" parent="Background"]
+offset_left = 470.0
+offset_top = 1258.0
+offset_right = 627.0
+offset_bottom = 1298.0
+
+[node name="ColorRect9" type="ColorRect" parent="Background"]
+offset_left = 495.0
+offset_top = 1239.0
+offset_right = 596.0
+offset_bottom = 1265.0
 
 [node name="Map" type="Node2D" parent="."]
 
@@ -1096,16 +1145,7 @@ speed = 250
 top_level = true
 position = Vector2(960, 540)
 process_callback = 0
-position_smoothing_enabled = true
-position_smoothing_speed = 8.0
-
-[node name="Background" type="ColorRect" parent="Characters/Camera2D"]
-z_index = -5
-material = SubResource("ShaderMaterial_gfrny")
-offset_left = -2880.0
-offset_top = -1620.0
-offset_right = 2880.0
-offset_bottom = 1620.0
+position_smoothing_speed = 4.0
 
 [node name="GUI" type="CanvasLayer" parent="Characters"]
 

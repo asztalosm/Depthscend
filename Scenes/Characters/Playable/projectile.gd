@@ -166,12 +166,19 @@ func _on_explosion_area_area_exited(area: Area2D) -> void:
 
 
 func _on_ball_lightning_cooldown_timeout() -> void:
-	$Area2D/PointLight2D.visible = true
 	for enemies in inattackzone:
+		var arc = $Area2D/hittexturecopy.duplicate()
+		$Area2D.add_child(arc)
+		arc.visible = true
+		arc.texture = load("res://Sprites/lightning_smol%d.png" % (randi_range(0,3)))
+		arc.name = "balltexture"
+		arc.rotation = (global_position.angle_to_point(enemies.global_position)+89.65)
 		if enemies.cantakedamage == true:
 			enemies.health -= damage
 	await get_tree().create_timer(0.2).timeout
-	$Area2D/PointLight2D.visible = false
+	for elements in $Area2D.get_children():
+		if elements.name.contains("balltexture"):
+			elements.queue_free()
 
 
 func _on_area_2d_area_exited(area: Area2D) -> void:

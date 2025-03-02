@@ -16,7 +16,6 @@ extends CharacterBody2D
 @onready var slashanimation = $SwordHitbox/AnimatedSprite2D
 @onready var groundslamhitbox = $GroundSlamHitbox
 @onready var navagent := $NavigationAgent2D as NavigationAgent2D
-@onready var AttackSprite := $AutoAttackRange/AnimatedSprite2D as AnimatedSprite2D
 @onready var swordhitbox = $SwordHitbox
 @onready var attackcooldown = $AttackCooldown
 @onready var attackprogress = $AttackProgress
@@ -102,7 +101,6 @@ func _input(event):
 				for i in inattackzone:
 					i.get_parent().health -= damage
 				swordhitbox.visible = false
-				AttackSprite.frame = 0
 				var attackcooldowntween = get_tree().create_tween()
 				attackcooldowntween.tween_property(attackprogress, "value", 100, attackcooldown.time_left)
 	else:

@@ -9,7 +9,6 @@ extends CharacterBody2D
 @export var cantakedamage = true
 #változó ami akkor jön létre amikor létrejön a karakter
 @onready var navagent := $NavigationAgent2D as NavigationAgent2D
-@onready var AttackSprite := $AutoAttackRange/AnimatedSprite2D as AnimatedSprite2D
 @onready var swordhitbox = $SwordHitbox
 @onready var attackcooldown = $AttackCooldown
 @onready var attackprogress = $AttackProgress

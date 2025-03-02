@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://bbr64q8hg7fde"]
+[gd_scene load_steps=39 format=3 uid="uid://bbr64q8hg7fde"]
 
 [ext_resource type="Script" path="res://Scenes/Characters/Playable/Scripts/character_3.gd" id="1_myxxc"]
 [ext_resource type="Script" path="res://Scenes/Characters/Playable/projectile.gd" id="3_hq6b5"]
@@ -24,7 +24,6 @@
 [ext_resource type="Texture2D" uid="uid://b0402g4ouhrl5" path="res://Sprites/priestess_right_attack.png" id="20_28lic"]
 [ext_resource type="Texture2D" uid="uid://m4gmd65rfnx" path="res://Sprites/priestess_leftfront_attack.png" id="21_0ghdn"]
 [ext_resource type="Texture2D" uid="uid://2b7twcx1cj0" path="res://Sprites/lightning_smol0.png" id="24_4wat4"]
-[ext_resource type="Shader" uid="uid://b3kpprh5r7qrw" path="res://Scenes/Characters/Playable/electric.tres" id="24_ofup0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2xmsr"]
 size = Vector2(43, 118)
@@ -107,9 +106,6 @@ width = 256
 height = 256
 fill = 1
 fill_from = Vector2(0.5, 0.5)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_8m2c5"]
-shader = ExtResource("24_ofup0")
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ptyjm"]
 
@@ -242,7 +238,6 @@ tint_under = Color(0, 0, 0, 0.427451)
 tint_progress = Color(1, 1, 1, 0.705882)
 
 [node name="Projectile" type="StaticBody2D" parent="."]
-visible = false
 position = Vector2(5, -59)
 scale = Vector2(2, 2)
 collision_layer = 512
@@ -270,21 +265,16 @@ collision_layer = 0
 collision_mask = 256
 monitorable = false
 
-[node name="hittexturecopy" type="TextureRect" parent="Projectile/Area2D"]
-visible = false
-material = SubResource("ShaderMaterial_8m2c5")
-offset_left = -1.5
-offset_top = -10.0
-offset_right = 1.5
-pivot_offset = Vector2(2, 10)
-texture = ExtResource("24_4wat4")
-expand_mode = 1
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Projectile/Area2D"]
 shape = SubResource("CircleShape2D_ptyjm")
 
+[node name="hittexturecopy" type="PointLight2D" parent="Projectile/Area2D"]
+energy = 1.5
+texture = ExtResource("24_4wat4")
+offset = Vector2(0, -5)
+texture_scale = 0.08
+
 [node name="WallCheck" type="Area2D" parent="Projectile"]
-visible = false
 collision_layer = 512
 collision_mask = 512
 
@@ -307,7 +297,6 @@ scale = Vector2(1.875, 1.92969)
 texture = SubResource("GradientTexture2D_msuq2")
 
 [node name="EnemyFinder" type="Area2D" parent="Projectile"]
-visible = false
 collision_layer = 0
 collision_mask = 256
 monitoring = false

@@ -9,7 +9,7 @@ extends CharacterBody2D
 @export var attacking = false
 @export var extradamage = 0
 @export var hasricochet = false
-@export var hasballlightning = false
+@export var hasballlightning = true
 @export var hasexplosiveorb = false
 #változó ami akkor jön létre amikor létrejön a karakter
 @onready var navagent = $NavigationAgent2D as NavigationAgent2D 

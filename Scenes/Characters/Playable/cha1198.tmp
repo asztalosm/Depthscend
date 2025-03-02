@@ -180,6 +180,16 @@ position = Vector2(963, 964)
 collision_layer = 0
 collision_mask = 5
 script = ExtResource("1_asb81")
+oxygen = null
+speed = null
+health = null
+maxhealth = null
+damage = null
+basedamage = null
+maxdamage = null
+hasdashcharm = null
+hassoultearcharm = null
+cantakedamage = null
 metadata/active = false
 metadata/isDead = false
 
