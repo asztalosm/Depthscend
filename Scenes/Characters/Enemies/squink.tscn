@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://dwou5g30xc3eq"]
+[gd_scene load_steps=13 format=3 uid="uid://dwou5g30xc3eq"]
 
 [ext_resource type="Texture2D" uid="uid://gg3633i0yga4" path="res://Sprites/squid.svg" id="1_allmh"]
+[ext_resource type="Shader" path="res://Shaders/effects.gdshader" id="2_5juat"]
 [ext_resource type="Script" path="res://Scenes/Characters/Enemies/Scripts/squink.gd" id="2_n5x0s"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rgb5s"]
@@ -14,6 +15,64 @@ radius = 14.2222
 height = 49.1312
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_sera8"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_e8fak"]
+shader = ExtResource("2_5juat")
+shader_parameter/shading_option = 0
+
+[sub_resource type="Animation" id="Animation_hwmvt"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:material:shader_parameter/shading_option")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_3w6to"]
+resource_name = "blink"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:material:shader_parameter/shading_option")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [1, 0]
+}
+
+[sub_resource type="Animation" id="Animation_djtuu"]
+resource_name = "heal"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:material:shader_parameter/shading_option")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 2]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ddo8h"]
+_data = {
+"RESET": SubResource("Animation_hwmvt"),
+"blink": SubResource("Animation_3w6to"),
+"heal": SubResource("Animation_djtuu")
+}
 
 [node name="squink" type="CharacterBody2D"]
 script = ExtResource("2_n5x0s")
@@ -49,6 +108,7 @@ shape = SubResource("CircleShape2D_sera8")
 disabled = true
 
 [node name="Sprite" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_e8fak")
 texture = ExtResource("1_allmh")
 
 [node name="Timer" type="Timer" parent="."]
@@ -84,6 +144,11 @@ theme_override_constants/outline_size = 4
 text = "0/0"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="effects" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ddo8h")
+}
 
 [connection signal="area_entered" from="ExplosionSize" to="." method="_on_explosion_size_area_entered"]
 [connection signal="area_exited" from="ExplosionSize" to="." method="_on_explosion_size_area_exited"]

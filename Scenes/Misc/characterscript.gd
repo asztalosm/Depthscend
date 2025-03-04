@@ -1,5 +1,6 @@
 extends Node2D
 @onready var characters = [get_node("character1"), get_node("character2"), get_node("character3")]
+@export var exportchars = []
 @onready var playercam = get_node("Camera2D")
 @onready var playerhealth = $GUI/CurrentCharacter/HealthLabel
 @onready var health = $GUI/CurrentCharacter/Health
@@ -15,8 +16,11 @@ extends Node2D
 @onready var thirdcharacterhealthtext = $GUI/InactiveCharacters/OtherCharacter2/Health/HealthLabel
 @onready var thirdcharactericon = $GUI/InactiveCharacters/OtherCharacter2/Icon/Icon
 @onready var thirdcharactericonnumber = $GUI/InactiveCharacters/OtherCharacter2/Icon/CharacterNumber/Label
-var globalcurrentchar = 0
+@export var globalcurrentchar = 0
 var secondtaken = false #második playerslot
+
+func _ready() -> void:
+	exportchars = characters #ugly hack
 
 # karakterválasztásért felelős funkció, loopol a charlisten megnézi melyik gombot nyomtuk meg, irányítást átadja, kamerának megadja melyiket kell követnie
 func _input(event: InputEvent) -> void:

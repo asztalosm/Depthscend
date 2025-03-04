@@ -5,8 +5,15 @@ extends CharacterBody2D
 @export var health = 70
 @export var maxhealth = 70
 @export var damage = 4
+@export var maxdamage = 6
 @export var hasgroundslamcharm = true
 @export var cantakedamage = true
+@export var guistats = [
+	[load("res://Textures/damage.png"), damage],
+	[load("res://Textures/damage_2.png"), maxdamage],
+	[load("res://Textures/speed.png"), speed],
+]
+
 #változó ami akkor jön létre amikor létrejön a karakter
 @onready var navagent := $NavigationAgent2D as NavigationAgent2D
 @onready var swordhitbox = $SwordHitbox
@@ -44,6 +51,7 @@ func groundslam() -> void:
 	await get_tree().create_timer(0.3).timeout
 	for i in groundslamattackzone:
 		i.get_parent().health -= round(damage + 4)
+		i.get_parent().get_node("OnHitBlink").play("blink")
 	groundslamhitbox.visible = false
 	var attackcooldowntween = get_tree().create_tween()
 	attackcooldowntween.tween_property(attackprogress, "value", 100, attackcooldown.time_left)
@@ -81,7 +89,7 @@ func _input(event):
 		if attackcharge.value == 100 and hasgroundslamcharm: #max charged attack
 			groundslam()
 			
-		else: #not max charged attack
+		else: #not abilty attack
 			slashanimation.frame = 0
 			charging = false
 			attackcharge.visible = false
@@ -90,10 +98,11 @@ func _input(event):
 			swordhitbox.visible = true
 			slashanimation.play()
 			attackcooldown.start()
-			
-			await get_tree().create_timer(0.3).timeout
+			await get_tree().create_timer(0.15).timeout
 			for i in inattackzone:
-				i.get_parent().health -= round(damage + attackcharge.value / 50)
+				i.get_parent().get_node("effects").play("blink")
+				i.get_parent().health -= round(damage + attackcharge.value / 50) #jelenleg nem túl szép dolog TODO ezt fixelni, hogy maxdamagere scaleljen
+			await get_tree().create_timer(0.15).timeout
 			swordhitbox.visible = false
 			var attackcooldowntween = get_tree().create_tween()
 			attackcooldowntween.tween_property(attackprogress, "value", 100, attackcooldown.time_left)

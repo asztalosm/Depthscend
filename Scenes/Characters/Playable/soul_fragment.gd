@@ -7,8 +7,9 @@ func _on_area_entered(area: Area2D) -> void:
 			var charactereffect = preload("res://Shaders/characterstatuseffects.tscn").instantiate()
 			area.get_parent().add_child(charactereffect)
 			charactereffect.texture = preload("res://Particles/Heal.png")
-			charactereffect.global_position = global_position
+			charactereffect.global_position = area.get_parent().global_position
 			charactereffect.emitting = true
+			area.get_parent().get_node("effects").play("heal")
 		else:
 			area.get_parent().health = area.get_parent().maxhealth
 	else:

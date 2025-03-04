@@ -5,12 +5,18 @@ extends CharacterBody2D
 @export var health = 70
 @export var maxhealth = 70
 @export var damage = 4
+@export var maxdamage = 6
 @export var canwasdmove = false # tutorial variable
 @export var canmousemove = true
 @export var canmouseattack = false
 @export var basicrightclick = true #csak azért van itt, hogy az első ütés legyen meg, ezután charged attack cseréli majd le
 @export var hasgroundslamcharm = false
 @export var cantakedamage = true
+@export var guistats = [
+	[load("res://Textures/damage.png"), damage],
+	[load("res://Textures/damage_2.png"), maxdamage],
+	[load("res://Textures/speed.png"), speed],
+]
 
 #változók amik a karakterben vannak jelen
 @onready var slashanimation = $SwordHitbox/AnimatedSprite2D
@@ -35,6 +41,12 @@ var moveangle = 0
 var charging = false
 var groundslamattackzone = []
 var hasnavigationtarget = false
+var shadermaterial : ShaderMaterial
+
+
+
+
+
 func _ready() -> void:
 	attackprogress.visible = false
 	set_physics_process(false)
@@ -66,6 +78,7 @@ func groundslam() -> void:
 	await get_tree().create_timer(0.35).timeout
 	for i in groundslamattackzone:
 		i.get_parent().health -= round(damage + 4)
+		i.get_parent().get_node("OnHitBlink").play("blink")
 	var groundslamtweeninvis = get_tree().create_tween()
 	groundslamtweeninvis.tween_property(groundslamtexture, "color:a", 0, 2)
 	attackcooldown.wait_time += 2
@@ -100,6 +113,7 @@ func _input(event):
 				await get_tree().create_timer(0.3).timeout
 				for i in inattackzone:
 					i.get_parent().health -= damage
+					i.get_parent().get_node("OnHitBlink").play("blink")
 				swordhitbox.visible = false
 				var attackcooldowntween = get_tree().create_tween()
 				attackcooldowntween.tween_property(attackprogress, "value", 100, attackcooldown.time_left)
@@ -125,6 +139,7 @@ func _input(event):
 				await get_tree().create_timer(0.3).timeout
 				for i in inattackzone:
 					i.get_parent().health -= round(damage + attackcharge.value / 50)
+					i.get_parent().get_node("OnHitBlink").play("blink")
 				swordhitbox.visible = false
 				var attackcooldowntween = get_tree().create_tween()
 				attackcooldowntween.tween_property(attackprogress, "value", 100, attackcooldown.time_left)

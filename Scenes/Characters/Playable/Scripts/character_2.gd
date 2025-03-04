@@ -10,9 +10,14 @@ extends CharacterBody2D
 @export var hasdashcharm = false
 @export var hassoultearcharm = true
 @export var cantakedamage = true
+@export var guistats = [
+	[load("res://Textures/damage.png"), damage],
+	[load("res://Textures/damage_2.png"), maxdamage],
+	[load("res://Textures/speed.png"), speed],
+]
 
 #változó ami akkor jön létre amikor létrejön a karakter
-@onready var navagent = await $NavigationAgent2D
+@onready var navagent = $NavigationAgent2D
 @onready var swordhitbox = $SwordHitbox
 @onready var attackcooldown = $AttackCooldown
 @onready var attackprogress = $AttackProgress
@@ -92,21 +97,26 @@ func soultear() -> void: #soul tear attack
 	for enemy in inattackzone:
 		if enemy.get_parent().cantakedamage == true:
 			if enemy.get_parent().health - damage*2 <= 0:
-				soulspread(enemy.get_parent())
+				var temporaryposition = enemy.get_parent().position
+				soulspread(temporaryposition)
+				$SoulSpreadAnimation.visible = true
+				$SoulSpreadAnimation.global_position = enemy.global_position
 				enemy.get_parent().health -= damage*2
+				$SoulSpreadAnimation.play("default")
 			else:
 				enemy.get_parent().health -= damage*2
 	
 
-func soulspread(enemy) -> void: #soul tear attack létrehoz 4 soul fragmentet ami healel karaktert vagy sebez enemyt
-	print(enemy.name)
+func soulspread(temporaryposition) -> void: #soul tear attack létrehoz 4 soul fragmentet ami healel karaktert vagy sebez enemyt
+	await get_tree().create_timer(2.3).timeout
 	var soulfraglist = []
 	for i in range(4):
 		var tempsoulfragment = soulfragment.duplicate()
 		tempsoulfragment.name = "SoulFragment" + str(i)
 		soulfraglist.append(tempsoulfragment)
 	for i in soulfraglist:
-		i.global_position = global_position + Vector2(randf_range(-100,100),randf_range(-100,100))
+		i.global_position = temporaryposition + Vector2(randf_range(-100,100),randf_range(-100,100))
+		#ide majd még kell csinálni egy rekurzív functiont ami megnézi, hogy falban van-e az i
 		i.visible = true
 		i.script = load("res://Scenes/Characters/Playable/soul_fragment.gd")
 		i.get_node("CollisionShape2D").disabled = false
@@ -154,7 +164,7 @@ func _input(event): # pathfinding + attack
 		elif hassoultearcharm:
 			abilitycd.wait_time = 10
 		else:
-			abilitycd.wait_time = 0
+			abilitycd.wait_time = 1
 	if event.is_action_released("rclick") and attackcharge.visible and !attacked and get_meta("active") and !get_meta("isDead"):
 		if attackcharge.value == 100 and hasdashcharm and abilitycd.time_left == 0: #max charged attack with groundslam
 			dash()

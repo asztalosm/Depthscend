@@ -1,4 +1,4 @@
-[gd_resource type="VisualShader" load_steps=16 format=3 uid="uid://b66eiy20hh3vh"]
+[gd_resource type="VisualShader" load_steps=17 format=3 uid="uid://b66eiy20hh3vh"]
 
 [sub_resource type="VisualShaderNodeTexture2DParameter" id="VisualShaderNodeTexture2DParameter_ymdgb"]
 parameter_name = "Texture2DParameter"
@@ -11,8 +11,12 @@ source = 5
 default_input_values = [0, 0.0, 1, -0.002]
 operator = 2
 
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_uh2jt"]
+input_name = "texture_pixel_size"
+
 [sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_fiji4"]
-output_port_for_preview = 0
+output_port_for_preview = 1
+expanded_output_ports = [0]
 input_name = "screen_uv"
 
 [sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_f5524"]
@@ -114,7 +118,6 @@ void fragment() {
 
 }
 "
-graph_offset = Vector2(-908.268, 110.606)
 mode = 1
 flags/light_only = false
 nodes/vertex/0/position = Vector2(560, 80)
@@ -137,13 +140,15 @@ nodes/fragment/5/position = Vector2(-1440, 620)
 nodes/fragment/6/node = SubResource("VisualShaderNodeIf_kq2ub")
 nodes/fragment/6/position = Vector2(-520, 360)
 nodes/fragment/8/node = SubResource("VisualShaderNodeVectorOp_fvk2v")
-nodes/fragment/8/position = Vector2(-980, 520)
+nodes/fragment/8/position = Vector2(-1040, 600)
 nodes/fragment/13/node = SubResource("VisualShaderNodeTexture2DParameter_ymdgb")
-nodes/fragment/13/position = Vector2(0, 260)
+nodes/fragment/13/position = Vector2(20, 280)
 nodes/fragment/14/node = SubResource("VisualShaderNodeTexture_plmhu")
-nodes/fragment/14/position = Vector2(420, 40)
+nodes/fragment/14/position = Vector2(400, 60)
 nodes/fragment/16/node = SubResource("VisualShaderNodeFloatOp_pjjww")
-nodes/fragment/16/position = Vector2(-720, 460)
+nodes/fragment/16/position = Vector2(-780, 620)
+nodes/fragment/17/node = SubResource("VisualShaderNodeInput_uh2jt")
+nodes/fragment/17/position = Vector2(-120, 0)
 nodes/fragment/connections = PackedInt32Array(6, 0, 4, 1, 13, 0, 14, 2, 4, 0, 14, 0, 3, 0, 4, 0, 3, 0, 6, 0, 14, 0, 0, 0, 8, 0, 16, 0, 16, 0, 6, 4, 5, 0, 8, 0)
 nodes/sky/2/node = SubResource("VisualShaderNodeTexture_rxjah")
 nodes/sky/2/position = Vector2(40, 180)

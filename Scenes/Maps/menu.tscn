@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://d0te6ppvija7j"]
+[gd_scene load_steps=15 format=3 uid="uid://d0te6ppvija7j"]
 
 [ext_resource type="Texture2D" uid="uid://b5aux6suldhps" path="res://Textures/playbutton.png" id="1_7a6ri"]
 [ext_resource type="Texture2D" uid="uid://0wue40ufduat" path="res://Textures/playbuttonclicked.png" id="2_wtph8"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://x50sb57oenj6" path="res://Textures/closehover.png" id="9_y6tu2"]
 [ext_resource type="Texture2D" uid="uid://bgrmy2vto3foc" path="res://Textures/tutorialbook.png" id="10_jxbgc"]
 [ext_resource type="Script" path="res://Scenes/Maps/texture_button_4.gd" id="11_k0o1o"]
+[ext_resource type="Texture2D" uid="uid://dw8qqu3rjubnt" path="res://Textures/logo_2.png" id="12_g14kf"]
 
 [sub_resource type="GDScript" id="GDScript_u2xa4"]
 resource_name = "startgame"
@@ -90,6 +91,11 @@ offset_bottom = 1081.0
 texture_normal = ExtResource("10_jxbgc")
 stretch_mode = 0
 script = ExtResource("11_k0o1o")
+
+[node name="Logo2" type="Sprite2D" parent="."]
+position = Vector2(960, 180)
+scale = Vector2(2.75, 2.75)
+texture = ExtResource("12_g14kf")
 
 [connection signal="pressed" from="TextureButton" to="TextureButton" method="_on_pressed"]
 [connection signal="pressed" from="TextureButton3" to="TextureButton3" method="_on_pressed"]

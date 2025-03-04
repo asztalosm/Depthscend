@@ -9,8 +9,15 @@ extends CharacterBody2D
 @export var attacking = false
 @export var extradamage = 0
 @export var hasricochet = false
-@export var hasballlightning = true
+@export var hasballlightning = false
 @export var hasexplosiveorb = false
+@export var heal = 1
+@export var guistats = [
+	[load("res://Textures/damage.png"), damage],
+	[load("res://Textures/heal.png"), heal],
+	[load("res://Textures/speed.png"), speed],
+]
+
 #változó ami akkor jön létre amikor létrejön a karakter
 @onready var navagent = $NavigationAgent2D as NavigationAgent2D 
 @onready var projectile = $Projectile 
@@ -115,9 +122,21 @@ func _on_heal_cooldown_timeout() -> void:
 	if !get_meta("isDead"):
 		for characters in healhitboxchars:
 			if characters.maxhealth > characters.health and !characters.get_meta("isDead"):
-				characters.health += 1
-		if self.maxhealth > self.health:
-			self.health += 1
+				characters.get_node("effects").play("heal")
+				characters.health += heal
+				var charactereffect = preload("res://Shaders/characterstatuseffects.tscn").instantiate()
+				characters.add_child(charactereffect)
+				charactereffect.texture = preload("res://Particles/Heal.png")
+				charactereffect.global_position = characters.global_position
+				charactereffect.emitting = true
+		if maxhealth > health:
+			health += heal
+			var charactereffect = preload("res://Shaders/characterstatuseffects.tscn").instantiate()
+			add_child(charactereffect)
+			charactereffect.texture = preload("res://Particles/Heal.png")
+			charactereffect.global_position = global_position
+			charactereffect.emitting = true
+			$effects.play("heal")
 		tweenhealth()
 	
 

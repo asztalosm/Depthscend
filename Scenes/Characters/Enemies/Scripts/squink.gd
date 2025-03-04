@@ -57,6 +57,7 @@ func _on_explosion():
 	for i in InExplosionRadius:
 		if i.cantakedamage:
 			i.health -= damage
+			i.get_node("effects").play("blink")
 		else:pass
 	queue_free()
 

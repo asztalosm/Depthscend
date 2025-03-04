@@ -112,6 +112,7 @@ kb_E={
 2d_physics/layer_2="Playable Characters"
 2d_physics/layer_6="Detection"
 2d_physics/layer_9="NPCHitboxes"
+2d_physics/layer_12="OpacityTiles"
 
 [rendering]
 
