@@ -28,7 +28,8 @@ extends CharacterBody2D
 @onready var animatedsprite = $AnimatedSprite2D
 @onready var attackcharge = $AttackChargeProgress
 @onready var groundslamtexture = $GroundSlamHitbox/CollisionShape2D/PointLight2D
-
+@onready var abilitycdprogress = $AbilityChargeProgress
+@onready var abilitycd = $AbilityCooldown
 
 #lokális változók
 var ACCEL = 35
@@ -61,11 +62,14 @@ func _get_input():
 		velocity = inputdir * speed
 		moveangle = rad_to_deg(inputdir.angle()) - 90
 		if moveangle < 0:
-			moveangle += 360 
+			moveangle += 360
 		if inputdir != Vector2(0,0):
 			currentsprite = round(moveangle / 45)
 
 func groundslam() -> void:
+	abilitycdprogress.value = 0
+	abilitycdprogress.visible = true
+	abilitycd.start()
 	charging = false
 	attackcharge.visible = false
 	attacked = true
@@ -78,13 +82,14 @@ func groundslam() -> void:
 	await get_tree().create_timer(0.35).timeout
 	for i in groundslamattackzone:
 		i.get_parent().health -= round(damage + 4)
-		i.get_parent().get_node("OnHitBlink").play("blink")
 	var groundslamtweeninvis = get_tree().create_tween()
 	groundslamtweeninvis.tween_property(groundslamtexture, "color:a", 0, 2)
 	attackcooldown.wait_time += 2
 	attackcooldown.start()
 	var attackcooldowntween = get_tree().create_tween()
 	attackcooldowntween.tween_property(attackprogress, "value", 100, attackcooldown.time_left)
+	var abilitycooldowntween = get_tree().create_tween()
+	abilitycooldowntween.tween_property(abilitycdprogress, "value", 100, abilitycd.time_left)
 	await get_tree().create_timer(2).timeout
 	groundslamtexture.reparent(get_node("GroundSlamHitbox/CollisionShape2D"))
 	groundslamtexture.position = Vector2.ZERO
@@ -113,7 +118,7 @@ func _input(event):
 				await get_tree().create_timer(0.3).timeout
 				for i in inattackzone:
 					i.get_parent().health -= damage
-					i.get_parent().get_node("OnHitBlink").play("blink")
+					i.get_parent().get_node("effects").play("blink")
 				swordhitbox.visible = false
 				var attackcooldowntween = get_tree().create_tween()
 				attackcooldowntween.tween_property(attackprogress, "value", 100, attackcooldown.time_left)
@@ -124,9 +129,10 @@ func _input(event):
 			attackcharge.value = 0
 			attackprogress.value = 0
 		if event.is_action_released("rclick") and get_meta("active") and not get_meta("isDead") and attackcharge.visible and !attacked:
-			if attackcharge.value == 100 and hasgroundslamcharm: #max charged attack with groundslam
+			if attackcharge.value == 100 and hasgroundslamcharm and abilitycdprogress.visible == false: #max charged attack with groundslam
 				groundslam()
 			else: #attack without groundslam
+				swordhitbox.set_deferred("disabled", false)
 				slashanimation.frame = 0
 				charging = false
 				attackcharge.visible = false
@@ -138,11 +144,12 @@ func _input(event):
 				
 				await get_tree().create_timer(0.3).timeout
 				for i in inattackzone:
+					i.get_parent().get_node("effects").play("blink")
 					i.get_parent().health -= round(damage + attackcharge.value / 50)
-					i.get_parent().get_node("OnHitBlink").play("blink")
 				swordhitbox.visible = false
 				var attackcooldowntween = get_tree().create_tween()
 				attackcooldowntween.tween_property(attackprogress, "value", 100, attackcooldown.time_left)
+				swordhitbox.set_deferred("disabled", true)
 		if !self.get_meta("active"): #resets the characters attack progress when the player changes characters
 			charging = false
 			attackcharge.visible = false
@@ -168,7 +175,7 @@ func _physics_process(_delta: float) -> void:
 			if dir.length_squared() > 1:
 				var angletocursor = rad_to_deg(self.get_angle_to(navagent.get_next_path_position())) - 90
 				if angletocursor < 0:
-					angletocursor += 360 
+					angletocursor += 360
 				currentsprite = round(angletocursor / 45)
 		animatedsprite.frame = currentsprite
 		move_and_slide()
@@ -210,3 +217,7 @@ func _on_ground_slam_hitbox_area_entered(area: Area2D) -> void:
 
 func _on_ground_slam_hitbox_area_exited(area: Area2D) -> void:
 	groundslamattackzone.erase(area)
+
+
+func _on_ability_cooldown_timeout() -> void:
+	abilitycdprogress.visible = false

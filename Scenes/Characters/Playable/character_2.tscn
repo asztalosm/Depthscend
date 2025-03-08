@@ -312,6 +312,7 @@ animations = [{
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fjqyd"]
 shader = ExtResource("7_go88s")
 shader_parameter/shading_option = 0
+shader_parameter/opacitystrength = 1.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_14ems"]
 animations = [{
@@ -345,19 +346,19 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="Gradient" id="Gradient_ofok6"]
+[sub_resource type="Gradient" id="Gradient_m1eff"]
 colors = PackedColorArray(0, 0, 0, 0.392157, 0, 0, 0, 0.392157)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_wm0ly"]
-gradient = SubResource("Gradient_ofok6")
+gradient = SubResource("Gradient_m1eff")
 width = 60
 height = 4
 
-[sub_resource type="Gradient" id="Gradient_qb2fo"]
+[sub_resource type="Gradient" id="Gradient_xnht3"]
 colors = PackedColorArray(0.1976, 0.638147, 0.76, 0.941176, 0.1976, 0.638147, 0.76, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_thcy0"]
-gradient = SubResource("Gradient_qb2fo")
+gradient = SubResource("Gradient_xnht3")
 width = 60
 height = 4
 
@@ -366,6 +367,21 @@ size = Vector2(16, 24)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_otqcx"]
 shader = ExtResource("16_ranp2")
+
+[sub_resource type="Animation" id="Animation_8qaa3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:material:shader_parameter/shading_option")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
 
 [sub_resource type="Animation" id="Animation_s33vr"]
 resource_name = "blink"
@@ -381,21 +397,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [1, 0]
-}
-
-[sub_resource type="Animation" id="Animation_8qaa3"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:material:shader_parameter/shading_option")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
 }
 
 [sub_resource type="Animation" id="Animation_h2or6"]
@@ -535,6 +536,7 @@ visible = false
 position = Vector2(0, -26)
 collision_layer = 0
 collision_mask = 256
+monitoring = false
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SwordHitbox"]
@@ -566,7 +568,7 @@ texture_progress = SubResource("GradientTexture2D_thcy0")
 [node name="SoulFragment" type="Area2D" parent="."]
 visible = false
 z_index = 30
-scale = Vector2(1.5, 1.5)
+scale = Vector2(1.75, 1.75)
 collision_layer = 0
 collision_mask = 258
 monitorable = false

@@ -4,6 +4,7 @@ extends CharacterBody2D
 @export var speed = 250
 @export var health = 70
 @export var maxhealth = 70
+@export var basedamage = 4
 @export var damage = 4
 @export var maxdamage = 6
 @export var hasgroundslamcharm = true
@@ -23,6 +24,8 @@ extends CharacterBody2D
 @onready var attackcharge = $AttackChargeProgress
 @onready var slashanimation = $SwordHitbox/AnimatedSprite2D as AnimatedSprite2D
 @onready var groundslamhitbox = $GroundSlamHitbox
+@onready var abilitychargeprogress = $AbilityChargeProgress
+@onready var abilitycd = $AbilityCooldown
 
 var currentsprite = 0
 var moveangle = 0
@@ -42,6 +45,9 @@ func _ready() -> void:
 	set_physics_process(true)
 
 func groundslam() -> void:
+	abilitycd.start()
+	abilitychargeprogress.value = 0
+	abilitychargeprogress.visible = true
 	charging = false
 	attackcharge.visible = false
 	attacked = true
@@ -51,8 +57,10 @@ func groundslam() -> void:
 	await get_tree().create_timer(0.3).timeout
 	for i in groundslamattackzone:
 		i.get_parent().health -= round(damage + 4)
-		i.get_parent().get_node("OnHitBlink").play("blink")
+		i.get_parent().get_node("effects").play("blink")
 	groundslamhitbox.visible = false
+	var abilitychargetween = get_tree().create_tween()
+	abilitychargetween.tween_property(abilitychargeprogress, "value", 100, abilitycd.time_left)
 	var attackcooldowntween = get_tree().create_tween()
 	attackcooldowntween.tween_property(attackprogress, "value", 100, attackcooldown.time_left)
 
@@ -81,12 +89,13 @@ func _input(event):
 		
 	if event.is_action_pressed("rclick") and get_meta("active") and not get_meta("isDead") and !attacked: #attack override
 		charging = true
+		damage = basedamage
 		attackcharge.visible = true
 		attackcharge.value = 0
 		attackprogress.value = 0
 		
 	if event.is_action_released("rclick") and get_meta("active") and not get_meta("isDead") and attackcharge.visible and !attacked:
-		if attackcharge.value == 100 and hasgroundslamcharm: #max charged attack
+		if attackcharge.value == 100 and hasgroundslamcharm and abilitychargeprogress.visible == false: #max charged attack
 			groundslam()
 			
 		else: #not abilty attack
@@ -98,10 +107,12 @@ func _input(event):
 			swordhitbox.visible = true
 			slashanimation.play()
 			attackcooldown.start()
+			damage = round(damage + (attackcharge.value / 50))
 			await get_tree().create_timer(0.15).timeout
 			for i in inattackzone:
+				var attackdamagetween = get_tree().create_tween()
 				i.get_parent().get_node("effects").play("blink")
-				i.get_parent().health -= round(damage + attackcharge.value / 50) #jelenleg nem túl szép dolog TODO ezt fixelni, hogy maxdamagere scaleljen
+				i.get_parent().health -= damage #jelenleg nem túl szép dolog TODO ezt fixelni, hogy maxdamagere scaleljen
 			await get_tree().create_timer(0.15).timeout
 			swordhitbox.visible = false
 			var attackcooldowntween = get_tree().create_tween()
@@ -172,3 +183,6 @@ func _on_ground_slam_hitbox_area_entered(area: Area2D) -> void:
 
 func _on_ground_slam_hitbox_area_exited(area: Area2D) -> void:
 	groundslamattackzone.erase(area)
+
+func _on_ability_cooldown_timeout() -> void:
+	abilitychargeprogress.visible = false

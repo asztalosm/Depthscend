@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://btd7uso6md01v"]
+[gd_scene load_steps=65 format=3 uid="uid://btd7uso6md01v"]
 
 [ext_resource type="Script" path="res://Scenes/Characters/Playable/character_1_tutorial.gd" id="1_ru2fh"]
 [ext_resource type="Texture2D" uid="uid://d4nvqwhn6dsuh" path="res://Textures/attackcooldown.png" id="2_y8tvg"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://biue221d7v66s" path="res://Textures/attackchargeunder.png" id="5_u5ujv"]
 [ext_resource type="Texture2D" uid="uid://dypdy82cmtx1t" path="res://Textures/attackchargeprogress.png" id="6_4brvo"]
 [ext_resource type="Shader" uid="uid://c3x8gbwvgla15" path="res://Scenes/Characters/Playable/character_1.tres" id="6_eykwd"]
+[ext_resource type="Shader" path="res://Shaders/tree.gdshader" id="10_7kfhh"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7qa3r"]
 
@@ -203,9 +204,98 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r1eru"]
 size = Vector2(203, 302)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_20j34"]
+size = Vector2(24, 5)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wxcj2"]
+shader = ExtResource("6_eykwd")
+
+[sub_resource type="Gradient" id="Gradient_ofok6"]
+colors = PackedColorArray(0, 0, 0, 0.392157, 0, 0, 0, 0.392157)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_oby2i"]
+gradient = SubResource("Gradient_ofok6")
+width = 60
+height = 4
+
+[sub_resource type="Gradient" id="Gradient_qb2fo"]
+colors = PackedColorArray(0.1976, 0.638147, 0.76, 0.941176, 0.1976, 0.638147, 0.76, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_5qg78"]
+gradient = SubResource("Gradient_qb2fo")
+width = 60
+height = 4
+
+[sub_resource type="Animation" id="Animation_lx6fq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:material:shader_parameter/shading_option")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_hok48"]
+resource_name = "blink"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:material:shader_parameter/shading_option")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [1, 0]
+}
+
+[sub_resource type="Animation" id="Animation_aqe1c"]
+resource_name = "heal"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:material:shader_parameter/shading_option")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [2, 0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fa3gm"]
+_data = {
+"RESET": SubResource("Animation_lx6fq"),
+"blink": SubResource("Animation_hok48"),
+"heal": SubResource("Animation_aqe1c")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ktryh"]
+shader = ExtResource("10_7kfhh")
+
+[sub_resource type="Gradient" id="Gradient_aish8"]
+offsets = PackedFloat32Array(0.727642, 0.731707)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_3w2el"]
+gradient = SubResource("Gradient_aish8")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_smjai"]
 shader = ExtResource("5_jvxmf")
 shader_parameter/shading_option = 0
+shader_parameter/opacitystrength = 1.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_at5sa"]
 atlas = ExtResource("5_ndyxv")
@@ -271,66 +361,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_20j34"]
-size = Vector2(24, 5)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_wxcj2"]
-shader = ExtResource("6_eykwd")
-
-[sub_resource type="Animation" id="Animation_hok48"]
-resource_name = "blink"
-length = 0.3
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:material:shader_parameter/shading_option")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [1, 0]
-}
-
-[sub_resource type="Animation" id="Animation_lx6fq"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:material:shader_parameter/shading_option")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-
-[sub_resource type="Animation" id="Animation_aqe1c"]
-resource_name = "heal"
-length = 0.3
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:material:shader_parameter/shading_option")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [2, 0]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_fa3gm"]
-_data = {
-"RESET": SubResource("Animation_lx6fq"),
-"blink": SubResource("Animation_hok48"),
-"heal": SubResource("Animation_aqe1c")
-}
-
 [node name="character1" type="CharacterBody2D"]
 z_index = 1
 material = SubResource("ShaderMaterial_7qa3r")
@@ -379,6 +409,7 @@ position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_24g0f")
 
 [node name="AutoAttackRange" type="Area2D" parent="."]
+visible = false
 position = Vector2(-16.0625, -36.5937)
 collision_layer = 256
 collision_mask = 256
@@ -426,14 +457,6 @@ energy = 2.12
 blend_mode = 1
 texture = ExtResource("5_lh3xn")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-material = SubResource("ShaderMaterial_smjai")
-position = Vector2(-3.8147e-06, -52)
-scale = Vector2(3, 3)
-sprite_frames = SubResource("SpriteFrames_6frjw")
-frame = 4
-frame_progress = 0.194254
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_20j34")
@@ -442,18 +465,54 @@ shape = SubResource("RectangleShape2D_20j34")
 visible = false
 material = SubResource("ShaderMaterial_wxcj2")
 offset_left = -32.0
-offset_top = -142.0
-offset_bottom = -138.0
+offset_top = -130.0
+offset_bottom = -126.0
 scale = Vector2(2, 2)
 texture_under = ExtResource("5_u5ujv")
 texture_progress = ExtResource("6_4brvo")
 tint_under = Color(0, 0, 0, 0.427451)
 tint_progress = Color(1, 1, 1, 0.705882)
 
+[node name="AbilityCooldown" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+
+[node name="AbilityChargeProgress" type="TextureProgressBar" parent="."]
+visible = false
+offset_left = -30.0
+offset_top = -136.0
+offset_right = 30.0
+offset_bottom = -132.0
+texture_under = SubResource("GradientTexture2D_oby2i")
+texture_progress = SubResource("GradientTexture2D_5qg78")
+
 [node name="effects" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_fa3gm")
 }
+
+[node name="TextureRect" type="TextureRect" parent="."]
+light_mask = 0
+visibility_layer = 4
+z_as_relative = false
+material = SubResource("ShaderMaterial_ktryh")
+anchors_preset = -1
+anchor_left = -0.365
+anchor_top = -0.365
+offset_left = -103.0
+offset_top = -156.0
+offset_right = 97.0
+offset_bottom = 45.0
+texture = SubResource("GradientTexture2D_3w2el")
+expand_mode = 1
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_smjai")
+position = Vector2(-3.8147e-06, -52)
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_6frjw")
+frame = 4
+frame_progress = 0.194254
 
 [connection signal="area_entered" from="AutoAttackRange" to="." method="_on_auto_attack_range_area_entered"]
 [connection signal="area_exited" from="AutoAttackRange" to="." method="_on_auto_attack_range_area_exited"]
@@ -462,3 +521,4 @@ libraries = {
 [connection signal="area_exited" from="SwordHitbox" to="." method="_on_sword_hitbox_area_exited"]
 [connection signal="area_entered" from="GroundSlamHitbox" to="." method="_on_ground_slam_hitbox_area_entered"]
 [connection signal="area_exited" from="GroundSlamHitbox" to="." method="_on_ground_slam_hitbox_area_exited"]
+[connection signal="timeout" from="AbilityCooldown" to="." method="_on_ability_cooldown_timeout"]

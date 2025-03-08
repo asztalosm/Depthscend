@@ -67,17 +67,7 @@ func _on_explosion_size_area_entered(area: Area2D) -> void:
 	else:
 		InExplosionRadius.append(area.get_parent())
 	if area.get_parent().name == "character1" or area.get_parent().name == "character2" or area.get_parent().name == "character3":
-		var tween = create_tween()
-		#színkezelés robbanáskor, változni fog mert ez jelenleg szarul néz ki, lényeg, hogy create timerben az idő megegyezzen velük + kis deadzone
-		tween.tween_property(self.get_node("Sprite"), "modulate:r", 5, 0.75)
-		tween.tween_property(self.get_node("Sprite"), "modulate:r", 0, 0.75)
-		tween.tween_property(self.get_node("Sprite"), "modulate:r", 10, 0.5)
-		tween.tween_property(self.get_node("Sprite"), "modulate:r", 0, 0.8)
-		tween.tween_property(self.get_node("Sprite"), "modulate:r", 80, 0.9)
-		
-		#timer a robbanásig
-		await get_tree().create_timer((0.75+0.75+0.5+0.8+1.8)).timeout
-		_on_explosion()
+		$explosioneffect.play("explosion")
 
 
 

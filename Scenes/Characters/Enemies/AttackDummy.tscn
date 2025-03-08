@@ -13,6 +13,7 @@ radius = 8.0
 resource_local_to_scene = true
 shader = ExtResource("2_xv453")
 shader_parameter/shading_option = 0
+shader_parameter/opacitystrength = 1.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4vbm1"]
 

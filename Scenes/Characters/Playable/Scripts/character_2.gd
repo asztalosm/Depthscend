@@ -42,6 +42,7 @@ var charging = false
 var dashing = false
 var currentsprite = 0
 var moveangle = 0
+var ismoving = false
 
 func _ready() -> void:
 	soulfragment.get_node("CollisionShape2D").set_deferred("enabled", false)
@@ -77,6 +78,8 @@ func dash() -> void: #basically ugyanaz mint egy normális attack csak van közb
 	indashattackzone.clear()
 	modulate.a = 1
 	cantakedamage = true
+	var abilitycdtween = get_tree().create_tween()
+	abilitycdtween.tween_property(abilitycdprogress, "value", 100, abilitycd.time_left)
 	$Dash/DashAttackZone/CollisionShape2D.position.y = 30000 # banish collisionshape to the shadow realm temporarily to clear the areas from the entered function
 	
 func soultear() -> void: #soul tear attack
@@ -105,6 +108,7 @@ func soultear() -> void: #soul tear attack
 				$SoulSpreadAnimation.play("default")
 			else:
 				enemy.get_parent().health -= damage*2
+				enemy.get_parent().get_node("effects").play("blink")
 	
 
 func soulspread(temporaryposition) -> void: #soul tear attack létrehoz 4 soul fragmentet ami healel karaktert vagy sebez enemyt
@@ -137,13 +141,6 @@ func _get_input():
 			currentsprite = round(moveangle / 45)
 
 func _input(event): # pathfinding + attack
-	if event.is_action_pressed("kb_E"):
-		var charactereffect = preload("res://Shaders/characterstatuseffects.tscn").instantiate()
-		add_child(charactereffect)
-		charactereffect.texture = preload("res://Particles/Heal.png")
-		charactereffect.global_position = global_position
-		charactereffect.emitting = true
-
 	if event.is_action("kb_A") and get_meta("active") or event.is_action("kb_D") and get_meta("active") or event.is_action("kb_S") and get_meta("active") or event.is_action("kb_W") and get_meta("active"):
 		navagent.target_position = position
 
@@ -166,6 +163,7 @@ func _input(event): # pathfinding + attack
 		else:
 			abilitycd.wait_time = 1
 	if event.is_action_released("rclick") and attackcharge.visible and !attacked and get_meta("active") and !get_meta("isDead"):
+		swordhitbox.monitoring = true
 		if attackcharge.value == 100 and hasdashcharm and abilitycd.time_left == 0: #max charged attack with groundslam
 			dash()
 			abilitycdprogress.visible = true
@@ -189,10 +187,12 @@ func _input(event): # pathfinding + attack
 			for i in inattackzone:
 				if i.get_parent().cantakedamage:
 					i.get_parent().health -= damage
+					i.get_parent().get_node("effects").play("blink")
 			swordhitbox.visible = false
 			var attackcooldowntween = get_tree().create_tween()
 			attackcooldowntween.set_parallel(true)
 			attackcooldowntween.tween_property(attackprogress, "value", 100, attackcooldown.time_left)
+		swordhitbox.monitoring = false
 		
 	if !get_meta("active"):
 		charging = false
@@ -266,9 +266,10 @@ func _on_dash_attack_zone_area_entered(area: Area2D) -> void:
 	if hasdashcharm:
 		indashattackzone.append(area)
 		for i in indashattackzone:
-			if i.get_parent().cantakedamage:
+			if i.get_parent().cantakedamage and dashing:
 				indashattackzone.erase(i)
 				i.get_parent().health -= damage
+				i.get_parent().get_node("effects").play("blink")
 
 
 func _on_ability_cooldown_timeout() -> void:

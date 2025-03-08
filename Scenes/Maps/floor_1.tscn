@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://dr6mx1s5has80"]
+
+[ext_resource type="PackedScene" uid="uid://32mqbxap2xs3" path="res://Scenes/Characters/Playable/characters.tscn" id="1_26nlo"]
+
+[node name="Floor1" type="Node2D"]
+
+[node name="Map" type="Node2D" parent="."]
+
+[node name="SpawnRoom" type="Node2D" parent="Map"]
+
+[node name="Characters" parent="." instance=ExtResource("1_26nlo")]
