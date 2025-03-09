@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://byoffwtx3sneo"
-path="res://.godot/imported/resume.png-6b2cd79d23dd5ea03fee0623f5384491.ctex"
+uid="uid://ciymg1st78os5"
+path="res://.godot/imported/butterfly2.png-8ba11db98c6dc835b9c4f64244facdf3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Tilemaps/resume.png"
-dest_files=["res://.godot/imported/resume.png-6b2cd79d23dd5ea03fee0623f5384491.ctex"]
+source_file="res://Sprites/butterfly2.png"
+dest_files=["res://.godot/imported/butterfly2.png-8ba11db98c6dc835b9c4f64244facdf3.ctex"]
 
 [params]
 

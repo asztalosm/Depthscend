@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://rxvc01do6ry3"
-path="res://.godot/imported/settings.png-b13ae379af779e7ed065386c0729b9e5.ctex"
+uid="uid://4n4v1qwm627e"
+path="res://.godot/imported/redpetal.png-5813fdb0447984512b8a7596d6d0506a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/settings.png"
-dest_files=["res://.godot/imported/settings.png-b13ae379af779e7ed065386c0729b9e5.ctex"]
+source_file="res://Particles/redpetal.png"
+dest_files=["res://.godot/imported/redpetal.png-5813fdb0447984512b8a7596d6d0506a.ctex"]
 
 [params]
 

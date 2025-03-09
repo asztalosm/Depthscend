@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://e5b76inod22u"
-path="res://.godot/imported/resumehover.png-657d2d876da8e3f65f038be53b77d82f.ctex"
+uid="uid://cwxt1kwbmc163"
+path="res://.godot/imported/bush_2.png-9c6de15f09109829c464b7ce36159cbc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Tilemaps/resumehover.png"
-dest_files=["res://.godot/imported/resumehover.png-657d2d876da8e3f65f038be53b77d82f.ctex"]
+source_file="res://Tilemaps/bush_2.png"
+dest_files=["res://.godot/imported/bush_2.png-9c6de15f09109829c464b7ce36159cbc.ctex"]
 
 [params]
 

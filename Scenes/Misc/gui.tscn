@@ -9,12 +9,11 @@
 [ext_resource type="Texture2D" uid="uid://cgtg1spmscyn2" path="res://Sprites/character2.png" id="5_31hxs"]
 [ext_resource type="Texture2D" uid="uid://wuxc0mq1sgpu" path="res://Sprites/character3.png" id="6_2oosv"]
 [ext_resource type="Texture2D" uid="uid://dw8qqu3rjubnt" path="res://Textures/logo_2.png" id="9_t6rlq"]
-[ext_resource type="Texture2D" uid="uid://byoffwtx3sneo" path="res://Tilemaps/resume.png" id="10_p4h5x"]
-[ext_resource type="Texture2D" uid="uid://cxfwowqcfqny7" path="res://Textures/settings.png" id="10_rrtll"]
+[ext_resource type="Texture2D" uid="uid://byoffwtx3sneo" path="res://Textures/resume.png" id="10_p4h5x"]
+[ext_resource type="Texture2D" uid="uid://rxvc01do6ry3" path="res://Textures/settings.png" id="10_rrtll"]
 [ext_resource type="Texture2D" uid="uid://cw1t1eah4fs2h" path="res://Textures/settingsclicked.png" id="11_6potb"]
-[ext_resource type="Texture2D" uid="uid://d33nvpbphprcr" path="res://Tilemaps/resumeclicked.png" id="11_mnh3a"]
-[ext_resource type="Texture2D" uid="uid://bgifvr0xov4ws" path="res://Textures/settings_hover.png" id="12_5jgic"]
-[ext_resource type="Texture2D" uid="uid://e5b76inod22u" path="res://Tilemaps/resumehover.png" id="12_mru62"]
+[ext_resource type="Texture2D" uid="uid://d33nvpbphprcr" path="res://Textures/resumeclicked.png" id="11_mnh3a"]
+[ext_resource type="Texture2D" uid="uid://e5b76inod22u" path="res://Textures/resumehover.png" id="12_mru62"]
 
 [sub_resource type="Gradient" id="Gradient_7eh2s"]
 offsets = PackedFloat32Array(0.890244, 1)
@@ -55,6 +54,9 @@ colors = PackedColorArray(0.11, 0.11, 0.11, 1, 0.11, 0.11, 0.11, 1, 0, 0, 0, 0)
 gradient = SubResource("Gradient_fhtrm")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_i05dy"]
+load_path = "res://.godot/imported/settings_hover.png-8ef61ab055247c7c64c0be4970e7eb8c.ctex"
 
 [node name="GUI" type="CanvasLayer"]
 script = ExtResource("1_an32m")
@@ -633,6 +635,7 @@ text = "0"
 
 [node name="PauseMenu" type="Control" parent="."]
 process_mode = 3
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -674,7 +677,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture_normal = ExtResource("10_rrtll")
 texture_pressed = ExtResource("11_6potb")
-texture_hover = ExtResource("12_5jgic")
+texture_hover = SubResource("CompressedTexture2D_i05dy")
 
 [node name="MenuButton" type="TextureButton" parent="PauseMenu"]
 layout_mode = 0

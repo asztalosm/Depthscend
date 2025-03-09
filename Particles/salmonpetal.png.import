@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://rxvc01do6ry3"
-path="res://.godot/imported/settings.png-b13ae379af779e7ed065386c0729b9e5.ctex"
+uid="uid://dnint80572l2u"
+path="res://.godot/imported/salmonpetal.png-26662254d1457a45e5f9536ce3393c8f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/settings.png"
-dest_files=["res://.godot/imported/settings.png-b13ae379af779e7ed065386c0729b9e5.ctex"]
+source_file="res://Particles/salmonpetal.png"
+dest_files=["res://.godot/imported/salmonpetal.png-26662254d1457a45e5f9536ce3393c8f.ctex"]
 
 [params]
 

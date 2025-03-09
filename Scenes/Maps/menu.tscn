@@ -1,11 +1,11 @@
 [gd_scene load_steps=15 format=3 uid="uid://d0te6ppvija7j"]
 
-[ext_resource type="Texture2D" uid="uid://byoffwtx3sneo" path="res://Tilemaps/resume.png" id="1_qwjcj"]
-[ext_resource type="Texture2D" uid="uid://e5b76inod22u" path="res://Tilemaps/resumehover.png" id="2_bhppr"]
-[ext_resource type="Texture2D" uid="uid://d33nvpbphprcr" path="res://Tilemaps/resumeclicked.png" id="2_mykmj"]
-[ext_resource type="Texture2D" uid="uid://cxfwowqcfqny7" path="res://Textures/settings.png" id="4_tbs6f"]
-[ext_resource type="Texture2D" uid="uid://bgifvr0xov4ws" path="res://Textures/settings_hover.png" id="5_3vypt"]
+[ext_resource type="Texture2D" uid="uid://byoffwtx3sneo" path="res://Textures/resume.png" id="1_qwjcj"]
+[ext_resource type="Texture2D" uid="uid://e5b76inod22u" path="res://Textures/resumehover.png" id="2_bhppr"]
+[ext_resource type="Texture2D" uid="uid://d33nvpbphprcr" path="res://Textures/resumeclicked.png" id="2_mykmj"]
+[ext_resource type="Texture2D" uid="uid://rxvc01do6ry3" path="res://Textures/settings.png" id="4_tbs6f"]
 [ext_resource type="Texture2D" uid="uid://cw1t1eah4fs2h" path="res://Textures/settingsclicked.png" id="5_wdlv8"]
+[ext_resource type="Texture2D" uid="uid://c3si5j7ypf1sy" path="res://Textures/settingshover.png" id="6_774te"]
 [ext_resource type="Texture2D" uid="uid://dqukroj1ppl7v" path="res://Textures/close.png" id="7_crpkg"]
 [ext_resource type="Texture2D" uid="uid://c4br6ciyhmwfu" path="res://Textures/closeclicked.png" id="8_3n6db"]
 [ext_resource type="Texture2D" uid="uid://x50sb57oenj6" path="res://Textures/closehover.png" id="9_y6tu2"]
@@ -66,7 +66,7 @@ grow_vertical = 2
 scale = Vector2(0.75, 0.75)
 texture_normal = ExtResource("4_tbs6f")
 texture_pressed = ExtResource("5_wdlv8")
-texture_hover = ExtResource("5_3vypt")
+texture_hover = ExtResource("6_774te")
 stretch_mode = 0
 
 [node name="TextureButton3" type="TextureButton" parent="."]

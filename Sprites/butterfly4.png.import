@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bgifvr0xov4ws"
-path="res://.godot/imported/settings_hover.png-8ef61ab055247c7c64c0be4970e7eb8c.ctex"
+uid="uid://bv1ruwdtglokn"
+path="res://.godot/imported/butterfly4.png-cf4836f6039a0cf9da6ae31fa45ef3dd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/settings_hover.png"
-dest_files=["res://.godot/imported/settings_hover.png-8ef61ab055247c7c64c0be4970e7eb8c.ctex"]
+source_file="res://Sprites/butterfly4.png"
+dest_files=["res://.godot/imported/butterfly4.png-cf4836f6039a0cf9da6ae31fa45ef3dd.ctex"]
 
 [params]
 
