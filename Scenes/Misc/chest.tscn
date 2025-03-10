@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://s1qmh0m1std2"]
+
+[ext_resource type="Script" path="res://Scenes/Maps/chest.gd" id="1_4bogj"]
+[ext_resource type="Texture2D" uid="uid://bsctk1k4l0bgg" path="res://Textures/chest_front.png" id="2_2m0nn"]
+[ext_resource type="Texture2D" uid="uid://dd5ovhv0axtr1" path="res://Textures/e.png" id="3_pm31u"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_i3sba"]
+radius = 52.1536
+
+[node name="Chest" type="Area2D"]
+position = Vector2(308.745, 546.008)
+scale = Vector2(2, 2)
+monitorable = false
+script = ExtResource("1_4bogj")
+metadata/_edit_group_ = true
+
+[node name="ChestTexture" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_2m0nn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(20, 24)
+shape = SubResource("CircleShape2D_i3sba")
+
+[node name="UseButton" type="TextureRect" parent="."]
+visible = false
+offset_left = 7.0
+offset_top = -17.5
+offset_right = 71.0
+offset_bottom = 46.5
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("3_pm31u")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]

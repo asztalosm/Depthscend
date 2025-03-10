@@ -6,7 +6,7 @@ func _input(event: InputEvent) -> void:
 		character.hasgroundslamcharm = true
 		get_parent().get_node("MouseClick").visible = true
 		var newtexturerect = TextureRect.new()
-		newtexturerect.texture = load("res://Textures/groundslamcharm.png")
+		newtexturerect.texture = load("res://Textures/Groundslam.png")
 		newtexturerect.custom_minimum_size = Vector2(64,64)
 		get_parent().get_parent().get_parent().get_node("Characters/GUI/Charms/GridContainer").add_child(newtexturerect)
 		

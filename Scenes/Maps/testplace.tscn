@@ -1,7 +1,8 @@
-[gd_scene load_steps=13 format=4 uid="uid://dfy3v7er3vajh"]
+[gd_scene load_steps=14 format=4 uid="uid://dfy3v7er3vajh"]
 
 [ext_resource type="PackedScene" uid="uid://32mqbxap2xs3" path="res://Scenes/Characters/Playable/characters.tscn" id="1_rvwj5"]
 [ext_resource type="PackedScene" uid="uid://8gie7rovk5r1" path="res://Scenes/Characters/Enemies/AttackDummy.tscn" id="6_ksc8h"]
+[ext_resource type="PackedScene" uid="uid://s1qmh0m1std2" path="res://Scenes/Misc/chest.tscn" id="7_0bo13"]
 [ext_resource type="Texture2D" uid="uid://du3kynyeqy6rp" path="res://Textures/tempfloor.png" id="7_3sl66"]
 [ext_resource type="Texture2D" uid="uid://dy6chttifdta8" path="res://Textures/tempfloor2.png" id="8_wrwvq"]
 [ext_resource type="PackedScene" uid="uid://dpcveyqyw3du4" path="res://Scenes/Misc/damage_area.tscn" id="10_cqn1i"]
@@ -55,6 +56,8 @@ sources/1 = SubResource("TileSetAtlasSource_5fa16")
 [node name="Characters" parent="." instance=ExtResource("1_rvwj5")]
 
 [node name="Map" type="Node2D" parent="."]
+
+[node name="Chest" parent="Map" instance=ExtResource("7_0bo13")]
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="Map"]
 navigation_polygon = SubResource("NavigationPolygon_k5rra")
