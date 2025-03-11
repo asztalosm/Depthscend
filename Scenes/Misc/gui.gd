@@ -13,6 +13,7 @@ func _on_current_character_mouse_entered() -> void:
 			stattemplatecopy.get_node("TextureRect").texture = currentchar.guistats[counter][0]
 			stattemplatecopy.get_node("Label").text = str(currentchar.guistats[counter][1])
 			counter += 1
+		print(currentchar.charms)
 
 func _on_current_character_mouse_exited() -> void:
 	for children in $HoverStats/GridContainer.get_children():

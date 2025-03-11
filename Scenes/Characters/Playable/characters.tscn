@@ -23,7 +23,7 @@ z_index = 99
 position = Vector2(520, 952)
 script = ExtResource("3_ybhpn")
 basedamage = 4
-hasgroundslamcharm = true
+charms = [["hasgroundslamcharm", true]]
 
 [node name="GUI" parent="." instance=ExtResource("6_x6elr")]
 process_mode = 3

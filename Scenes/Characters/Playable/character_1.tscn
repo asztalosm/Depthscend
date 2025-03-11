@@ -513,8 +513,6 @@ material = SubResource("ShaderMaterial_smjai")
 position = Vector2(-3.8147e-06, -52)
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_6frjw")
-frame = 4
-frame_progress = 0.194254
 
 [connection signal="area_entered" from="AutoAttackRange" to="." method="_on_auto_attack_range_area_entered"]
 [connection signal="area_exited" from="AutoAttackRange" to="." method="_on_auto_attack_range_area_exited"]

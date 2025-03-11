@@ -7,7 +7,9 @@ extends CharacterBody2D
 @export var basedamage = 4
 @export var damage = 4
 @export var maxdamage = 6
-@export var hasgroundslamcharm = false
+@export var charms = [
+	["hasgroundslamcharm", true]
+]
 @export var cantakedamage = true
 @export var guistats = [
 	[load("res://Textures/damage.png"), damage],
@@ -95,7 +97,7 @@ func _input(event):
 		attackprogress.value = 0
 		
 	if event.is_action_released("rclick") and get_meta("active") and not get_meta("isDead") and attackcharge.visible and !attacked:
-		if attackcharge.value == 100 and hasgroundslamcharm and abilitychargeprogress.visible == false: #max charged attack
+		if attackcharge.value == 100 and charms[0][0] and abilitychargeprogress.visible == false: #max charged attack
 			groundslam()
 			
 		else: #not abilty attack

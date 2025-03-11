@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://s1qmh0m1std2"]
+[gd_scene load_steps=16 format=3 uid="uid://s1qmh0m1std2"]
 
 [ext_resource type="Script" path="res://Scenes/Maps/chest.gd" id="1_4bogj"]
 [ext_resource type="Texture2D" uid="uid://bsctk1k4l0bgg" path="res://Textures/chest_front.png" id="2_2m0nn"]
@@ -7,8 +7,6 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_i3sba"]
 radius = 52.1536
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_7idib"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ebiy4"]
 radius = 55.1298
@@ -110,21 +108,19 @@ nodes/vertex/connections = PackedInt32Array(6, 0, 0, 0, 5, 0, 6, 0, 2, 0, 12, 0,
 shader = SubResource("VisualShader_4cyic")
 
 [node name="Chest" type="Area2D"]
-modulate = Color(0.803922, 0.803922, 0.803922, 1)
 position = Vector2(308.745, 546.008)
 scale = Vector2(2, 2)
 monitorable = false
 script = ExtResource("1_4bogj")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(20, 24)
-shape = SubResource("CircleShape2D_i3sba")
-
 [node name="ChestTexture" type="TextureRect" parent="."]
-material = SubResource("ShaderMaterial_7idib")
 offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("2_2m0nn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(20, 24)
+shape = SubResource("CircleShape2D_i3sba")
 
 [node name="UseButton" type="TextureRect" parent="."]
 visible = false
@@ -136,7 +132,6 @@ scale = Vector2(0.4, 0.4)
 texture = ExtResource("3_pm31u")
 
 [node name="Charm" type="Area2D" parent="."]
-visible = false
 position = Vector2(6, 0)
 scale = Vector2(0.75, 0.75)
 collision_layer = 0

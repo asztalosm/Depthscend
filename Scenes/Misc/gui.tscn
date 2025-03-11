@@ -589,16 +589,15 @@ offset_bottom = 116.0
 
 [node name="Border" type="TextureRect" parent="HoverStats"]
 layout_mode = 0
-offset_left = 1.0
-offset_right = 205.0
+offset_right = 204.0
 offset_bottom = 104.0
 texture = SubResource("GradientTexture2D_fdxk1")
 
 [node name="BackGround" type="TextureRect" parent="HoverStats"]
 layout_mode = 0
-offset_left = 5.0
+offset_left = 4.0
 offset_top = 4.0
-offset_right = 201.0
+offset_right = 200.0
 offset_bottom = 100.0
 texture = SubResource("GradientTexture2D_nvoyc")
 
@@ -631,6 +630,13 @@ offset_top = 8.0
 offset_right = 80.0
 offset_bottom = 31.0
 text = "0"
+
+[node name="Charmholder" type="TextureRect" parent="HoverStats"]
+layout_mode = 0
+offset_left = 208.0
+offset_top = 4.0
+offset_right = 304.0
+offset_bottom = 100.0
 
 [node name="PauseMenu" type="Control" parent="."]
 process_mode = 3
@@ -685,7 +691,7 @@ offset_top = 672.0
 offset_right = 1472.0
 offset_bottom = 896.0
 
-[connection signal="mouse_entered" from="CurrentCharacter" to="." method="_on_current_character_mouse_entered" binds= [NodePath(".")]]
+[connection signal="mouse_entered" from="CurrentCharacter" to="." method="_on_current_character_mouse_entered"]
 [connection signal="mouse_exited" from="CurrentCharacter" to="." method="_on_current_character_mouse_exited"]
 [connection signal="pressed" from="PauseMenu/ResumeButton" to="." method="_on_resume_button_pressed"]
 [connection signal="pressed" from="PauseMenu/MenuButton" to="." method="_on_menu_button_pressed"]
