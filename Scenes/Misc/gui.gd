@@ -1,7 +1,7 @@
 extends CanvasLayer
 @onready var hoverstats = $HoverStats
 @onready var pausemenu = $PauseMenu
-func _on_current_character_mouse_entered(path) -> void:
+func _on_current_character_mouse_entered() -> void:
 	hoverstats.visible = true
 	if get_parent().exportchars != []:
 		var currentchar = get_parent().exportchars[get_parent().globalcurrentchar]

@@ -7,7 +7,7 @@ extends CharacterBody2D
 @export var basedamage = 4
 @export var damage = 4
 @export var maxdamage = 6
-@export var hasgroundslamcharm = true
+@export var hasgroundslamcharm = false
 @export var cantakedamage = true
 @export var guistats = [
 	[load("res://Textures/damage.png"), damage],
@@ -110,7 +110,6 @@ func _input(event):
 			damage = round(damage + (attackcharge.value / 50))
 			await get_tree().create_timer(0.15).timeout
 			for i in inattackzone:
-				var attackdamagetween = get_tree().create_tween()
 				i.get_parent().get_node("effects").play("blink")
 				i.get_parent().health -= damage #jelenleg nem túl szép dolog TODO ezt fixelni, hogy maxdamagere scaleljen
 			await get_tree().create_timer(0.15).timeout

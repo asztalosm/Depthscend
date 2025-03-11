@@ -1,18 +1,21 @@
-[gd_scene load_steps=5 format=3 uid="uid://s1qmh0m1std2"]
+[gd_scene load_steps=7 format=3 uid="uid://s1qmh0m1std2"]
 
 [ext_resource type="Script" path="res://Scenes/Maps/chest.gd" id="1_4bogj"]
 [ext_resource type="Texture2D" uid="uid://bsctk1k4l0bgg" path="res://Textures/chest_front.png" id="2_2m0nn"]
 [ext_resource type="Texture2D" uid="uid://dd5ovhv0axtr1" path="res://Textures/e.png" id="3_pm31u"]
+[ext_resource type="Script" path="res://Scenes/Misc/pickupcharm.gd" id="4_4qjqb"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_i3sba"]
 radius = 52.1536
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ebiy4"]
+radius = 55.1298
 
 [node name="Chest" type="Area2D"]
 position = Vector2(308.745, 546.008)
 scale = Vector2(2, 2)
 monitorable = false
 script = ExtResource("1_4bogj")
-metadata/_edit_group_ = true
 
 [node name="ChestTexture" type="TextureRect" parent="."]
 offset_right = 40.0
@@ -32,5 +35,29 @@ offset_bottom = 46.5
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("3_pm31u")
 
+[node name="Charm" type="Area2D" parent="."]
+position = Vector2(6, 0)
+scale = Vector2(0.75, 0.75)
+script = ExtResource("4_4qjqb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Charm"]
+position = Vector2(20, -4)
+shape = SubResource("CircleShape2D_ebiy4")
+
+[node name="TextureRect" type="TextureRect" parent="Charm"]
+offset_top = -24.0
+offset_right = 40.0
+offset_bottom = 16.0
+
+[node name="UseButton" type="TextureRect" parent="Charm"]
+visible = false
+offset_left = 12.3333
+offset_top = -44.1669
+offset_right = 76.3333
+offset_bottom = 19.8331
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("3_pm31u")
+
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_area_exited"]
+[connection signal="area_entered" from="Charm" to="Charm" method="_on_area_entered"]

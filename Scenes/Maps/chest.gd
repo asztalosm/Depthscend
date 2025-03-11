@@ -2,27 +2,39 @@ extends Area2D
 var characterinzone = false
 var charactersnode
 var charmlist = [
-	["res://Textures/Groundslam.png", "character1"],
+	[load("res://Textures/Groundslam.png"), "character1", "groundslam"],
 	["ds"],
 	["fsd"],
 ]
 var open = false
 
+@onready var charm = $Charm
+@onready var charmtexture = $Charm/TextureRect
+@onready var chesttexture = $ChestTexture
+
+@export var selectedcharm = null
+@export var charmcharacter = null
+
 func rollcharm() -> void:
 	var charmnum = randi_range(0, len(charmlist)-1)
+	charm.usable = true
 	print("charm: ", charmlist[charmnum])
 	print(charactersnode)
+	selectedcharm = charmlist[0][2]
+	charmcharacter = charmlist[0][1]
 
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("kb_E") and characterinzone and !open:
 		rollcharm()
 		open = true
-		if $ChestTexture.texture == load("res://Textures/chest_front.png"):
-			$ChestTexture.texture = load("res://Textures/chest_front_open.png")
+		if chesttexture.texture == load("res://Textures/chest_front.png"):
+			chesttexture.texture = load("res://Textures/chest_front_open.png")
 		else:
-			$ChestTexture.texture = load("res://Textures/chest_side_open.png")
+			chesttexture.texture = load("res://Textures/chest_side_open.png")
 		$UseButton.visible = false
+		charm.visible = true
+		charmtexture.texture = charmlist[0][0]
 
 
 func _on_area_entered(area: Area2D) -> void:
