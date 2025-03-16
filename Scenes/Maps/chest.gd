@@ -2,29 +2,35 @@ extends Area2D
 var characterinzone = false
 var charactersnode
 var charmlist = [
-	[load("res://Textures/Groundslam.png"), "character1"],
-	["res://"],
-	["fsd"],
+	[load("res://Textures/Groundslam.png"), "character1", "hasgroundslamcharm"],
+	[load("res://Textures/ExplosionOrb.png"), "character3", "hasexplosionorb"],
+	[load("res://Textures/Balllightning.png"), "character3", "hasballlightning"],
+	[load("res://Textures/Ricochet.png"), "character3", "hasricochet"],
+	[load("res://Textures/Dash.png"), "character2", "hasdashcharm"],
+	[load("res://Textures/Soultear.png"), "character2", "hassoultearcharm"],
 ]
 var open = false
 var currentcharacter = null
+var charactersinzone = []
 
 @onready var charm = $Charm
-@onready var charmtexture = $Charm/TextureRect
+@onready var charmtexture = $Charm/CharmTexture
 @onready var chesttexture = $ChestTexture
 
+@export var selectedcharmtexture = null
 @export var selectedcharm = null
 @export var charmcharacter = null
 
 func rollcharm() -> void:
 	var charmnum = randi_range(0, len(charmlist)-1)
 	charm.usable = true
-	print("charm: ", charmlist[charmnum])
-	print(charactersnode)
-	selectedcharm = charmlist[0][0]
-	charmcharacter = charmlist[0][1]
+	selectedcharmtexture = charmlist[charmnum][0]
+	charmcharacter = charmlist[charmnum][1]
+	selectedcharm = charmlist[charmnum][2]
+	charm.currentcharm = selectedcharm
 	charm.usablecharacter = charactersnode.get_node(charmcharacter)
 	$Charm/CollisionShape2D.disabled = false
+	charmtexture.visible = true
 
 
 func _input(event: InputEvent) -> void:
@@ -37,7 +43,9 @@ func _input(event: InputEvent) -> void:
 			chesttexture.texture = load("res://Textures/chest_side_open.png")
 		$UseButton.visible = false
 		charm.visible = true
-		charmtexture.texture = charmlist[0][0]
+		charmtexture.texture = selectedcharmtexture
+		$Charm/CharacterBG.visible = true
+		$Charm/CharacterBG/CharacterTexture.texture = load("res://Sprites/"+charmcharacter+".png")
 
 
 func _process(_delta: float) -> void:
@@ -50,9 +58,11 @@ func _process(_delta: float) -> void:
 func _on_area_entered(area: Area2D) -> void:
 	if area.get_parent().get_parent().name == "Characters" and !area.get_parent().get_meta("isDead") and !open:
 		self.modulate = Color(1,1,1)
+		print(area.get_parent())
 		characterinzone = true
 		currentcharacter = area.get_parent()
 		charactersnode = area.get_parent().get_parent()
+
 
 
 func _on_area_exited(area: Area2D) -> void:

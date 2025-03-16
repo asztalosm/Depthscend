@@ -11,6 +11,9 @@ extends CharacterBody2D
 @export var canmouseattack = false
 @export var basicrightclick = true #csak azért van itt, hogy az első ütés legyen meg, ezután charged attack cseréli majd le
 @export var hasgroundslamcharm = false
+@export var charms = [
+	["hasgroundslamcharm", false, load("res://Textures/Groundslam.png")],
+]
 @export var cantakedamage = true
 @export var guistats = [
 	[load("res://Textures/damage.png"), damage],

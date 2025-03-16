@@ -8,7 +8,7 @@ extends CharacterBody2D
 @export var damage = 4
 @export var maxdamage = 6
 @export var charms = [
-	["hasgroundslamcharm", true]
+	["hasgroundslamcharm", false, load("res://Textures/Groundslam.png")],
 ]
 @export var cantakedamage = true
 @export var guistats = [
@@ -28,6 +28,7 @@ extends CharacterBody2D
 @onready var groundslamhitbox = $GroundSlamHitbox
 @onready var abilitychargeprogress = $AbilityChargeProgress
 @onready var abilitycd = $AbilityCooldown
+@onready var attacksound = $AttackSound
 
 var currentsprite = 0
 var moveangle = 0
@@ -39,6 +40,7 @@ var inattackzone = []
 var attacked = false
 var accel = 35
 var dir := Vector2()
+var ismoving = false
 
 
 func _ready() -> void:
@@ -97,7 +99,7 @@ func _input(event):
 		attackprogress.value = 0
 		
 	if event.is_action_released("rclick") and get_meta("active") and not get_meta("isDead") and attackcharge.visible and !attacked:
-		if attackcharge.value == 100 and charms[0][0] and abilitychargeprogress.visible == false: #max charged attack
+		if attackcharge.value == 100 and charms[0][1] and abilitychargeprogress.visible == false: #max charged attack
 			groundslam()
 			
 		else: #not abilty attack
@@ -108,7 +110,7 @@ func _input(event):
 			swordhitbox.rotate(swordhitbox.get_angle_to(get_global_mouse_position()) +0.5*PI)
 			swordhitbox.visible = true
 			slashanimation.play()
-			attackcooldown.start()
+			attacksound.play()
 			damage = round(damage + (attackcharge.value / 50))
 			await get_tree().create_timer(0.15).timeout
 			for i in inattackzone:
@@ -142,6 +144,10 @@ func _physics_process(_delta: float) -> void:
 					angletocursor += 360 
 				currentsprite = round(angletocursor / 45)
 		animatedsprite.frame = currentsprite
+		if velocity != Vector2(0,0):
+			ismoving = true
+		else:
+			ismoving = false
 		move_and_slide()
 		position = round(position)
 		

@@ -1,7 +1,8 @@
-[gd_scene load_steps=76 format=3 uid="uid://d1maoccsy4oe4"]
+[gd_scene load_steps=85 format=3 uid="uid://d1maoccsy4oe4"]
 
 [ext_resource type="Script" path="res://Scenes/Characters/Playable/Scripts/character_2.gd" id="1_asb81"]
 [ext_resource type="Texture2D" uid="uid://d4nvqwhn6dsuh" path="res://Textures/attackcooldown.png" id="2_3xrjg"]
+[ext_resource type="AudioStream" uid="uid://bkwu6clsloxlx" path="res://Sounds/character2attack.wav" id="2_nmmxc"]
 [ext_resource type="Texture2D" uid="uid://b7ydd1qrc3bft" path="res://Sprites/spear-charge-Sheet.png" id="3_5d4dj"]
 [ext_resource type="Texture2D" uid="uid://cik58vwvyde7r" path="res://Sprites/dashguide.png" id="5_kgrup"]
 [ext_resource type="Texture2D" uid="uid://biue221d7v66s" path="res://Textures/attackchargeunder.png" id="6_u1dnc"]
@@ -19,6 +20,14 @@
 [ext_resource type="Script" path="res://Scenes/Characters/Playable/soul_fragment.gd" id="15_qcm6w"]
 [ext_resource type="Texture2D" uid="uid://b7go24vkihaqt" path="res://Sprites/soul.png" id="15_yacxb"]
 [ext_resource type="Shader" uid="uid://ddt0t5tgg4xl6" path="res://Scenes/Characters/Playable/character_2.tres" id="16_ranp2"]
+[ext_resource type="Texture2D" uid="uid://uw4p43cihf4x" path="res://Sprites/rouge_front_walk.png" id="18_lrq3u"]
+[ext_resource type="Texture2D" uid="uid://dntb8r4smgjwu" path="res://Sprites/rouge_frontleft_walk.png" id="19_52cn2"]
+[ext_resource type="Texture2D" uid="uid://wvfydv68akcy" path="res://Sprites/rouge_left_walk.png" id="20_d2yit"]
+[ext_resource type="Texture2D" uid="uid://b8i307yiqjrsb" path="res://Sprites/rouge_backleft_walk.png" id="21_vfeky"]
+[ext_resource type="Texture2D" uid="uid://dua3o5pl8w5p1" path="res://Sprites/rouge_back_walk.png" id="22_0x5y4"]
+[ext_resource type="Texture2D" uid="uid://b16t6mxjmciop" path="res://Sprites/rouge_backright_walk.png" id="23_fxudk"]
+[ext_resource type="Texture2D" uid="uid://tl5qh1tr5xl3" path="res://Sprites/rouge_right_walk.png" id="24_xquvi"]
+[ext_resource type="Texture2D" uid="uid://b0l8kbxg3xuct" path="res://Sprites/rouge_frontright_walk.png" id="25_r404x"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oin8j"]
 size = Vector2(54, 118)
@@ -344,6 +353,94 @@ animations = [{
 "loop": true,
 "name": &"default",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_5o02e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_lrq3u")
+}],
+"loop": true,
+"name": &"walk0",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_3r6xr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_52cn2")
+}],
+"loop": true,
+"name": &"walk1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_12qdj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_d2yit")
+}],
+"loop": true,
+"name": &"walk2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_wtp3n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_vfeky")
+}],
+"loop": true,
+"name": &"walk3",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_vlp8i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_0x5y4")
+}],
+"loop": true,
+"name": &"walk4",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_uh1fu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_fxudk")
+}],
+"loop": true,
+"name": &"walk5",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("13_1yvde")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_xquvi")
+}],
+"loop": true,
+"name": &"walk6",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("14_b12px")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_r404x")
+}],
+"loop": true,
+"name": &"walk7",
+"speed": 5.0
 }]
 
 [sub_resource type="Gradient" id="Gradient_m1eff"]
@@ -429,6 +526,9 @@ collision_mask = 5
 script = ExtResource("1_asb81")
 metadata/active = false
 metadata/isDead = false
+
+[node name="AttackSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_nmmxc")
 
 [node name="Dash" type="Node2D" parent="."]
 visible = false
@@ -551,6 +651,7 @@ sprite_frames = SubResource("SpriteFrames_540r5")
 material = SubResource("ShaderMaterial_fjqyd")
 position = Vector2(4, -24)
 sprite_frames = SubResource("SpriteFrames_14ems")
+animation = &"walk7"
 
 [node name="AbilityCooldown" type="Timer" parent="."]
 wait_time = 5.0

@@ -8,14 +8,16 @@ extends CharacterBody2D
 @export var cantakedamage = true
 @export var attacking = false
 @export var extradamage = 0
-@export var hasricochet = false
-@export var hasballlightning = false
-@export var hasexplosiveorb = false
 @export var heal = 1
 @export var guistats = [
 	[load("res://Textures/damage.png"), damage],
 	[load("res://Textures/heal.png"), heal],
 	[load("res://Textures/speed.png"), speed],
+]
+@export var charms = [
+	["hasricochet", false, load("res://Textures/Ricochet.png")],
+	["hasballlightning", true, load("res://Textures/Balllightning.png")],
+	["hasexplosionorb", false, load("res://Textures/ExplosionOrb.png")],
 ]
 
 #változó ami akkor jön létre amikor létrejön a karakter
@@ -40,6 +42,7 @@ var charging = false
 var attacked = false
 var angle = Vector2.ZERO
 var projectiletween : Tween
+var ismoving = false
 
 func tweenhealth():
 	healprogbar.value = 0
@@ -108,10 +111,14 @@ func _physics_process(_delta: float) -> void:
 					angletocursor += 360 
 				currentsprite = round(angletocursor / 45)
 		if attacking:
-			animatedsprite.frame = currentsprite + 8
+			animatedsprite.play(str("attack", currentsprite))
 		else:
-			animatedsprite.frame = currentsprite
+			if velocity != Vector2(0,0):
+				animatedsprite.play(str("walk",currentsprite))
+			else:
+				animatedsprite.stop()
 		move_and_slide()
+
 	else:
 		visible = false
 		set_meta("active", false)

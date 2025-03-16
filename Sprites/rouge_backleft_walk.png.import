@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bs73lble8uwfb"
-path="res://.godot/imported/charm3.png-3f877f803e3572ff0f5e06063e52231f.ctex"
+uid="uid://b8i307yiqjrsb"
+path="res://.godot/imported/rouge_backleft_walk.png-15a4babf1737edd6071a264cc66c44c1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/charm3.png"
-dest_files=["res://.godot/imported/charm3.png-3f877f803e3572ff0f5e06063e52231f.ctex"]
+source_file="res://Sprites/rouge_backleft_walk.png"
+dest_files=["res://.godot/imported/rouge_backleft_walk.png-15a4babf1737edd6071a264cc66c44c1.ctex"]
 
 [params]
 

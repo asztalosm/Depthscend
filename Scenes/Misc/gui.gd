@@ -1,19 +1,22 @@
 extends CanvasLayer
 @onready var hoverstats = $HoverStats
 @onready var pausemenu = $PauseMenu
+@onready var charmholder = $HoverStats/Charmholder
 func _on_current_character_mouse_entered() -> void:
 	hoverstats.visible = true
 	if get_parent().exportchars != []:
 		var currentchar = get_parent().exportchars[get_parent().globalcurrentchar]
 		var counter = 0
-		for elements in currentchar.guistats:
+		for elements in currentchar.guistats:  #betöltésenként a statokat és a charmokat betölti a hoverstats nodeba
 			var stattemplatecopy = $HoverStats/StatTemplate.duplicate()
 			$HoverStats/GridContainer.add_child(stattemplatecopy)
 			stattemplatecopy.visible = true
 			stattemplatecopy.get_node("TextureRect").texture = currentchar.guistats[counter][0]
 			stattemplatecopy.get_node("Label").text = str(currentchar.guistats[counter][1])
 			counter += 1
-		print(currentchar.charms)
+		for charm in currentchar.charms:
+			if charm[1] == true:
+				charmholder.texture = charm[2]
 
 func _on_current_character_mouse_exited() -> void:
 	for children in $HoverStats/GridContainer.get_children():

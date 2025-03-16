@@ -30,35 +30,35 @@ func charmcheck(): #charmok alapján beállítja a változókat
 	maxdamage = 3
 	defaulthitbox.scale = Vector2(1,1)
 	bounces = 0
-	if get_parent().hasricochet:
+	if get_parent().charms[0][1]:
 		texture.texture = load("res://Sprites/ricochet.png")
-		get_parent().hasballlightning = false
-		get_parent().hasexplosiveorb = false
+		get_parent().charms[1][1] = false
+		get_parent().charms[2][1] = false
 		attackcooldown.wait_time = 3.5
 		bounces = 5
 		autoangle = false
 		enemyfinder.monitoring = true
-	if get_parent().hasexplosiveorb:
+	if get_parent().charms[2][1]:
 		damage = 4
 		maxdamage = 8
-		get_parent().hasricochet = false
-		get_parent().hasballlightning = false
+		get_parent().charms[0][1] = false
+		get_parent().charms[1][1] = false
 		bounces = 0
 		texture.texture = load("res://Sprites/explosiveorb.png")
 		attackcooldown.wait_time = 4.5
-	if get_parent().hasballlightning:
+	if get_parent().charms[1][1]:
 		defaulthitbox.scale = Vector2(3,3)
 		minspeed = 625
 		damage = 1
 		maxdamage = 2
 		speed = 650
 		attackcooldown.wait_time = 5
-		get_parent().hasricochet = false
-		get_parent().hasexplosiveorb = false
+		get_parent().charms[0][1] = false
+		get_parent().charms[2][1] = false
 		bounces = INF
 		autoangle = false
 		texture.texture = load("res://Sprites/lightningball.png")
-	if !get_parent().hasballlightning and !get_parent().hasexplosiveorb and !get_parent().hasricochet:
+	if !get_parent().charms[1][1] and !get_parent().charms[2][1] and !get_parent().charms[0][1]:
 		bounces = 0
 		autoangle = false
 		texture.texture = load("res://Sprites/basicorb.png")
@@ -93,13 +93,13 @@ func setvariables():
 		attackcdtween.tween_property(attackprogress, "value", 100, attackcooldown.time_left)
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
-	if get_parent().hasricochet:
+	if get_parent().charms[0][1]:
 		autoangle = true
 		enemyfinder.position.y = 30000
 		enemyfinder.position.y = 0
 		inattackzone.append(area.get_parent())
 		enemyfinder.monitoring = true
-	if get_parent().hasexplosiveorb: #robbanásnál damage, onhit damaget nem használja
+	if get_parent().charms[2][1]: #robbanásnál damage, onhit damaget nem használja
 		$ExplosionArea/PointLight2D.visible = true
 		inattackzone.clear()
 		for enemies in inexplosionarea:
@@ -107,7 +107,7 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 				enemies.health -= damage
 		await get_tree().create_timer(0.2).timeout
 		$ExplosionArea/PointLight2D.visible = false
-	elif get_parent().hasballlightning: #enemyt hozzáad az attackzonehoz
+	elif get_parent().charms[1][1]: #enemyt hozzáad az attackzonehoz
 		inattackzone.append(area.get_parent())
 		lightningcooldown.start()
 	else:

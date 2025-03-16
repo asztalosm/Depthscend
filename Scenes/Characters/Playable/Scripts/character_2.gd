@@ -7,13 +7,16 @@ extends CharacterBody2D
 @export var damage = 2
 @export var basedamage = 2
 @export var maxdamage = 3
-@export var hasdashcharm = false
-@export var hassoultearcharm = true
 @export var cantakedamage = true
 @export var guistats = [
 	[load("res://Textures/damage.png"), damage],
 	[load("res://Textures/damage_2.png"), maxdamage],
 	[load("res://Textures/speed.png"), speed],
+]
+
+@export var charms = [
+	["hasdashcharm", true, load("res://Textures/Dash.png")],
+	["hassoultearcharm", false, load("res://Textures/Soultear.png")]
 ]
 
 #változó ami akkor jön létre amikor létrejön a karakter
@@ -156,18 +159,18 @@ func _input(event): # pathfinding + attack
 		attackcharge.value = 0
 		attackprogress.value = 0
 		dashtexture.size.y = 0
-		if hasdashcharm:
+		if charms[0][1]:
 			abilitycd.wait_time = 5
-		elif hassoultearcharm:
+		elif charms[1][1]:
 			abilitycd.wait_time = 10
 		else:
 			abilitycd.wait_time = 1
 	if event.is_action_released("rclick") and attackcharge.visible and !attacked and get_meta("active") and !get_meta("isDead"):
 		swordhitbox.monitoring = true
-		if attackcharge.value == 100 and hasdashcharm and abilitycd.time_left == 0: #max charged attack with groundslam
+		if attackcharge.value == 100 and charms[0][1] and abilitycd.time_left == 0: #max charged attack with groundslam
 			dash()
 			abilitycdprogress.visible = true
-		if attackcharge.value == 100 and hassoultearcharm and abilitycd.time_left == 0: #soultear cooldown
+		if attackcharge.value == 100 and charms[1][1] and abilitycd.time_left == 0: #soultear cooldown
 			soultear()
 			abilitycdprogress.visible = true
 			var abilitycdtween = get_tree().create_tween()
@@ -221,14 +224,17 @@ func _physics_process(_delta: float) -> void:
 				if angletocursor < 0:
 					angletocursor += 360
 				currentsprite = round(angletocursor / 45)
-		animatedsprite.frame = currentsprite
+		if velocity != Vector2(0,0):
+			animatedsprite.play(str("walk",currentsprite))
+		else:
+			animatedsprite.stop()
 		move_and_slide()
 		
 		
 		if charging:
 			attackcharge.value += 2
 			dashtexture.size.y = 0
-			if attackcharge.value == 100 and hasdashcharm and abilitycd.time_left == 0:
+			if attackcharge.value == 100 and charms[0][1] and abilitycd.time_left == 0:
 				dashnode.visible = true
 				dashnode.rotate(dashnode.get_angle_to(get_global_mouse_position()) +0.5*PI)
 				var dashsizetween = get_tree().create_tween().set_trans(Tween.TRANS_LINEAR)
@@ -263,7 +269,7 @@ func _on_auto_attack_range_area_exited(area: Area2D) -> void:
 
 
 func _on_dash_attack_zone_area_entered(area: Area2D) -> void:
-	if hasdashcharm:
+	if charms[0][1]:
 		indashattackzone.append(area)
 		for i in indashattackzone:
 			if i.get_parent().cantakedamage and dashing:

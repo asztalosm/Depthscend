@@ -1,6 +1,7 @@
-[gd_scene load_steps=14 format=4 uid="uid://dfy3v7er3vajh"]
+[gd_scene load_steps=17 format=4 uid="uid://dfy3v7er3vajh"]
 
 [ext_resource type="PackedScene" uid="uid://32mqbxap2xs3" path="res://Scenes/Characters/Playable/characters.tscn" id="1_rvwj5"]
+[ext_resource type="Texture2D" uid="uid://bdsc4toy3vt8p" path="res://Tilemaps/spiketrap.png" id="6_42vq1"]
 [ext_resource type="PackedScene" uid="uid://8gie7rovk5r1" path="res://Scenes/Characters/Enemies/AttackDummy.tscn" id="6_ksc8h"]
 [ext_resource type="PackedScene" uid="uid://s1qmh0m1std2" path="res://Scenes/Misc/chest.tscn" id="7_0bo13"]
 [ext_resource type="Texture2D" uid="uid://du3kynyeqy6rp" path="res://Textures/tempfloor.png" id="7_3sl66"]
@@ -51,6 +52,25 @@ navigation_layer_0/layers = 1
 sources/0 = SubResource("TileSetAtlasSource_8rjp8")
 sources/1 = SubResource("TileSetAtlasSource_5fa16")
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_13kug"]
+texture = ExtResource("6_42vq1")
+texture_region_size = Vector2i(48, 48)
+0:0/animation_columns = 8
+0:0/animation_frame_0/duration = 3.0
+0:0/animation_frame_1/duration = 0.1
+0:0/animation_frame_2/duration = 0.1
+0:0/animation_frame_3/duration = 0.1
+0:0/animation_frame_4/duration = 1.0
+0:0/animation_frame_5/duration = 0.1
+0:0/animation_frame_6/duration = 0.1
+0:0/animation_frame_7/duration = 0.1
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-21, -13, 6.5, -14.5, 17, -3.5, 18, 16.5, 3, 21.5, -21, 19)
+
+[sub_resource type="TileSet" id="TileSet_qmqxd"]
+physics_layer_0/collision_layer = 0
+sources/0 = SubResource("TileSetAtlasSource_13kug")
+
 [node name="Testplace" type="Node2D"]
 
 [node name="Characters" parent="." instance=ExtResource("1_rvwj5")]
@@ -76,6 +96,10 @@ affect_navigation_mesh = true
 position = Vector2(218, 961)
 collision_layer = 0
 collision_mask = 17
+
+[node name="Traps" type="TileMapLayer" parent="Map/NavigationRegion2D"]
+tile_map_data = PackedByteArray("AAAPACsAAAAAAAAAAAA=")
+tile_set = SubResource("TileSet_qmqxd")
 
 [node name="Enemies" type="Node2D" parent="."]
 
