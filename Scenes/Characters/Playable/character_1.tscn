@@ -285,11 +285,13 @@ _data = {
 shader = ExtResource("10_7kfhh")
 
 [sub_resource type="Gradient" id="Gradient_aish8"]
-offsets = PackedFloat32Array(0.727642, 0.731707)
+offsets = PackedFloat32Array(0.634146, 0.829268)
 colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_3w2el"]
 gradient = SubResource("Gradient_aish8")
+width = 256
+height = 256
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
