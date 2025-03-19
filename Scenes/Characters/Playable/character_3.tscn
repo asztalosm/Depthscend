@@ -117,6 +117,14 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("14_kthqj")
+}],
+"loop": true,
+"name": &"attack8",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("6_wy0vq")
 }, {
 "duration": 1.0,
@@ -254,6 +262,17 @@ animations = [{
 }],
 "loop": true,
 "name": &"walk7",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_wy0vq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_i1gx2")
+}],
+"loop": true,
+"name": &"walk8",
 "speed": 5.0
 }]
 
@@ -445,7 +464,8 @@ autostart = true
 material = SubResource("ShaderMaterial_uoolu")
 position = Vector2(-11, -59)
 sprite_frames = SubResource("SpriteFrames_h1jj7")
-animation = &"attack7"
+animation = &"attack8"
+speed_scale = 1.5
 
 [node name="AttackCooldown" type="Timer" parent="."]
 wait_time = 2.0

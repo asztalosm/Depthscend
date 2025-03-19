@@ -142,12 +142,11 @@ func _physics_process(_delta: float) -> void:
 				var angletocursor = rad_to_deg(self.get_angle_to(navagent.get_next_path_position())) - 90
 				if angletocursor < 0:
 					angletocursor += 360 
-				currentsprite = round(angletocursor / 45)
-		animatedsprite.frame = currentsprite
+				currentsprite = round(angletocursor / 45) #all characters have a walk8 animation that matches up with the walk0 animation so the debugger stops bitching
 		if velocity != Vector2(0,0):
-			ismoving = true
+			animatedsprite.play(str("walk",currentsprite))
 		else:
-			ismoving = false
+			animatedsprite.stop()
 		move_and_slide()
 		position = round(position)
 		

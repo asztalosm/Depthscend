@@ -441,6 +441,17 @@ animations = [{
 "loop": true,
 "name": &"walk7",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_5o02e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_lrq3u")
+}],
+"loop": true,
+"name": &"walk8",
+"speed": 5.0
 }]
 
 [sub_resource type="Gradient" id="Gradient_m1eff"]
@@ -651,7 +662,8 @@ sprite_frames = SubResource("SpriteFrames_540r5")
 material = SubResource("ShaderMaterial_fjqyd")
 position = Vector2(4, -24)
 sprite_frames = SubResource("SpriteFrames_14ems")
-animation = &"walk7"
+animation = &"walk8"
+speed_scale = 1.5
 
 [node name="AbilityCooldown" type="Timer" parent="."]
 wait_time = 5.0

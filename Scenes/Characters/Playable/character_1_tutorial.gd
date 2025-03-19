@@ -147,7 +147,8 @@ func _input(event):
 				
 				await get_tree().create_timer(0.3).timeout
 				for i in inattackzone:
-					i.get_parent().get_node("effects").play("blink")
+					if i.get_parent().get_node_or_null("effects") != null:
+						i.get_parent().get_node("effects").play("blink")
 					i.get_parent().health -= round(damage + attackcharge.value / 50)
 				swordhitbox.visible = false
 				var attackcooldowntween = get_tree().create_tween()
@@ -163,13 +164,11 @@ func _physics_process(_delta: float) -> void:
 	_get_input()
 	if health > 0: # ha él a karakter
 		dir = navagent.get_next_path_position() - global_position
-		
+
 		if attackcharge.value == 100:
 			attackcharge.modulate.r = 255
 		else: attackcharge.modulate.r = 0.7
-	
-	
-	
+
 		if !navagent.is_navigation_finished() and hasnavigationtarget:
 			if dir.length_squared() > 1.0:
 				dir = dir.normalized()
@@ -180,7 +179,10 @@ func _physics_process(_delta: float) -> void:
 				if angletocursor < 0:
 					angletocursor += 360
 				currentsprite = round(angletocursor / 45)
-		animatedsprite.frame = currentsprite
+		if velocity != Vector2(0,0):
+			animatedsprite.play(str("walk",currentsprite))
+		else:
+			animatedsprite.stop()
 		move_and_slide()
 		position = round(position)
 		if charging:
