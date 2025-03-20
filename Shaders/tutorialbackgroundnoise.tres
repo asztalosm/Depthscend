@@ -11,6 +11,8 @@ domain_warp_fractal_gain = 12.0
 metadata/_preview_in_3d_space_ = true
 
 [resource]
+width = 1024
+height = 1024
 generate_mipmaps = false
 color_ramp = SubResource("Gradient_7tlnt")
 noise = SubResource("FastNoiseLite_0h0lv")

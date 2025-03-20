@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dancm16xg0ycy"
-path="res://.godot/imported/priestess_front.png-68ec0f98b4683fd1562e010a9a006b04.ctex"
+uid="uid://citlhbjocfh3r"
+path="res://.godot/imported/playprompthover.png-ddd90be255a49fdf9839a6b1c49f0f69.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/priestess_front.png"
-dest_files=["res://.godot/imported/priestess_front.png-68ec0f98b4683fd1562e010a9a006b04.ctex"]
+source_file="res://Textures/playprompthover.png"
+dest_files=["res://.godot/imported/playprompthover.png-ddd90be255a49fdf9839a6b1c49f0f69.ctex"]
 
 [params]
 

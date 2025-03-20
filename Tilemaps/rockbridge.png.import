@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b7gj8h0060h00"
-path="res://.godot/imported/priestess_left.png-bd6a5040b0fa5634163aa81894e63d38.ctex"
+uid="uid://kspkcd0j4k3e"
+path="res://.godot/imported/rockbridge.png-04c02d460706c41fe83161f24013d184.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/priestess_left.png"
-dest_files=["res://.godot/imported/priestess_left.png-bd6a5040b0fa5634163aa81894e63d38.ctex"]
+source_file="res://Tilemaps/rockbridge.png"
+dest_files=["res://.godot/imported/rockbridge.png-04c02d460706c41fe83161f24013d184.ctex"]
 
 [params]
 

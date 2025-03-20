@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cw1ojo8ktm6f3"
-path="res://.godot/imported/priestess_leftback.png-faf5081b0da9735283426dad96e22086.ctex"
+uid="uid://twutxqtyc03"
+path="res://.godot/imported/errormarkhover.png-c927950d540d507a308f2b3f0cae2252.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/priestess_leftback.png"
-dest_files=["res://.godot/imported/priestess_leftback.png-faf5081b0da9735283426dad96e22086.ctex"]
+source_file="res://Textures/errormarkhover.png"
+dest_files=["res://.godot/imported/errormarkhover.png-c927950d540d507a308f2b3f0cae2252.ctex"]
 
 [params]
 

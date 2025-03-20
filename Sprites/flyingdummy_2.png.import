@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dfvwd26hcv560"
-path="res://.godot/imported/priestess_leftfront.png-63040a71a4fe2e26c3158d0c012b23c9.ctex"
+uid="uid://dtovxjj7o020v"
+path="res://.godot/imported/flyingdummy_2.png-691db6e992082c04b9b353fd2e764444.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/priestess_leftfront.png"
-dest_files=["res://.godot/imported/priestess_leftfront.png-63040a71a4fe2e26c3158d0c012b23c9.ctex"]
+source_file="res://Sprites/flyingdummy_2.png"
+dest_files=["res://.godot/imported/flyingdummy_2.png-691db6e992082c04b9b353fd2e764444.ctex"]
 
 [params]
 

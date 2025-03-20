@@ -15,25 +15,26 @@ extends Node2D
 @onready var thirdcharacterhealthtext = $GUI/InactiveCharacters/OtherCharacter2/Health/HealthLabel
 @onready var thirdcharactericon = $GUI/InactiveCharacters/OtherCharacter2/Icon/Icon
 @onready var thirdcharactericonnumber = $GUI/InactiveCharacters/OtherCharacter2/Icon/CharacterNumber/Label
-@export var giveaccesstomultiplecharacters = false
+@export var giveaccesstochar1 = true
+@export var giveaccesstochar2 = false
+@export var giveaccesstochar3 = false
 var globalcurrentchar = 0
 var pausedgame = false
 var secondtaken = false
 
 # karakterválasztásért felelős funkció, loopol a charlisten megnézi melyik gombot nyomtuk meg, irányítást átadja, kamerának megadja melyiket kell követnie
 func _input(event: InputEvent) -> void:
-	if giveaccesstomultiplecharacters:
-		for i in range(characters.size()):
-			if event.is_action_pressed("Number %d Character Selection" % (i + 1)):
-				if characters[i].health <= 0:
-					print("character already dead")
-				else:
-					secondtaken = false
-					globalcurrentchar = i
-					currentcharacterlabel.text = str(globalcurrentchar+1)
-					charactericon.texture = load("res://Sprites/character%d.png" % (int(globalcurrentchar+1)))
-					for currentchar in range(characters.size()):
-						characters[currentchar].set_meta("active", currentchar == i)
+	for i in range(characters.size()):
+		if event.is_action_pressed("Number %d Character Selection" % (i + 1)) and get("giveaccesstochar%d" % (i+1)):
+			if characters[i].health <= 0:
+				print("character already dead")
+			else:
+				secondtaken = false
+				globalcurrentchar = i
+				currentcharacterlabel.text = str(globalcurrentchar+1)
+				charactericon.texture = load("res://Sprites/character%d.png" % (int(globalcurrentchar+1)))
+				for currentchar in range(characters.size()):
+					characters[currentchar].set_meta("active", currentchar == i)
 
 
 # folyamatosan futó funkció ami a jelenleg kiválasztott karaktert követi, életet is kiírja hudra
