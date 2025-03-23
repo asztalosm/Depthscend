@@ -1,4 +1,4 @@
-[gd_scene load_steps=91 format=3 uid="uid://btd7uso6md01v"]
+[gd_scene load_steps=92 format=3 uid="uid://btd7uso6md01v"]
 
 [ext_resource type="Script" path="res://Scenes/Characters/Playable/Scripts/character_1.gd" id="1_myhxd"]
 [ext_resource type="Texture2D" uid="uid://d4nvqwhn6dsuh" path="res://Textures/attackcooldown.png" id="2_y8tvg"]
@@ -12,6 +12,7 @@
 [ext_resource type="Shader" path="res://Shaders/tree.gdshader" id="10_7kfhh"]
 [ext_resource type="AudioStream" uid="uid://dlthod3trn4y3" path="res://Sounds/character1attack.wav" id="11_fges4"]
 [ext_resource type="Texture2D" uid="uid://cmiurt44k3hvr" path="res://Sprites/ullyses_iv_360_walk-Sheet-Sheet.png" id="11_i5fhj"]
+[ext_resource type="AudioStream" uid="uid://5fih6mdkf45i" path="res://Sounds/abilitycooled.wav" id="13_1rn3o"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7qa3r"]
 
@@ -617,7 +618,7 @@ radius = 70.0
 
 [node name="Hitbox" type="Area2D" parent="."]
 position = Vector2(-16, -36)
-collision_layer = 32
+collision_layer = 34
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
@@ -744,6 +745,9 @@ speed_scale = 1.5
 
 [node name="AttackSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("11_fges4")
+
+[node name="AbilityCDSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("13_1rn3o")
 
 [connection signal="area_entered" from="AutoAttackRange" to="." method="_on_auto_attack_range_area_entered"]
 [connection signal="area_exited" from="AutoAttackRange" to="." method="_on_auto_attack_range_area_exited"]

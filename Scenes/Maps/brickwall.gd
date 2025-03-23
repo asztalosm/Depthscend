@@ -14,5 +14,6 @@ func _on_timer_timeout() -> void:
 	else:
 		texture = load("res://Tilemaps/breakablebrickfence3.png")
 		$Timer.queue_free()
+		$AudioStreamPlayer2D.play()
 		$GPUParticles2D.emitting = true
 		$StaticBody2D.queue_free()

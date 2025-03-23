@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://dfy3v7er3vajh"]
+[gd_scene load_steps=19 format=4 uid="uid://dfy3v7er3vajh"]
 
 [ext_resource type="PackedScene" uid="uid://32mqbxap2xs3" path="res://Scenes/Characters/Playable/characters.tscn" id="1_rvwj5"]
 [ext_resource type="Texture2D" uid="uid://bdsc4toy3vt8p" path="res://Tilemaps/spiketrap.png" id="6_42vq1"]
@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://s1qmh0m1std2" path="res://Scenes/Misc/chest.tscn" id="7_0bo13"]
 [ext_resource type="Texture2D" uid="uid://du3kynyeqy6rp" path="res://Textures/tempfloor.png" id="7_3sl66"]
 [ext_resource type="Texture2D" uid="uid://dy6chttifdta8" path="res://Textures/tempfloor2.png" id="8_wrwvq"]
+[ext_resource type="PackedScene" uid="uid://wmlrnw0rfatv" path="res://Scenes/Characters/Enemies/cthulhu.tscn" id="9_8d0r3"]
+[ext_resource type="PackedScene" uid="uid://dj0kc27h6y3m2" path="res://Scenes/Characters/Enemies/bob.tscn" id="10_brl8e"]
 [ext_resource type="PackedScene" uid="uid://dpcveyqyw3du4" path="res://Scenes/Misc/damage_area.tscn" id="10_cqn1i"]
 [ext_resource type="PackedScene" uid="uid://dwou5g30xc3eq" path="res://Scenes/Characters/Enemies/squink.tscn" id="11_dd1nh"]
 
@@ -105,7 +107,7 @@ tile_set = SubResource("TileSet_qmqxd")
 
 [node name="squink" parent="Enemies" instance=ExtResource("11_dd1nh")]
 position = Vector2(241, 59)
-scale = Vector2(1.54688, 1.54688)
+scale = Vector2(1.5, 1.5)
 
 [node name="trainingdummy" parent="Enemies" instance=ExtResource("6_ksc8h")]
 
@@ -114,4 +116,11 @@ position = Vector2(748, 137)
 
 [node name="squink2" parent="Enemies" instance=ExtResource("11_dd1nh")]
 position = Vector2(847, 19)
-scale = Vector2(1.54688, 1.54688)
+scale = Vector2(1.5, 1.5)
+
+[node name="Cthulhu" parent="Enemies" instance=ExtResource("9_8d0r3")]
+position = Vector2(558, 435)
+scale = Vector2(1.5, 1.5)
+
+[node name="Bob" parent="Enemies" instance=ExtResource("10_brl8e")]
+position = Vector2(-80, 614)

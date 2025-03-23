@@ -58,7 +58,6 @@ func _process(_delta: float) -> void:
 func _on_area_entered(area: Area2D) -> void:
 	if area.get_parent().get_parent().name == "Characters" and !area.get_parent().get_meta("isDead") and !open:
 		self.modulate = Color(1,1,1)
-		print(area.get_parent())
 		characterinzone = true
 		currentcharacter = area.get_parent()
 		charactersnode = area.get_parent().get_parent()

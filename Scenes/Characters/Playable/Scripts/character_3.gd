@@ -17,7 +17,7 @@ extends CharacterBody2D
 @export var charms = [
 	["hasricochet", false, load("res://Textures/Ricochet.png")],
 	["hasballlightning", false, load("res://Textures/Balllightning.png")],
-	["hasexplosionorb", false, load("res://Textures/ExplosionOrb.png")],
+	["hasexplosionorb", true, load("res://Textures/ExplosionOrb.png")],
 ]
 
 #változó ami akkor jön létre amikor létrejön a karakter
@@ -148,7 +148,8 @@ func _on_heal_cooldown_timeout() -> void:
 	
 
 func _on_heal_range_hitbox_area_entered(area: Area2D) -> void:
-	healhitboxchars.append(area.get_parent())
+	if area.get_parent().get_parent().name == "Characters":
+		healhitboxchars.append(area.get_parent())
 
 
 func _on_heal_range_hitbox_area_exited(area: Area2D) -> void:

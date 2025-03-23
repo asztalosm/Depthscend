@@ -117,17 +117,17 @@ func soultear() -> void: #soul tear attack
 func soulspread(temporaryposition) -> void: #soul tear attack létrehoz 4 soul fragmentet ami healel karaktert vagy sebez enemyt
 	await get_tree().create_timer(2.3).timeout
 	var soulfraglist = []
-	for i in range(4):
+	for soulfragmentnum in range(4):
 		var tempsoulfragment = soulfragment.duplicate()
-		tempsoulfragment.name = "SoulFragment" + str(i)
+		tempsoulfragment.name = "SoulFragment" + str(soulfragmentnum)
 		soulfraglist.append(tempsoulfragment)
-	for i in soulfraglist:
-		i.global_position = temporaryposition + Vector2(randf_range(-100,100),randf_range(-100,100))
+	for fragments in soulfraglist:
+		fragments.global_position = temporaryposition + Vector2(randf_range(-100,100),randf_range(-100,100))
 		#ide majd még kell csinálni egy rekurzív functiont ami megnézi, hogy falban van-e az i
-		i.visible = true
-		i.script = load("res://Scenes/Characters/Playable/soul_fragment.gd")
-		i.get_node("CollisionShape2D").disabled = false
-		get_parent().get_parent().add_child(i)
+		fragments.visible = true
+		fragments.script = load("res://Scenes/Characters/Playable/soul_fragment.gd")
+		fragments.get_node("CollisionShape2D").disabled = false
+		get_parent().get_parent().add_child(fragments)
 	var abilitycdtween = get_tree().create_tween()
 	abilitycdtween.tween_property(abilitycdprogress, "value", 100, abilitycd.wait_time)
 
@@ -185,6 +185,7 @@ func _input(event): # pathfinding + attack
 			swordhitbox.visible = true
 			swordanimation.play()
 			attackcooldown.start()
+			$AttackSound.play()
 			await get_tree().create_timer(0.2).timeout
 			
 			for i in inattackzone:
@@ -269,10 +270,10 @@ func _on_auto_attack_range_area_exited(area: Area2D) -> void:
 
 
 func _on_dash_attack_zone_area_entered(area: Area2D) -> void:
-	if charms[0][1]:
+	if charms[0][1] and dashing:
 		indashattackzone.append(area)
 		for i in indashattackzone:
-			if i.get_parent().cantakedamage and dashing:
+			if i.get_parent().cantakedamage and dashing and get_node_or_null(get_path_to(i)) != null:
 				indashattackzone.erase(i)
 				i.get_parent().health -= damage
 				i.get_parent().get_node("effects").play("blink")
@@ -280,6 +281,7 @@ func _on_dash_attack_zone_area_entered(area: Area2D) -> void:
 
 func _on_ability_cooldown_timeout() -> void:
 	abilitycdprogress.visible = false
+	$AbilityCDSound.play()
 
 
 func _on_soul_fragment_area_entered(_area: Area2D) -> void:

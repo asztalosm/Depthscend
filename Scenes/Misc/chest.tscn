@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://s1qmh0m1std2"]
+[gd_scene load_steps=17 format=3 uid="uid://s1qmh0m1std2"]
 
 [ext_resource type="Script" path="res://Scenes/Maps/chest.gd" id="1_4bogj"]
 [ext_resource type="Texture2D" uid="uid://bsctk1k4l0bgg" path="res://Textures/chest_front.png" id="2_2m0nn"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://Scenes/Misc/pickupcharm.gd" id="4_4qjqb"]
 [ext_resource type="Shader" uid="uid://by2nkcd3qher7" path="res://Shaders/charmfloat.tres" id="5_xjwqx"]
 [ext_resource type="Texture2D" uid="uid://wuxc0mq1sgpu" path="res://Sprites/character3.png" id="7_qkppi"]
+[ext_resource type="AudioStream" uid="uid://cw3tlilpowwul" path="res://Sounds/abilitypickup.wav" id="8_daj8x"]
 [ext_resource type="Texture2D" uid="uid://dt3h5o74o6pmy" path="res://Textures/checkmark.png" id="8_op0oq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_i3sba"]
@@ -127,6 +128,9 @@ theme_override_fonts/font = SubResource("SystemFont_ko703")
 theme_override_font_sizes/font_size = 10
 text = "E"
 horizontal_alignment = 1
+
+[node name="AbilityPickup" type="AudioStreamPlayer2D" parent="Charm"]
+stream = ExtResource("8_daj8x")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_area_exited"]

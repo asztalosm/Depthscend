@@ -156,9 +156,9 @@ func _physics_process(_delta: float) -> void:
 		
 		
 		if self.get_meta("active"):
-			attackcooldown.wait_time = 1.5
+			attackcooldown.wait_time = 2.5
 		else:
-			attackcooldown.wait_time = 2.25
+			attackcooldown.wait_time = 3
 	else: #megöli a játékost
 		visible = false
 		set_meta("active", false)
@@ -192,3 +192,4 @@ func _on_ground_slam_hitbox_area_exited(area: Area2D) -> void:
 
 func _on_ability_cooldown_timeout() -> void:
 	abilitychargeprogress.visible = false
+	$AbilityCDSound.play()

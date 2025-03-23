@@ -24,6 +24,7 @@ func _input(event: InputEvent) -> void:
 			elif charm[0] == currentcharm:
 				charm[1] = true
 		currentcharm = oldcharm
+		$AbilityPickup.play()
 		if firstpickup:
 			firstpickup = false
 			queue_free()

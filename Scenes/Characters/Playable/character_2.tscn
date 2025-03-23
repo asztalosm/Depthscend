@@ -1,4 +1,4 @@
-[gd_scene load_steps=85 format=3 uid="uid://d1maoccsy4oe4"]
+[gd_scene load_steps=86 format=3 uid="uid://d1maoccsy4oe4"]
 
 [ext_resource type="Script" path="res://Scenes/Characters/Playable/Scripts/character_2.gd" id="1_asb81"]
 [ext_resource type="Texture2D" uid="uid://d4nvqwhn6dsuh" path="res://Textures/attackcooldown.png" id="2_3xrjg"]
@@ -28,6 +28,7 @@
 [ext_resource type="Texture2D" uid="uid://b16t6mxjmciop" path="res://Sprites/rouge_backright_walk.png" id="23_fxudk"]
 [ext_resource type="Texture2D" uid="uid://tl5qh1tr5xl3" path="res://Sprites/rouge_right_walk.png" id="24_xquvi"]
 [ext_resource type="Texture2D" uid="uid://b0l8kbxg3xuct" path="res://Sprites/rouge_frontright_walk.png" id="25_r404x"]
+[ext_resource type="AudioStream" uid="uid://5fih6mdkf45i" path="res://Sounds/abilitycooled.wav" id="29_fxekj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oin8j"]
 size = Vector2(54, 118)
@@ -540,6 +541,8 @@ metadata/isDead = false
 
 [node name="AttackSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("2_nmmxc")
+volume_db = 11.709
+pitch_scale = 0.65
 
 [node name="Dash" type="Node2D" parent="."]
 visible = false
@@ -704,6 +707,9 @@ texture = ExtResource("15_yacxb")
 libraries = {
 "": SubResource("AnimationLibrary_vllgi")
 }
+
+[node name="AbilityCDSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("29_fxekj")
 
 [connection signal="area_entered" from="Dash/DashAttackZone" to="." method="_on_dash_attack_zone_area_entered"]
 [connection signal="timeout" from="AttackCooldown" to="." method="_on_attack_cooldown_timeout"]

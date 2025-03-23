@@ -13,6 +13,7 @@ var projectiletween : Tween
 var nearenemy = []
 var attackchargetime = 2
 var inexplosionarea = []
+var exploded = true
 @onready var texture = $TextureRect
 @onready var enemyfinder = $EnemyFinder
 @onready var charging = get_parent().charging
@@ -70,6 +71,7 @@ func setvariables():
 	if projectiletween != null:
 		projectiletween.kill() #lereseteli a projectiletweent azzal, hogy mindig megöli
 	if charging: #elengedésnél megadja a projectilenak a változókat
+		exploded = false
 		nearenemy.clear()
 		position = Vector2(0,-60)
 		inattackzone.clear()
@@ -100,13 +102,17 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		inattackzone.append(area.get_parent())
 		enemyfinder.monitoring = true
 	if get_parent().charms[2][1]: #robbanásnál damage, onhit damaget nem használja
-		$ExplosionArea/PointLight2D.visible = true
-		inattackzone.clear()
-		for enemies in inexplosionarea:
-			if enemies.cantakedamage and active:
-				enemies.health -= damage
-		await get_tree().create_timer(0.2).timeout
-		$ExplosionArea/PointLight2D.visible = false
+		if !exploded:
+			inattackzone.clear()
+			for enemies in inexplosionarea:
+				if enemies.cantakedamage:
+					enemies.health -= damage
+					enemies.get_node("effects").play("blink")
+			get_parent().get_node("ExplosionAnimation").play("default")
+			get_parent().get_node("ExplosionAnimation").global_position = global_position
+			get_parent().get_node("ExplosionAnimation").scale = Vector2(3.88, 3.88) + scale
+			$ExplosionArea/AudioStreamPlayer2D.play()
+		exploded = true
 	elif get_parent().charms[1][1]: #enemyt hozzáad az attackzonehoz
 		inattackzone.append(area.get_parent())
 		lightningcooldown.start()
@@ -115,6 +121,7 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		for enemies in inattackzone: #ricochet és sima attack damage
 			inattackzone.erase(enemies)
 			nearenemy.erase(enemies)
+			$ProjectileHit.play()
 			if enemies.cantakedamage and active:
 				enemies.health -= damage
 	if bounces == 0: #ha már nem tud többet pattanni a projectile akkor kiszedi
@@ -175,6 +182,7 @@ func _on_ball_lightning_cooldown_timeout() -> void:
 		arc.rotation = (global_position.angle_to_point(enemies.global_position)+89.65)
 		if enemies.cantakedamage == true:
 			enemies.health -= damage
+		$ProjectileHit.play()
 	await get_tree().create_timer(0.2).timeout
 	for elements in $Area2D.get_children():
 		if elements.name.contains("balltexture"):
