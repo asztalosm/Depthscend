@@ -232,7 +232,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ed2k3"]
-size = Vector2(39, 116)
+size = Vector2(28, 89)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ssact"]
 atlas = ExtResource("3_5d4dj")
@@ -650,16 +650,17 @@ visible = false
 position = Vector2(0, -26)
 collision_layer = 0
 collision_mask = 256
-monitoring = false
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SwordHitbox"]
-position = Vector2(0, -58)
+position = Vector2(0, -44.5)
 shape = SubResource("RectangleShape2D_ed2k3")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SwordHitbox/CollisionShape2D"]
 scale = Vector2(2.5, 3.625)
 sprite_frames = SubResource("SpriteFrames_540r5")
+frame = 10
+frame_progress = 1.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_fjqyd")
@@ -715,5 +716,7 @@ stream = ExtResource("29_fxekj")
 [connection signal="timeout" from="AttackCooldown" to="." method="_on_attack_cooldown_timeout"]
 [connection signal="area_entered" from="AutoAttackRange" to="." method="_on_auto_attack_range_area_entered"]
 [connection signal="area_exited" from="AutoAttackRange" to="." method="_on_auto_attack_range_area_exited"]
+[connection signal="area_entered" from="SwordHitbox" to="." method="_on_sword_hitbox_area_entered"]
+[connection signal="area_exited" from="SwordHitbox" to="." method="_on_sword_hitbox_area_exited"]
 [connection signal="timeout" from="AbilityCooldown" to="." method="_on_ability_cooldown_timeout"]
 [connection signal="area_entered" from="SoulFragment" to="SoulFragment" method="_on_area_entered"]

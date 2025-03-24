@@ -98,7 +98,7 @@ func _input(event):
 		attackcharge.value = 0
 		attackprogress.value = 0
 		
-	if event.is_action_released("rclick") and get_meta("active") and not get_meta("isDead") and attackcharge.visible and !attacked:
+	if event.is_action_released("rclick") and get_meta("active") and (not get_meta("isDead")) and attackcharge.visible and !attacked:
 		if attackcharge.value == 100 and charms[0][1] and abilitychargeprogress.visible == false: #max charged attack
 			groundslam()
 			
@@ -123,8 +123,6 @@ func _input(event):
 	if !self.get_meta("active"):
 		charging = false
 		attackcharge.visible = false
-		attacked = false
-		groundslamhitbox.visible = false
 
 
 
@@ -157,7 +155,7 @@ func _physics_process(_delta: float) -> void:
 		
 		if self.get_meta("active"):
 			attackcooldown.wait_time = 2.5
-		else:
+		elif not get_meta("active"):
 			attackcooldown.wait_time = 3
 	else: #megöli a játékost
 		visible = false

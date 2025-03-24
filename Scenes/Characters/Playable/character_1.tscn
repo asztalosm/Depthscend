@@ -647,7 +647,7 @@ position = Vector2(13, -19)
 shape = SubResource("CircleShape2D_hk48o")
 
 [node name="AttackCooldown" type="Timer" parent="."]
-wait_time = 2.25
+wait_time = 2.5
 autostart = true
 
 [node name="SwordHitbox" type="Area2D" parent="."]

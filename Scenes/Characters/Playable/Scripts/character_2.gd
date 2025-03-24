@@ -34,6 +34,7 @@ extends CharacterBody2D
 @onready var abilitycdprogress = $AbilityChargeProgress
 @onready var soulfragment = $SoulFragment
 
+var autoattackzone = []
 var target = self.position
 var inattackzone = []
 var indashattackzone = []
@@ -263,10 +264,10 @@ func _on_attack_cooldown_timeout():
 	# 	i.get_parent().health -= 2
 
 func _on_auto_attack_range_area_entered(area: Area2D) -> void: #attackrangeben lévő enemyk sebzése
-	inattackzone.append(area)
+	autoattackzone.append(area)
 
 func _on_auto_attack_range_area_exited(area: Area2D) -> void:
-	inattackzone.erase(area)
+	autoattackzone.erase(area)
 
 
 func _on_dash_attack_zone_area_entered(area: Area2D) -> void:
@@ -286,3 +287,11 @@ func _on_ability_cooldown_timeout() -> void:
 
 func _on_soul_fragment_area_entered(_area: Area2D) -> void:
 	pass # Replace with function body.
+
+
+func _on_sword_hitbox_area_entered(area: Area2D) -> void:
+	inattackzone.append(area)
+
+
+func _on_sword_hitbox_area_exited(area: Area2D) -> void:
+	inattackzone.erase(area)

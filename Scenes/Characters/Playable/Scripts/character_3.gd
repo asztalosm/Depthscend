@@ -17,7 +17,7 @@ extends CharacterBody2D
 @export var charms = [
 	["hasricochet", false, load("res://Textures/Ricochet.png")],
 	["hasballlightning", false, load("res://Textures/Balllightning.png")],
-	["hasexplosionorb", true, load("res://Textures/ExplosionOrb.png")],
+	["hasexplosionorb", false, load("res://Textures/ExplosionOrb.png")],
 ]
 
 #változó ami akkor jön létre amikor létrejön a karakter

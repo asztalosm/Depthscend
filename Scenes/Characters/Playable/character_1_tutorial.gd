@@ -157,8 +157,6 @@ func _input(event):
 		if !self.get_meta("active"): #resets the characters attack progress when the player changes characters
 			charging = false
 			attackcharge.visible = false
-			attacked = false
-			groundslamhitbox.visible = false
 func _physics_process(_delta: float) -> void:
 	velocity = Vector2.ZERO
 	_get_input()
@@ -188,10 +186,10 @@ func _physics_process(_delta: float) -> void:
 		if charging:
 			attackcharge.value += 0.5
 		
-		if self.get_meta("active") and !attacked:
-			attackcooldown.wait_time = 1.5
-		elif !self.get_meta("active") and !attacked:
-			attackcooldown.wait_time = 2.25
+		if self.get_meta("active"):
+			attackcooldown.wait_time = 2.5
+		elif !self.get_meta("active"):
+			attackcooldown.wait_time = 3
 	else: #megöli a játékost
 		visible = false
 		set_meta("active", false)
@@ -202,6 +200,7 @@ func _physics_process(_delta: float) -> void:
 
 func _on_attack_cooldown_timeout():
 	attacked = false
+	print(attacked)
 
 func _on_auto_attack_range_area_entered(_area: Area2D) -> void: #attackrangeben lévő enemyk sebzése
 	pass
