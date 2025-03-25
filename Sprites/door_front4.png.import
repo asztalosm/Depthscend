@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cngyj14vj7dp3"
-path="res://.godot/imported/healthbar.png-9803533a87ed13018d2a918b435f2010.ctex"
+uid="uid://bfpmmqnoqujd4"
+path="res://.godot/imported/door_front4.png-39cad1ee264cfb917b2d4fd548e697e8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/healthbar.png"
-dest_files=["res://.godot/imported/healthbar.png-9803533a87ed13018d2a918b435f2010.ctex"]
+source_file="res://Sprites/door_front4.png"
+dest_files=["res://.godot/imported/door_front4.png-39cad1ee264cfb917b2d4fd548e697e8.ctex"]
 
 [params]
 

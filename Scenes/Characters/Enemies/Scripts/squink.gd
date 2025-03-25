@@ -13,6 +13,8 @@ var InExplosionRadius = []
 @onready var hudhealthlabel = $Health/Label
 @export var cantakedamage = true
 
+func gettargetpos(target):
+	navagent.target_position = target.global_position
 func _on_detection_area_entered(area: Area2D) -> void:
 	if area.get_parent().name == "character1" and notTargeting or area.get_parent().name == "character2" and notTargeting or area.get_parent().name == "character3" and notTargeting: # csak abban az esetben kezd el követni JÁTÉKOST ha már nem követ egyet.
 		notTargeting = false
@@ -23,8 +25,6 @@ func _on_detection_area_entered(area: Area2D) -> void:
 	else:
 		pass
 
-func gettargetpos(target):
-	navagent.target_position = target.position
 
 
 func _process(_delta: float) -> void:

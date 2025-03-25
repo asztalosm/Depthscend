@@ -15,8 +15,9 @@ extends CharacterBody2D
 ]
 
 @export var charms = [
-	["hasdashcharm", true, load("res://Textures/Dash.png")],
-	["hassoultearcharm", false, load("res://Textures/Soultear.png")]
+	["hasdashcharm", false, load("res://Textures/Dash.png")],
+	["hassoultearcharm", false, load("res://Textures/Soultear.png")],
+	["none", true, null]
 ]
 
 #változó ami akkor jön létre amikor létrejön a karakter
@@ -225,9 +226,9 @@ func _physics_process(_delta: float) -> void:
 				var angletocursor = rad_to_deg(self.get_angle_to(navagent.get_next_path_position())) - 90
 				if angletocursor < 0:
 					angletocursor += 360
-				currentsprite = round(angletocursor / 45)
+				currentsprite = roundi(angletocursor / 45)
 		if velocity != Vector2(0,0):
-			animatedsprite.play(str("walk",currentsprite))
+			animatedsprite.play(str("walk", int(currentsprite)))
 		else:
 			animatedsprite.stop()
 		move_and_slide()

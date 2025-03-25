@@ -1,6 +1,6 @@
 [gd_scene load_steps=24 format=3 uid="uid://8ng0rc5wbh4s"]
 
-[ext_resource type="Script" path="res://Scenes/Misc/gui.gd" id="1_an32m"]
+[ext_resource type="Script" uid="uid://dsslsq04em7la" path="res://Scenes/Misc/gui.gd" id="1_an32m"]
 [ext_resource type="Texture2D" uid="uid://bcc8v1uvhrgct" path="res://Textures/healthbarunder.svg" id="1_svkje"]
 [ext_resource type="Texture2D" uid="uid://bvr7ya6vawx5l" path="res://Textures/healthbarover.svg" id="2_ss4vm"]
 [ext_resource type="Texture2D" uid="uid://bwhgb085kx00b" path="res://Textures/healthbar.svg" id="3_te1u5"]

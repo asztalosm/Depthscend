@@ -27,7 +27,7 @@ func _input(event: InputEvent) -> void:
 	for i in range(characters.size()):
 		if event.is_action_pressed("Number %d Character Selection" % (i + 1)) and get("giveaccesstochar%d" % (i+1)):
 			if characters[i].health <= 0:
-				print("character already dead")
+				pass #character already dead
 			else:
 				secondtaken = false
 				globalcurrentchar = i

@@ -1,8 +1,8 @@
 [gd_scene load_steps=10 format=3 uid="uid://dc3n7eliuu17r"]
 
-[ext_resource type="Script" path="res://Scenes/Characters/Enemies/projectile.gd" id="1_nvuu8"]
+[ext_resource type="Script" uid="uid://bsdhpd5kva1vo" path="res://Scenes/Characters/Enemies/projectile.gd" id="1_nvuu8"]
 [ext_resource type="Texture2D" uid="uid://gw71hmjpo5wg" path="res://Sprites/bobprojectile.png" id="2_7vqqx"]
-[ext_resource type="Shader" path="res://Shaders/effects.gdshader" id="2_r45cg"]
+[ext_resource type="Shader" uid="uid://ctk76iejukosx" path="res://Shaders/effects.gdshader" id="2_r45cg"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_j251q"]
 radius = 13.0
@@ -48,8 +48,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_o7m65"]
 _data = {
-"RESET": SubResource("Animation_w5suf"),
-"blink": SubResource("Animation_hauag")
+&"RESET": SubResource("Animation_w5suf"),
+&"blink": SubResource("Animation_hauag")
 }
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
@@ -74,7 +74,7 @@ shape = SubResource("CircleShape2D_gq8lg")
 
 [node name="effects" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_o7m65")
+&"": SubResource("AnimationLibrary_o7m65")
 }
 
 [node name="Hitbox" type="Area2D" parent="."]

@@ -16,7 +16,7 @@ var currentsprite = 0
 var attackedenemy = null
 
 func gettargetpos(target):
-	navagent.target_position = target.position
+	navagent.target_position = target.global_position
 
 func _on_detection_area_entered(area: Area2D) -> void: #másolt detection script squinkről
 	if area.get_parent().name == "character1" and notTargeting or area.get_parent().name == "character2" and notTargeting or area.get_parent().name == "character3" and notTargeting: # csak abban az esetben kezd el követni JÁTÉKOST ha már nem követ egyet.
@@ -49,7 +49,7 @@ func _process(_delta: float) -> void:
 					angletocursor += 360 
 				currentsprite = round(angletocursor / 45) #all characters have a walk8 animation that matches up with the walk0 animation so the debugger stops bitching
 			if velocity != Vector2(0,0): #could only manage this buggy code :sob:
-				animatedsprite.play(str("walk",currentsprite))
+				animatedsprite.play(str("walk",int(currentsprite)))
 			else:
 				animatedsprite.stop()
 			move_and_slide()

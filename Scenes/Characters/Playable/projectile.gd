@@ -121,8 +121,8 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		for enemies in inattackzone: #ricochet és sima attack damage
 			inattackzone.erase(enemies)
 			nearenemy.erase(enemies)
-			$ProjectileHit.play()
 			if enemies.cantakedamage and active:
+				$ProjectileHit.play()
 				enemies.health -= damage
 	if bounces == 0: #ha már nem tud többet pattanni a projectile akkor kiszedi
 		active = false
@@ -182,7 +182,7 @@ func _on_ball_lightning_cooldown_timeout() -> void:
 		arc.rotation = (global_position.angle_to_point(enemies.global_position)+89.65)
 		if enemies.cantakedamage == true:
 			enemies.health -= damage
-		$ProjectileHit.play()
+			$ProjectileHit.play()
 	await get_tree().create_timer(0.2).timeout
 	for elements in $Area2D.get_children():
 		if elements.name.contains("balltexture"):

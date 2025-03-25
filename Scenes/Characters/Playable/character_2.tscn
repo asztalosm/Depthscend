@@ -1,13 +1,13 @@
 [gd_scene load_steps=86 format=3 uid="uid://d1maoccsy4oe4"]
 
-[ext_resource type="Script" path="res://Scenes/Characters/Playable/Scripts/character_2.gd" id="1_asb81"]
+[ext_resource type="Script" uid="uid://bwch2vhixpiuf" path="res://Scenes/Characters/Playable/Scripts/character_2.gd" id="1_asb81"]
 [ext_resource type="Texture2D" uid="uid://d4nvqwhn6dsuh" path="res://Textures/attackcooldown.png" id="2_3xrjg"]
 [ext_resource type="AudioStream" uid="uid://bkwu6clsloxlx" path="res://Sounds/character2attack.wav" id="2_nmmxc"]
 [ext_resource type="Texture2D" uid="uid://b7ydd1qrc3bft" path="res://Sprites/spear-charge-Sheet.png" id="3_5d4dj"]
 [ext_resource type="Texture2D" uid="uid://cik58vwvyde7r" path="res://Sprites/dashguide.png" id="5_kgrup"]
 [ext_resource type="Texture2D" uid="uid://biue221d7v66s" path="res://Textures/attackchargeunder.png" id="6_u1dnc"]
 [ext_resource type="Texture2D" uid="uid://by5q56km0anja" path="res://Sprites/rouge_front.png" id="7_5o02e"]
-[ext_resource type="Shader" path="res://Shaders/effects.gdshader" id="7_go88s"]
+[ext_resource type="Shader" uid="uid://ctk76iejukosx" path="res://Shaders/effects.gdshader" id="7_go88s"]
 [ext_resource type="Texture2D" uid="uid://dypdy82cmtx1t" path="res://Textures/attackchargeprogress.png" id="7_qu5eb"]
 [ext_resource type="Texture2D" uid="uid://cl7ou7hyun1el" path="res://Sprites/soultearanim.png" id="7_uajv5"]
 [ext_resource type="Texture2D" uid="uid://dke4boaohivft" path="res://Sprites/rouge_frontleft.png" id="8_3r6xr"]
@@ -17,7 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://t3nkdj3n2rvx" path="res://Sprites/rouge_backright.png" id="12_uh1fu"]
 [ext_resource type="Texture2D" uid="uid://ryshjrsjoni4" path="res://Sprites/rouge_right.png" id="13_1yvde"]
 [ext_resource type="Texture2D" uid="uid://8mxnghu28uj7" path="res://Sprites/rouge_frontright.png" id="14_b12px"]
-[ext_resource type="Script" path="res://Scenes/Characters/Playable/soul_fragment.gd" id="15_qcm6w"]
+[ext_resource type="Script" uid="uid://doyrdfupjndkf" path="res://Scenes/Characters/Playable/soul_fragment.gd" id="15_qcm6w"]
 [ext_resource type="Texture2D" uid="uid://b7go24vkihaqt" path="res://Sprites/soul.png" id="15_yacxb"]
 [ext_resource type="Shader" uid="uid://ddt0t5tgg4xl6" path="res://Scenes/Characters/Playable/character_2.tres" id="16_ranp2"]
 [ext_resource type="Texture2D" uid="uid://uw4p43cihf4x" path="res://Sprites/rouge_front_walk.png" id="18_lrq3u"]
@@ -526,9 +526,9 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vllgi"]
 _data = {
-"RESET": SubResource("Animation_8qaa3"),
-"blink": SubResource("Animation_s33vr"),
-"heal": SubResource("Animation_h2or6")
+&"RESET": SubResource("Animation_8qaa3"),
+&"blink": SubResource("Animation_s33vr"),
+&"heal": SubResource("Animation_h2or6")
 }
 
 [node name="character2" type="CharacterBody2D"]
@@ -706,7 +706,7 @@ texture = ExtResource("15_yacxb")
 
 [node name="effects" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_vllgi")
+&"": SubResource("AnimationLibrary_vllgi")
 }
 
 [node name="AbilityCDSound" type="AudioStreamPlayer2D" parent="."]

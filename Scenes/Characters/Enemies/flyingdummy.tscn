@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bscgpo6p65vlf"]
 
-[ext_resource type="Script" path="res://Scenes/Characters/Enemies/flyingdummy.gd" id="1_7vh8c"]
+[ext_resource type="Script" uid="uid://c0i84xei8o186" path="res://Scenes/Characters/Enemies/flyingdummy.gd" id="1_7vh8c"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_7p2mr"]
 

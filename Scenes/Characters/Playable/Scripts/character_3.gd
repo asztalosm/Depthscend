@@ -18,6 +18,7 @@ extends CharacterBody2D
 	["hasricochet", false, load("res://Textures/Ricochet.png")],
 	["hasballlightning", false, load("res://Textures/Balllightning.png")],
 	["hasexplosionorb", false, load("res://Textures/ExplosionOrb.png")],
+	["none", true, null]
 ]
 
 #változó ami akkor jön létre amikor létrejön a karakter
@@ -111,10 +112,10 @@ func _physics_process(_delta: float) -> void:
 					angletocursor += 360 
 				currentsprite = round(angletocursor / 45)
 		if attacking:
-			animatedsprite.play(str("attack", currentsprite))
+			animatedsprite.play(str("attack", int(currentsprite)))
 		else:
 			if velocity != Vector2(0,0):
-				animatedsprite.play(str("walk",currentsprite))
+				animatedsprite.play(str("walk", int(currentsprite)))
 			else:
 				animatedsprite.stop()
 		move_and_slide()

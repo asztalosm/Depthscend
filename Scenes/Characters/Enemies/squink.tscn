@@ -1,8 +1,8 @@
 [gd_scene load_steps=17 format=3 uid="uid://dwou5g30xc3eq"]
 
 [ext_resource type="Texture2D" uid="uid://gg3633i0yga4" path="res://Sprites/squid.svg" id="1_allmh"]
-[ext_resource type="Shader" path="res://Shaders/effects.gdshader" id="2_5juat"]
-[ext_resource type="Script" path="res://Scenes/Characters/Enemies/Scripts/squink.gd" id="2_n5x0s"]
+[ext_resource type="Shader" uid="uid://ctk76iejukosx" path="res://Shaders/effects.gdshader" id="2_5juat"]
+[ext_resource type="Script" uid="uid://c5i7uq6i30xxk" path="res://Scenes/Characters/Enemies/Scripts/squink.gd" id="2_n5x0s"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4bsta"]
 
@@ -10,7 +10,7 @@
 radius = 98.9616
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xc4uj"]
-radius = 264.728
+radius = 226.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4ff36"]
 radius = 14.2222
@@ -96,8 +96,8 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ddo8h"]
 _data = {
-"RESET": SubResource("Animation_hwmvt"),
-"explosion": SubResource("Animation_6rlfv")
+&"RESET": SubResource("Animation_hwmvt"),
+&"explosion": SubResource("Animation_6rlfv")
 }
 
 [sub_resource type="Animation" id="Animation_pkxlb"]
@@ -151,9 +151,9 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_lgp4p"]
 _data = {
-"RESET": SubResource("Animation_pkxlb"),
-"blink": SubResource("Animation_np6yn"),
-"heal": SubResource("Animation_xgeui")
+&"RESET": SubResource("Animation_pkxlb"),
+&"blink": SubResource("Animation_np6yn"),
+&"heal": SubResource("Animation_xgeui")
 }
 
 [node name="squink" type="CharacterBody2D"]
@@ -161,6 +161,7 @@ material = SubResource("ShaderMaterial_4bsta")
 script = ExtResource("2_n5x0s")
 
 [node name="ExplosionSize" type="Area2D" parent="."]
+visible = false
 scale = Vector2(0.8, 0.8)
 collision_layer = 0
 collision_mask = 288
@@ -170,6 +171,7 @@ monitorable = false
 shape = SubResource("CircleShape2D_rgb5s")
 
 [node name="Detection" type="Area2D" parent="."]
+visible = false
 collision_layer = 32
 collision_mask = 32
 
@@ -179,6 +181,7 @@ shape = SubResource("CircleShape2D_xc4uj")
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 
 [node name="Hurtbox" type="Area2D" parent="."]
+visible = false
 collision_layer = 256
 collision_mask = 256
 
@@ -187,11 +190,13 @@ position = Vector2(2.26262, 0.323231)
 shape = SubResource("CapsuleShape2D_4ff36")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -32)
 shape = SubResource("CircleShape2D_sera8")
 disabled = true
 
 [node name="Sprite" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_e8fak")
+position = Vector2(0, -32)
 texture = ExtResource("1_allmh")
 
 [node name="Timer" type="Timer" parent="."]
@@ -203,8 +208,8 @@ visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_left = 1.0
+offset_top = -40.0
 offset_right = 40.0
-offset_bottom = 40.0
 
 [node name="HealthBar" type="ColorRect" parent="Health"]
 layout_mode = 0
@@ -230,12 +235,12 @@ vertical_alignment = 1
 
 [node name="explosioneffect" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_ddo8h")
+&"": SubResource("AnimationLibrary_ddo8h")
 }
 
 [node name="effects" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_lgp4p")
+&"": SubResource("AnimationLibrary_lgp4p")
 }
 
 [connection signal="area_entered" from="ExplosionSize" to="." method="_on_explosion_size_area_entered"]

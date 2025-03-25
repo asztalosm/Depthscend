@@ -1,8 +1,8 @@
 [gd_scene load_steps=44 format=3 uid="uid://wmlrnw0rfatv"]
 
-[ext_resource type="Script" path="res://Scenes/Characters/Enemies/cthulhu.gd" id="1_dq21f"]
+[ext_resource type="Script" uid="uid://p8mu7eriunl7" path="res://Scenes/Characters/Enemies/cthulhu.gd" id="1_dq21f"]
 [ext_resource type="Texture2D" uid="uid://p8w25ywevjq" path="res://Sprites/cthulhu.png" id="1_iujpr"]
-[ext_resource type="Shader" path="res://Shaders/effects.gdshader" id="2_4hdm5"]
+[ext_resource type="Shader" uid="uid://ctk76iejukosx" path="res://Shaders/effects.gdshader" id="2_4hdm5"]
 [ext_resource type="Texture2D" uid="uid://y1a1rhwkevwh" path="res://Sprites/claw-claw.png" id="4_3mceh"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g3e84"]
@@ -113,6 +113,7 @@ animations = [{
 }]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_r3w6s"]
+resource_local_to_scene = true
 shader = ExtResource("2_4hdm5")
 shader_parameter/shading_option = 0
 shader_parameter/opacitystrength = 1.0
@@ -342,9 +343,9 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_l64st"]
 _data = {
-"RESET": SubResource("Animation_b1p77"),
-"blink": SubResource("Animation_rcbg7"),
-"heal": SubResource("Animation_sm7oh")
+&"RESET": SubResource("Animation_b1p77"),
+&"blink": SubResource("Animation_rcbg7"),
+&"heal": SubResource("Animation_sm7oh")
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_e7gsm"]
@@ -368,10 +369,12 @@ sprite_frames = SubResource("SpriteFrames_e8j4t")
 animation = &"walk7"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(1, -24)
 shape = SubResource("SegmentShape2D_ghawl")
 
 [node name="Detection" type="Area2D" parent="."]
+visible = false
 position = Vector2(1, -24)
 collision_layer = 32
 collision_mask = 32
@@ -380,6 +383,7 @@ collision_mask = 32
 shape = SubResource("CircleShape2D_e7wee")
 
 [node name="Hurtbox" type="Area2D" parent="."]
+visible = false
 position = Vector2(1, -24)
 collision_layer = 256
 collision_mask = 256
@@ -391,6 +395,7 @@ shape = SubResource("CapsuleShape2D_ambuj")
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 
 [node name="Health" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_top = -40.0
@@ -424,13 +429,14 @@ autostart = true
 
 [node name="effects" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_l64st")
+&"": SubResource("AnimationLibrary_l64st")
 }
 
 [node name="AttackCooldown" type="Timer" parent="."]
 wait_time = 1.5
 
 [node name="Attackhitbox" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Attackhitbox"]
 position = Vector2(0, -24)

@@ -1,15 +1,15 @@
 [gd_scene load_steps=92 format=3 uid="uid://btd7uso6md01v"]
 
-[ext_resource type="Script" path="res://Scenes/Characters/Playable/Scripts/character_1.gd" id="1_myhxd"]
+[ext_resource type="Script" uid="uid://7aeva8y2c6rt" path="res://Scenes/Characters/Playable/Scripts/character_1.gd" id="1_myhxd"]
 [ext_resource type="Texture2D" uid="uid://d4nvqwhn6dsuh" path="res://Textures/attackcooldown.png" id="2_y8tvg"]
 [ext_resource type="Texture2D" uid="uid://nokjafjk0bbd" path="res://Sprites/attack_final.png" id="3_dvhru"]
-[ext_resource type="Shader" path="res://Shaders/effects.gdshader" id="5_jvxmf"]
+[ext_resource type="Shader" uid="uid://ctk76iejukosx" path="res://Shaders/effects.gdshader" id="5_jvxmf"]
 [ext_resource type="Texture2D" uid="uid://djx3qesarfxfu" path="res://Sprites/groundslam.png" id="5_lh3xn"]
 [ext_resource type="Texture2D" uid="uid://4riohputt54h" path="res://Sprites/ullyses_iv_360-Sheet.png" id="5_ndyxv"]
 [ext_resource type="Texture2D" uid="uid://biue221d7v66s" path="res://Textures/attackchargeunder.png" id="5_u5ujv"]
 [ext_resource type="Texture2D" uid="uid://dypdy82cmtx1t" path="res://Textures/attackchargeprogress.png" id="6_4brvo"]
 [ext_resource type="Shader" uid="uid://c3x8gbwvgla15" path="res://Scenes/Characters/Playable/character_1.tres" id="6_eykwd"]
-[ext_resource type="Shader" path="res://Shaders/tree.gdshader" id="10_7kfhh"]
+[ext_resource type="Shader" uid="uid://bxbosqnvlcubr" path="res://Shaders/tree.gdshader" id="10_7kfhh"]
 [ext_resource type="AudioStream" uid="uid://dlthod3trn4y3" path="res://Sounds/character1attack.wav" id="11_fges4"]
 [ext_resource type="Texture2D" uid="uid://cmiurt44k3hvr" path="res://Sprites/ullyses_iv_360_walk-Sheet-Sheet.png" id="11_i5fhj"]
 [ext_resource type="AudioStream" uid="uid://5fih6mdkf45i" path="res://Sounds/abilitycooled.wav" id="13_1rn3o"]
@@ -278,9 +278,9 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fa3gm"]
 _data = {
-"RESET": SubResource("Animation_lx6fq"),
-"blink": SubResource("Animation_hok48"),
-"heal": SubResource("Animation_aqe1c")
+&"RESET": SubResource("Animation_lx6fq"),
+&"blink": SubResource("Animation_hok48"),
+&"heal": SubResource("Animation_aqe1c")
 }
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ktryh"]
@@ -717,7 +717,7 @@ texture_progress = SubResource("GradientTexture2D_5qg78")
 
 [node name="effects" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_fa3gm")
+&"": SubResource("AnimationLibrary_fa3gm")
 }
 
 [node name="TextureRect" type="TextureRect" parent="."]

@@ -1,13 +1,13 @@
-[gd_scene load_steps=249 format=4 uid="uid://dmy87sdckqipc"]
+[gd_scene load_steps=248 format=4 uid="uid://dmy87sdckqipc"]
 
 [ext_resource type="PackedScene" uid="uid://btd7uso6md01v" path="res://Scenes/Characters/Playable/character_1.tscn" id="1_b33b2"]
 [ext_resource type="Shader" uid="uid://b66eiy20hh3vh" path="res://Scenes/Maps/noise.tres" id="1_cal8e"]
-[ext_resource type="Script" path="res://Scenes/Maps/tutorial.gd" id="1_e65p2"]
+[ext_resource type="Script" uid="uid://cv3i571g77jw8" path="res://Scenes/Maps/tutorial.gd" id="1_e65p2"]
 [ext_resource type="Texture2D" uid="uid://ildhrkbx6tji" path="res://Tilemaps/biggergrass.png" id="1_ew6qg"]
 [ext_resource type="Shader" uid="uid://3oagvw6m6doy" path="res://Shaders/tutorialbackcgroundnoiseshader.tres" id="1_nbv70"]
-[ext_resource type="Script" path="res://Scenes/Maps/tutorialcharactersrcipt.gd" id="1_vyhsh"]
+[ext_resource type="Script" uid="uid://bpvkw6ks717ru" path="res://Scenes/Maps/tutorialcharactersrcipt.gd" id="1_vyhsh"]
 [ext_resource type="PackedScene" uid="uid://d1maoccsy4oe4" path="res://Scenes/Characters/Playable/character_2.tscn" id="2_dsrt2"]
-[ext_resource type="Script" path="res://Scenes/Maps/door_button.gd" id="2_sk583"]
+[ext_resource type="Script" uid="uid://1g1gqy4nbpm2" path="res://Scenes/Maps/door_button.gd" id="2_sk583"]
 [ext_resource type="Texture2D" uid="uid://bd4mmglo686qx" path="res://Tilemaps/grass.png" id="2_wpyr7"]
 [ext_resource type="Texture2D" uid="uid://boef60del00cv" path="res://Textures/mousetemplate.png" id="3_51r3y"]
 [ext_resource type="Texture2D" uid="uid://bbt58ugi4nado" path="res://Tilemaps/cloud.png" id="3_eea3e"]
@@ -16,7 +16,7 @@
 [ext_resource type="Shader" uid="uid://m6hnxalkkm8x" path="res://Shaders/dirtrock.tres" id="4_ecsdx"]
 [ext_resource type="Texture2D" uid="uid://yqgdy1vj46gv" path="res://Tilemaps/rocks.png" id="4_hbg3a"]
 [ext_resource type="Texture2D" uid="uid://bcc8v1uvhrgct" path="res://Textures/healthbarunder.svg" id="4_lbvnx"]
-[ext_resource type="Script" path="res://Scenes/Maps/attack_checkpoint.gd" id="5_efhwq"]
+[ext_resource type="Script" uid="uid://by4dkh4vd4tj6" path="res://Scenes/Maps/attack_checkpoint.gd" id="5_efhwq"]
 [ext_resource type="Texture2D" uid="uid://bvr7ya6vawx5l" path="res://Textures/healthbarover.svg" id="5_l66tr"]
 [ext_resource type="Texture2D" uid="uid://c3hkb2uu36hcr" path="res://Tilemaps/dirtdecor.png" id="5_q3dmp"]
 [ext_resource type="Texture2D" uid="uid://bwhgb085kx00b" path="res://Textures/healthbar.svg" id="6_bpyow"]
@@ -24,29 +24,29 @@
 [ext_resource type="PackedScene" uid="uid://8gie7rovk5r1" path="res://Scenes/Characters/Enemies/AttackDummy.tscn" id="6_u345b"]
 [ext_resource type="Texture2D" uid="uid://dpw82p20srsto" path="res://Textures/skull2.png" id="7_7i6x4"]
 [ext_resource type="Texture2D" uid="uid://vb8psbxualn" path="res://Textures/w.png" id="7_d4mix"]
-[ext_resource type="Script" path="res://Scenes/Maps/wasdtutorial.gd" id="7_k7ij4"]
-[ext_resource type="Script" path="res://Scenes/Characters/Enemies/Scripts/attack_dummy_tutorial.gd" id="7_qudgy"]
+[ext_resource type="Script" uid="uid://cvm1o0y205uo3" path="res://Scenes/Maps/wasdtutorial.gd" id="7_k7ij4"]
+[ext_resource type="Script" uid="uid://cmqpajb7ll8me" path="res://Scenes/Characters/Enemies/Scripts/attack_dummy_tutorial.gd" id="7_qudgy"]
 [ext_resource type="Texture2D" uid="uid://cwxt1kwbmc163" path="res://Tilemaps/bush_2.png" id="8_443j1"]
 [ext_resource type="Texture2D" uid="uid://g1uefyucgy8p" path="res://Tilemaps/grass_2withanimations.png" id="8_1773p"]
 [ext_resource type="Texture2D" uid="uid://h6xnqki51255" path="res://Textures/a.png" id="8_chy54"]
 [ext_resource type="Texture2D" uid="uid://bbcbsi1qiesb1" path="res://Textures/mouserclick.png" id="8_xrkjf"]
-[ext_resource type="Script" path="res://Scenes/Characters/Enemies/charged_attack_dummy.gd" id="9_2y1sx"]
+[ext_resource type="Script" uid="uid://xfg716kq4fqb" path="res://Scenes/Characters/Enemies/charged_attack_dummy.gd" id="9_2y1sx"]
 [ext_resource type="Texture2D" uid="uid://yeb2fkwtuy0m" path="res://Tilemaps/stick.png" id="9_7n4xj"]
 [ext_resource type="Texture2D" uid="uid://dqn3q0he12y12" path="res://Textures/s.png" id="9_b2ajj"]
 [ext_resource type="Texture2D" uid="uid://2tbnoe767sks" path="res://Tilemaps/bush_3.png" id="9_d3etm"]
 [ext_resource type="Texture2D" uid="uid://d37b02v7olwwl" path="res://Tilemaps/bigrocks.png" id="9_ekvww"]
-[ext_resource type="Script" path="res://Scenes/Maps/charged_attack_checkpoint.gd" id="9_y0pcb"]
+[ext_resource type="Script" uid="uid://bb7eg4rfavg2w" path="res://Scenes/Maps/charged_attack_checkpoint.gd" id="9_y0pcb"]
 [ext_resource type="Texture2D" uid="uid://cqejealbaxbk6" path="res://Tilemaps/flower.png" id="10_f6vaj"]
 [ext_resource type="Texture2D" uid="uid://b3txv36i808di" path="res://Textures/d.png" id="10_p6ob4"]
 [ext_resource type="Texture2D" uid="uid://bag8m30fvmhdk" path="res://Tilemaps/rock_3.png" id="10_tgqho"]
 [ext_resource type="Texture2D" uid="uid://vs0454hk7od2" path="res://Tilemaps/dirtpatch.png" id="11_8ni6w"]
-[ext_resource type="Script" path="res://Scenes/Maps/charge_mouse.gd" id="11_neca6"]
-[ext_resource type="Script" path="res://Scenes/Characters/Enemies/groundslam_attack_dummy.gd" id="12_dupcw"]
+[ext_resource type="Script" uid="uid://k4fyrmf22h" path="res://Scenes/Maps/charge_mouse.gd" id="11_neca6"]
+[ext_resource type="Script" uid="uid://ciwghf3qfqsbh" path="res://Scenes/Characters/Enemies/groundslam_attack_dummy.gd" id="12_dupcw"]
 [ext_resource type="Texture2D" uid="uid://b2h47fim7u08f" path="res://Tilemaps/tree.png" id="12_s3uae"]
 [ext_resource type="Texture2D" uid="uid://doau3keggigdw" path="res://Tilemaps/tree_2.png" id="13_8x6ic"]
-[ext_resource type="Script" path="res://Scenes/Maps/ground_slam_attack_checkpoint.gd" id="13_e8i4s"]
+[ext_resource type="Script" uid="uid://c6pnhah10ngg" path="res://Scenes/Maps/ground_slam_attack_checkpoint.gd" id="13_e8i4s"]
 [ext_resource type="Texture2D" uid="uid://bcnq7oxt0o1qt" path="res://Tilemaps/bush_1.png" id="13_ew1v7"]
-[ext_resource type="Script" path="res://Scenes/Maps/chest_tutorial.gd" id="14_g1t3j"]
+[ext_resource type="Script" uid="uid://c1stoakoeeyfv" path="res://Scenes/Maps/chest_tutorial.gd" id="14_g1t3j"]
 [ext_resource type="Texture2D" uid="uid://bsctk1k4l0bgg" path="res://Textures/chest_front.png" id="14_gtwgo"]
 [ext_resource type="Texture2D" uid="uid://b4ir67q8r7f2c" path="res://Tilemaps/tree_3.png" id="14_xa5g3"]
 [ext_resource type="Texture2D" uid="uid://dt2ulu6e2bb6q" path="res://Tilemaps/labirintusvirag.png" id="15_plo7m"]
@@ -55,11 +55,11 @@
 [ext_resource type="Texture2D" uid="uid://dd5ovhv0axtr1" path="res://Textures/e.png" id="16_yfapx"]
 [ext_resource type="Texture2D" uid="uid://cgync2xtajplj" path="res://Tilemaps/bridge.png" id="17_55vi1"]
 [ext_resource type="Texture2D" uid="uid://bfuuy8pdojpr5" path="res://Textures/mousechargedfinished.png" id="17_278mv"]
-[ext_resource type="Script" path="res://Scenes/Maps/more_characters_checkpoint.gd" id="19_r4ry6"]
+[ext_resource type="Script" uid="uid://c2h6jhoslsobu" path="res://Scenes/Maps/more_characters_checkpoint.gd" id="19_r4ry6"]
 [ext_resource type="Texture2D" uid="uid://c477o0t560axk" path="res://Tilemaps/rockbridge1.png" id="20_nt5ee"]
 [ext_resource type="Texture2D" uid="uid://1dlnx0an8gtd" path="res://Tilemaps/tree_5.png" id="24_cfivd"]
 [ext_resource type="Texture2D" uid="uid://0o3te3hqfq40" path="res://Tilemaps/brickfence.png" id="28_uvluj"]
-[ext_resource type="Script" path="res://Scenes/Maps/brickwall.gd" id="29_jew8n"]
+[ext_resource type="Script" uid="uid://0iu2phj0kxbx" path="res://Scenes/Maps/brickwall.gd" id="29_jew8n"]
 [ext_resource type="Texture2D" uid="uid://bwvyv16uj7ut1" path="res://Tilemaps/logobstacle.png" id="30_85u7a"]
 [ext_resource type="Texture2D" uid="uid://cyb3hfflve1n0" path="res://Particles/Brick.png" id="30_yl78r"]
 [ext_resource type="AudioStream" uid="uid://clg13cvyj1kq1" path="res://Sounds/explosion.wav" id="31_grojx"]
@@ -76,22 +76,22 @@
 [ext_resource type="Shader" uid="uid://by2nkcd3qher7" path="res://Shaders/charmfloat.tres" id="51_5lgxv"]
 [ext_resource type="Texture2D" uid="uid://bpripxnbydrmd" path="res://Sprites/flyingdummy_1.png" id="52_740ca"]
 [ext_resource type="Texture2D" uid="uid://dtovxjj7o020v" path="res://Sprites/flyingdummy_2.png" id="52_kostg"]
-[ext_resource type="Script" path="res://Scenes/Characters/Playable/character_1_tutorial.gd" id="55_rfxec"]
-[ext_resource type="Script" path="res://Scenes/Maps/pillars.gd" id="56_8cy1m"]
+[ext_resource type="Script" uid="uid://1q371dioegyl" path="res://Scenes/Characters/Playable/character_1_tutorial.gd" id="55_rfxec"]
+[ext_resource type="Script" uid="uid://bf2fe0k64eye0" path="res://Scenes/Maps/pillars.gd" id="56_8cy1m"]
 [ext_resource type="Shader" uid="uid://dw4hg7lthlq0p" path="res://Scenes/Maps/tutorial.tres" id="57_tvs4v"]
 [ext_resource type="Texture2D" uid="uid://dhgxj48ubcxxn" path="res://Textures/pillarbase.png" id="58_0817j"]
-[ext_resource type="Script" path="res://Scenes/Maps/portal.gd" id="58_ly67o"]
+[ext_resource type="Script" uid="uid://bbusa5whilb2k" path="res://Scenes/Maps/portal.gd" id="58_ly67o"]
 [ext_resource type="Texture2D" uid="uid://bqxquigjo166k" path="res://Tilemaps/robkbridge2.png" id="58_spmq3"]
 [ext_resource type="Texture2D" uid="uid://di1d32v5dg2wf" path="res://Textures/pillar_orbs.png" id="59_7x8mw"]
-[ext_resource type="Script" path="res://Scenes/Maps/pillar.gd" id="59_dbqtb"]
+[ext_resource type="Script" uid="uid://dqjrvpo4brdb3" path="res://Scenes/Maps/pillar.gd" id="59_dbqtb"]
 [ext_resource type="Shader" uid="uid://u6qh2sdf4800" path="res://Shaders/tutorialportal.tres" id="59_mfjxo"]
-[ext_resource type="Shader" path="res://Shaders/effects.gdshader" id="60_1482c"]
+[ext_resource type="Shader" uid="uid://ctk76iejukosx" path="res://Shaders/effects.gdshader" id="60_1482c"]
 [ext_resource type="Texture2D" uid="uid://c1es3wfmk3ry3" path="res://Textures/3.png" id="60_cftou"]
 [ext_resource type="Texture2D" uid="uid://cfufu0luw4nrv" path="res://Textures/portal_bg.png" id="60_dsyyu"]
 [ext_resource type="Texture2D" uid="uid://de4oenn1fcbno" path="res://Textures/portal_gate.png" id="61_ctch4"]
 [ext_resource type="Texture2D" uid="uid://d2ks4pii4vhwk" path="res://Particles/portal.png" id="62_cc0wu"]
-[ext_resource type="Script" path="res://Scenes/Maps/use_all_chars.gd" id="62_natm8"]
-[ext_resource type="Script" path="res://Scenes/Maps/tutorialgui.gd" id="76_d68et"]
+[ext_resource type="Script" uid="uid://bi421gqpej6w6" path="res://Scenes/Maps/use_all_chars.gd" id="62_natm8"]
+[ext_resource type="Script" uid="uid://bkxhlwys18jqu" path="res://Scenes/Maps/tutorialgui.gd" id="76_d68et"]
 [ext_resource type="Texture2D" uid="uid://dw8qqu3rjubnt" path="res://Textures/logo_2.png" id="83_5ivg2"]
 [ext_resource type="Texture2D" uid="uid://byoffwtx3sneo" path="res://Textures/resume.png" id="84_k4pbj"]
 [ext_resource type="Texture2D" uid="uid://d33nvpbphprcr" path="res://Textures/resumeclicked.png" id="85_t72gk"]
@@ -610,15 +610,11 @@ texture_region_size = Vector2i(128, 128)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_p0uqd"]
 
-[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_n12yl"]
-polygon = PackedVector2Array(-2, -2, 2, -2, 2, 2, -2, 2)
-
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fs1sp"]
 texture = ExtResource("15_q00ju")
 texture_region_size = Vector2i(128, 128)
 0:0/0 = 0
 0:0/0/material = SubResource("ShaderMaterial_p0uqd")
-0:0/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_n12yl")
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-14, 24.5, 16.5, 25, 27, 33.5, 31.5, 46.5, 24, 54, 2, 65, -18, 58.5, -31, 52, -26.5, 36)
 
 [sub_resource type="TileSet" id="TileSet_8bs7h"]
@@ -771,6 +767,17 @@ gradient = SubResource("Gradient_1iqxd")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
+[sub_resource type="Gradient" id="Gradient_b71ha"]
+offsets = PackedFloat32Array(0.0853659, 0.138211, 0.195122)
+colors = PackedColorArray(0.806833, 0.39, 1, 0.556863, 0.863833, 0.57, 1, 0.117647, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_rn75d"]
+gradient = SubResource("Gradient_b71ha")
+width = 32
+height = 32
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
 [sub_resource type="Curve" id="Curve_xgqf0"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 2
@@ -789,17 +796,6 @@ linear_accel_max = 6.33
 alpha_curve = SubResource("CurveTexture_jr5jq")
 hue_variation_min = -2.23517e-08
 hue_variation_max = -2.23517e-08
-
-[sub_resource type="Gradient" id="Gradient_b71ha"]
-offsets = PackedFloat32Array(0.0853659, 0.138211, 0.195122)
-colors = PackedColorArray(0.806833, 0.39, 1, 0.556863, 0.863833, 0.57, 1, 0.117647, 1, 1, 1, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_rn75d"]
-gradient = SubResource("Gradient_b71ha")
-width = 32
-height = 32
-fill = 1
-fill_from = Vector2(0.5, 0.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7imti"]
 size = Vector2(90, 280)
@@ -1021,18 +1017,18 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_uvcvv"]
 radius = 35.1035
 
+[sub_resource type="Animation" id="Animation_p2vot"]
+length = 0.001
+
 [sub_resource type="Animation" id="Animation_vvjno"]
 resource_name = "blink"
 length = 0.3
 step = 0.1
 
-[sub_resource type="Animation" id="Animation_p2vot"]
-length = 0.001
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_wrxt7"]
 _data = {
-"RESET": SubResource("Animation_p2vot"),
-"blink": SubResource("Animation_vvjno")
+&"RESET": SubResource("Animation_p2vot"),
+&"blink": SubResource("Animation_vvjno")
 }
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cwcee"]
@@ -1187,6 +1183,14 @@ alpha_curve = SubResource("CurveTexture_xi8nm")
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_l4rku"]
 
+[sub_resource type="Gradient" id="Gradient_o38k0"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.211765, 0.286275, 0.882353, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_23d6q"]
+gradient = SubResource("Gradient_o38k0")
+width = 1
+
 [sub_resource type="Curve" id="Curve_lesmr"]
 _data = [Vector2(0.64876, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 2
@@ -1207,12 +1211,12 @@ scale_min = 0.0
 scale_max = 2.5
 alpha_curve = SubResource("CurveTexture_3k60y")
 
-[sub_resource type="Gradient" id="Gradient_o38k0"]
+[sub_resource type="Gradient" id="Gradient_4nl2g"]
 offsets = PackedFloat32Array(0)
-colors = PackedColorArray(0.211765, 0.286275, 0.882353, 1)
+colors = PackedColorArray(0.3264, 0.51, 0.39678, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_23d6q"]
-gradient = SubResource("Gradient_o38k0")
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_88uim"]
+gradient = SubResource("Gradient_4nl2g")
 width = 1
 
 [sub_resource type="Curve" id="Curve_333se"]
@@ -1246,14 +1250,6 @@ scale_curve = SubResource("CurveTexture_136ob")
 alpha_curve = SubResource("CurveTexture_y1806")
 hue_variation_min = 0.00999998
 hue_variation_max = 0.03
-
-[sub_resource type="Gradient" id="Gradient_4nl2g"]
-offsets = PackedFloat32Array(0)
-colors = PackedColorArray(0.3264, 0.51, 0.39678, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_88uim"]
-gradient = SubResource("Gradient_4nl2g")
-width = 1
 
 [sub_resource type="Gradient" id="Gradient_pwja3"]
 offsets = PackedFloat32Array(0)
@@ -1293,6 +1289,17 @@ height = 1
 shader = ExtResource("1_cal8e")
 shader_parameter/Texture2DParameter = ExtResource("42_h5fyd")
 
+[sub_resource type="Gradient" id="Gradient_s3lvk"]
+offsets = PackedFloat32Array(0, 0.406504, 0.829268)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.0901961, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_tupk1"]
+gradient = SubResource("Gradient_s3lvk")
+width = 4
+height = 32
+fill_from = Vector2(0, 1)
+fill_to = Vector2(0, 0)
+
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_xuc3i"]
 particle_flag_disable_z = true
 emission_shape_scale = Vector3(3, 10, 1)
@@ -1310,17 +1317,6 @@ turbulence_influence_min = 0.076
 turbulence_influence_max = 0.076
 turbulence_initial_displacement_min = 1.49012e-06
 turbulence_initial_displacement_max = 1.49012e-06
-
-[sub_resource type="Gradient" id="Gradient_s3lvk"]
-offsets = PackedFloat32Array(0, 0.406504, 0.829268)
-colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.0901961, 1, 1, 1, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_tupk1"]
-gradient = SubResource("Gradient_s3lvk")
-width = 4
-height = 32
-fill_from = Vector2(0, 1)
-fill_to = Vector2(0, 0)
 
 [sub_resource type="Gradient" id="Gradient_s06bw"]
 offsets = PackedFloat32Array(0.890244, 1)
@@ -1627,11 +1623,11 @@ autostart = true
 [node name="GPUParticles2D" type="GPUParticles2D" parent="Map/Fence/Breakablefence"]
 emitting = false
 amount = 20
-process_material = SubResource("ParticleProcessMaterial_64r80")
 texture = ExtResource("30_yl78r")
 lifetime = 0.75
 one_shot = true
 preprocess = 0.2
+process_material = SubResource("ParticleProcessMaterial_64r80")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Map/Fence/Breakablefence"]
 collision_mask = 0
@@ -1717,10 +1713,10 @@ texture = ExtResource("10_f6vaj")
 [node name="GPUParticles2D" type="GPUParticles2D" parent="Map/Room1/DoorButton/TextureRect"]
 position = Vector2(30, 26)
 amount = 4
-process_material = SubResource("ParticleProcessMaterial_nnvkm")
 texture = SubResource("GradientTexture2D_rn75d")
 lifetime = 1.5
 visibility_rect = Rect2(-50, -50, 100, 100)
+process_material = SubResource("ParticleProcessMaterial_nnvkm")
 
 [node name="MouseHint" type="Timer" parent="Map/Room1/DoorButton"]
 wait_time = 0.75
@@ -2076,7 +2072,7 @@ shape = SubResource("CircleShape2D_uvcvv")
 
 [node name="effects" type="AnimationPlayer" parent="Map/Room6/Pillars/Pillar1"]
 libraries = {
-"": SubResource("AnimationLibrary_wrxt7")
+&"": SubResource("AnimationLibrary_wrxt7")
 }
 
 [node name="Pillar8" type="Sprite2D" parent="Map/Room6/Pillars"]
@@ -2114,7 +2110,7 @@ shape = SubResource("CircleShape2D_uvcvv")
 
 [node name="effects" type="AnimationPlayer" parent="Map/Room6/Pillars/Pillar8"]
 libraries = {
-"": SubResource("AnimationLibrary_wrxt7")
+&"": SubResource("AnimationLibrary_wrxt7")
 }
 
 [node name="Pillar5" type="Sprite2D" parent="Map/Room6/Pillars"]
@@ -2151,7 +2147,7 @@ shape = SubResource("CircleShape2D_uvcvv")
 
 [node name="effects" type="AnimationPlayer" parent="Map/Room6/Pillars/Pillar5"]
 libraries = {
-"": SubResource("AnimationLibrary_wrxt7")
+&"": SubResource("AnimationLibrary_wrxt7")
 }
 
 [node name="Pillar2" type="Sprite2D" parent="Map/Room6/Pillars"]
@@ -2188,7 +2184,7 @@ shape = SubResource("CircleShape2D_uvcvv")
 
 [node name="effects" type="AnimationPlayer" parent="Map/Room6/Pillars/Pillar2"]
 libraries = {
-"": SubResource("AnimationLibrary_wrxt7")
+&"": SubResource("AnimationLibrary_wrxt7")
 }
 
 [node name="Pillar3" type="Sprite2D" parent="Map/Room6/Pillars"]
@@ -2226,7 +2222,7 @@ shape = SubResource("CircleShape2D_uvcvv")
 
 [node name="effects" type="AnimationPlayer" parent="Map/Room6/Pillars/Pillar3"]
 libraries = {
-"": SubResource("AnimationLibrary_wrxt7")
+&"": SubResource("AnimationLibrary_wrxt7")
 }
 
 [node name="Pillar6" type="Sprite2D" parent="Map/Room6/Pillars"]
@@ -2264,7 +2260,7 @@ shape = SubResource("CircleShape2D_uvcvv")
 
 [node name="effects" type="AnimationPlayer" parent="Map/Room6/Pillars/Pillar6"]
 libraries = {
-"": SubResource("AnimationLibrary_wrxt7")
+&"": SubResource("AnimationLibrary_wrxt7")
 }
 
 [node name="Pillar7" type="Sprite2D" parent="Map/Room6/Pillars"]
@@ -2302,7 +2298,7 @@ shape = SubResource("CircleShape2D_uvcvv")
 
 [node name="effects" type="AnimationPlayer" parent="Map/Room6/Pillars/Pillar7"]
 libraries = {
-"": SubResource("AnimationLibrary_wrxt7")
+&"": SubResource("AnimationLibrary_wrxt7")
 }
 
 [node name="Pillar4" type="Sprite2D" parent="Map/Room6/Pillars"]
@@ -2340,7 +2336,7 @@ shape = SubResource("CircleShape2D_uvcvv")
 
 [node name="effects" type="AnimationPlayer" parent="Map/Room6/Pillars/Pillar4"]
 libraries = {
-"": SubResource("AnimationLibrary_wrxt7")
+&"": SubResource("AnimationLibrary_wrxt7")
 }
 
 [node name="RespawnTimer" type="Timer" parent="Map/Room6/Pillars"]
@@ -2489,9 +2485,9 @@ visible = false
 modulate = Color(0.78866, 0.7238, 0.94, 1)
 position = Vector2(-1041, 2262)
 amount = 6
-process_material = SubResource("ParticleProcessMaterial_xtno2")
 texture = ExtResource("62_cc0wu")
 lifetime = 3.0
+process_material = SubResource("ParticleProcessMaterial_xtno2")
 
 [node name="InteractButton" type="Sprite2D" parent="Map/Portal"]
 visible = false
@@ -2533,12 +2529,12 @@ frame_progress = 0.606504
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="Map/Butterfly/AnimatedSprite2D"]
 material = SubResource("ShaderMaterial_mbu5g")
-process_material = SubResource("ParticleProcessMaterial_n7eky")
 texture = ExtResource("43_lo0h1")
 lifetime = 5.0
 preprocess = 2.0
 explosiveness = 0.06
 randomness = 0.17
+process_material = SubResource("ParticleProcessMaterial_n7eky")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Butterfly"]
 shape = SubResource("SegmentShape2D_l4rku")
@@ -2550,128 +2546,128 @@ shape = SubResource("SegmentShape2D_l4rku")
 [node name="BluePetal" type="GPUParticles2D" parent="Map/ParticleDecor/Flowers"]
 position = Vector2(-187, 1047)
 amount = 16
-process_material = SubResource("ParticleProcessMaterial_ji73l")
 texture = SubResource("GradientTexture1D_23d6q")
 lifetime = 5.0
+process_material = SubResource("ParticleProcessMaterial_ji73l")
 
 [node name="Leaves" type="GPUParticles2D" parent="Map/ParticleDecor/Flowers"]
 position = Vector2(505, 639)
 amount = 16
-process_material = SubResource("ParticleProcessMaterial_rr5ih")
 texture = SubResource("GradientTexture1D_88uim")
 lifetime = 5.0
+process_material = SubResource("ParticleProcessMaterial_rr5ih")
 
 [node name="RedPetal" type="GPUParticles2D" parent="Map/ParticleDecor/Flowers"]
 position = Vector2(-210, 728)
 amount = 16
-process_material = SubResource("ParticleProcessMaterial_ji73l")
 texture = SubResource("GradientTexture1D_0tmu8")
 lifetime = 5.0
+process_material = SubResource("ParticleProcessMaterial_ji73l")
 
 [node name="RedPetal3" type="GPUParticles2D" parent="Map/ParticleDecor/Flowers"]
 position = Vector2(1303, 2563)
 amount = 16
-process_material = SubResource("ParticleProcessMaterial_ji73l")
 texture = SubResource("GradientTexture1D_0tmu8")
 lifetime = 5.0
+process_material = SubResource("ParticleProcessMaterial_ji73l")
 
 [node name="RosePetal" type="GPUParticles2D" parent="Map/ParticleDecor/Flowers"]
 position = Vector2(747, 2533)
 amount = 16
-process_material = SubResource("ParticleProcessMaterial_ji73l")
 texture = SubResource("GradientTexture2D_hvyr5")
 lifetime = 5.0
+process_material = SubResource("ParticleProcessMaterial_ji73l")
 
 [node name="RosePetal2" type="GPUParticles2D" parent="Map/ParticleDecor/Flowers"]
 position = Vector2(555, 1047)
 amount = 16
-process_material = SubResource("ParticleProcessMaterial_ji73l")
 texture = SubResource("GradientTexture2D_hvyr5")
 lifetime = 5.0
+process_material = SubResource("ParticleProcessMaterial_ji73l")
 
 [node name="RedPetal4" type="GPUParticles2D" parent="Map/ParticleDecor/Flowers"]
 position = Vector2(1230, 2747)
 amount = 16
-process_material = SubResource("ParticleProcessMaterial_ji73l")
 texture = SubResource("GradientTexture1D_0tmu8")
 lifetime = 5.0
+process_material = SubResource("ParticleProcessMaterial_ji73l")
 
 [node name="PinkPetal" type="GPUParticles2D" parent="Map/ParticleDecor/Flowers"]
 position = Vector2(-219, 631)
 amount = 16
-process_material = SubResource("ParticleProcessMaterial_ji73l")
 texture = SubResource("GradientTexture1D_vpiuq")
 lifetime = 5.0
+process_material = SubResource("ParticleProcessMaterial_ji73l")
 
 [node name="PinkPetal3" type="GPUParticles2D" parent="Map/ParticleDecor/Flowers"]
 position = Vector2(962, 2572)
 amount = 16
-process_material = SubResource("ParticleProcessMaterial_ji73l")
 texture = SubResource("GradientTexture1D_vpiuq")
 lifetime = 5.0
+process_material = SubResource("ParticleProcessMaterial_ji73l")
 
 [node name="PinkPetal4" type="GPUParticles2D" parent="Map/ParticleDecor/Flowers"]
 position = Vector2(1739, 1894)
 amount = 16
-process_material = SubResource("ParticleProcessMaterial_ji73l")
 texture = SubResource("GradientTexture1D_vpiuq")
 lifetime = 5.0
+process_material = SubResource("ParticleProcessMaterial_ji73l")
 
 [node name="BluePetal2" type="GPUParticles2D" parent="Map/ParticleDecor/Flowers"]
 position = Vector2(1133, 1402)
 amount = 16
-process_material = SubResource("ParticleProcessMaterial_ji73l")
 texture = SubResource("GradientTexture1D_23d6q")
 lifetime = 5.0
+process_material = SubResource("ParticleProcessMaterial_ji73l")
 
 [node name="BluePetal4" type="GPUParticles2D" parent="Map/ParticleDecor/Flowers"]
 position = Vector2(996, 2888)
 amount = 16
-process_material = SubResource("ParticleProcessMaterial_ji73l")
 texture = SubResource("GradientTexture1D_23d6q")
 lifetime = 5.0
+process_material = SubResource("ParticleProcessMaterial_ji73l")
 
 [node name="YellowPetal" type="GPUParticles2D" parent="Map/ParticleDecor/Flowers"]
 position = Vector2(1610, 3078)
 amount = 16
-process_material = SubResource("ParticleProcessMaterial_ji73l")
 texture = SubResource("GradientTexture2D_dirp4")
 lifetime = 5.0
+process_material = SubResource("ParticleProcessMaterial_ji73l")
 
 [node name="YellowPetal2" type="GPUParticles2D" parent="Map/ParticleDecor/Flowers"]
 position = Vector2(1636, 1786)
 amount = 16
-process_material = SubResource("ParticleProcessMaterial_ji73l")
 texture = SubResource("GradientTexture2D_dirp4")
 lifetime = 5.0
+process_material = SubResource("ParticleProcessMaterial_ji73l")
 
 [node name="BluePetal5" type="GPUParticles2D" parent="Map/ParticleDecor/Flowers"]
 position = Vector2(2010, 1796)
 amount = 16
-process_material = SubResource("ParticleProcessMaterial_ji73l")
 texture = SubResource("GradientTexture1D_23d6q")
 lifetime = 5.0
+process_material = SubResource("ParticleProcessMaterial_ji73l")
 
 [node name="BluePetal3" type="GPUParticles2D" parent="Map/ParticleDecor/Flowers"]
 position = Vector2(1093, 838)
 amount = 16
-process_material = SubResource("ParticleProcessMaterial_ji73l")
 texture = SubResource("GradientTexture1D_23d6q")
 lifetime = 5.0
+process_material = SubResource("ParticleProcessMaterial_ji73l")
 
 [node name="RedPetal2" type="GPUParticles2D" parent="Map/ParticleDecor/Flowers"]
 position = Vector2(1133, 1409)
 amount = 16
-process_material = SubResource("ParticleProcessMaterial_ji73l")
 texture = SubResource("GradientTexture1D_0tmu8")
 lifetime = 5.0
+process_material = SubResource("ParticleProcessMaterial_ji73l")
 
 [node name="PinkPetal2" type="GPUParticles2D" parent="Map/ParticleDecor/Flowers"]
 position = Vector2(1130, 1399)
 amount = 16
-process_material = SubResource("ParticleProcessMaterial_ji73l")
 texture = SubResource("GradientTexture1D_vpiuq")
 lifetime = 5.0
+process_material = SubResource("ParticleProcessMaterial_ji73l")
 
 [node name="Characters" type="Node2D" parent="."]
 scale = Vector2(1.01308, 1.00303)
@@ -2764,13 +2760,13 @@ offset_bottom = 1620.0
 [node name="Wind" type="GPUParticles2D" parent="Characters/Camera2D"]
 position = Vector2(-960, 0)
 amount = 180
-process_material = SubResource("ParticleProcessMaterial_xuc3i")
 texture = SubResource("GradientTexture2D_tupk1")
 lifetime = 12.0
 preprocess = 15.0
 visibility_rect = Rect2(-100, -100, 3000, 3000)
 trail_enabled = true
 trail_lifetime = 0.8
+process_material = SubResource("ParticleProcessMaterial_xuc3i")
 
 [node name="GUI" type="CanvasLayer" parent="Characters"]
 script = ExtResource("76_d68et")

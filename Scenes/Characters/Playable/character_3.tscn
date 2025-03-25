@@ -1,10 +1,10 @@
 [gd_scene load_steps=97 format=3 uid="uid://bbr64q8hg7fde"]
 
-[ext_resource type="Script" path="res://Scenes/Characters/Playable/Scripts/character_3.gd" id="1_myxxc"]
-[ext_resource type="Script" path="res://Scenes/Characters/Playable/projectile.gd" id="3_hq6b5"]
+[ext_resource type="Script" uid="uid://bv6eu5xaj5bpl" path="res://Scenes/Characters/Playable/Scripts/character_3.gd" id="1_myxxc"]
+[ext_resource type="Script" uid="uid://b8ldx8hg8fl78" path="res://Scenes/Characters/Playable/projectile.gd" id="3_hq6b5"]
 [ext_resource type="Texture2D" uid="uid://c83ynlvklq4jb" path="res://Textures/healunder.svg" id="4_0q8xu"]
 [ext_resource type="Texture2D" uid="uid://cv3ay8ds8ioid" path="res://Textures/healprogress.svg" id="5_3gmsv"]
-[ext_resource type="Shader" path="res://Shaders/effects.gdshader" id="5_8dqoa"]
+[ext_resource type="Shader" uid="uid://ctk76iejukosx" path="res://Shaders/effects.gdshader" id="5_8dqoa"]
 [ext_resource type="Texture2D" uid="uid://d4nvqwhn6dsuh" path="res://Textures/attackcooldown.png" id="13_whrlw"]
 [ext_resource type="Texture2D" uid="uid://bwdgv3n1rf1fj" path="res://Sprites/priestess_front_attack.png" id="14_kthqj"]
 [ext_resource type="Texture2D" uid="uid://biue221d7v66s" path="res://Textures/attackchargeunder.png" id="14_qmb1x"]
@@ -544,9 +544,9 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_lug4a"]
 _data = {
-"RESET": SubResource("Animation_mpsdo"),
-"blink": SubResource("Animation_wtku8"),
-"heal": SubResource("Animation_iirr4")
+&"RESET": SubResource("Animation_mpsdo"),
+&"blink": SubResource("Animation_wtku8"),
+&"heal": SubResource("Animation_iirr4")
 }
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yx4up"]
@@ -718,8 +718,7 @@ autostart = true
 material = SubResource("ShaderMaterial_uoolu")
 position = Vector2(-11, -59)
 sprite_frames = SubResource("SpriteFrames_h1jj7")
-animation = &"walk7"
-frame_progress = 0.467114
+animation = &"walk8"
 speed_scale = 1.5
 
 [node name="AttackCooldown" type="Timer" parent="."]
@@ -820,7 +819,7 @@ pitch_scale = 1.22
 
 [node name="effects" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_lug4a")
+&"": SubResource("AnimationLibrary_lug4a")
 }
 
 [node name="ExplosionAnimation" type="AnimatedSprite2D" parent="."]

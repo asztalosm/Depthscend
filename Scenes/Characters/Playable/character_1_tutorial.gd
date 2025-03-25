@@ -13,6 +13,7 @@ extends CharacterBody2D
 @export var hasgroundslamcharm = false
 @export var charms = [
 	["hasgroundslamcharm", false, load("res://Textures/Groundslam.png")],
+	["none", true, null]
 ]
 @export var cantakedamage = true
 @export var guistats = [
@@ -84,7 +85,7 @@ func groundslam() -> void:
 	groundslamtween.tween_property(groundslamtexture, "color:a", 1, 0.3)
 	await get_tree().create_timer(0.35).timeout
 	for i in groundslamattackzone:
-		i.get_parent().health -= round(damage + 4)
+		i.get_parent().health -= roundi(damage + 4)
 	var groundslamtweeninvis = get_tree().create_tween()
 	groundslamtweeninvis.tween_property(groundslamtexture, "color:a", 0, 2)
 	attackcooldown.wait_time += 2
@@ -149,7 +150,7 @@ func _input(event):
 				for i in inattackzone:
 					if i.get_parent().get_node_or_null("effects") != null:
 						i.get_parent().get_node("effects").play("blink")
-					i.get_parent().health -= round(damage + attackcharge.value / 50)
+					i.get_parent().health -= roundi(damage + attackcharge.value / 50)
 				swordhitbox.visible = false
 				var attackcooldowntween = get_tree().create_tween()
 				attackcooldowntween.tween_property(attackprogress, "value", 100, attackcooldown.time_left)
@@ -176,9 +177,9 @@ func _physics_process(_delta: float) -> void:
 				var angletocursor = rad_to_deg(self.get_angle_to(navagent.get_next_path_position())) - 90
 				if angletocursor < 0:
 					angletocursor += 360
-				currentsprite = round(angletocursor / 45)
+				currentsprite = roundi(angletocursor / 45)
 		if velocity != Vector2(0,0):
-			animatedsprite.play(str("walk",currentsprite))
+			animatedsprite.play(str("walk", int(currentsprite)))
 		else:
 			animatedsprite.stop()
 		move_and_slide()
@@ -200,7 +201,6 @@ func _physics_process(_delta: float) -> void:
 
 func _on_attack_cooldown_timeout():
 	attacked = false
-	print(attacked)
 
 func _on_auto_attack_range_area_entered(_area: Area2D) -> void: #attackrangeben lévő enemyk sebzése
 	pass

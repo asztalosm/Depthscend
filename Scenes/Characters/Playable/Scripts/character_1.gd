@@ -9,6 +9,7 @@ extends CharacterBody2D
 @export var maxdamage = 6
 @export var charms = [
 	["hasgroundslamcharm", false, load("res://Textures/Groundslam.png")],
+	["none", true, null]
 ]
 @export var cantakedamage = true
 @export var guistats = [
@@ -57,10 +58,9 @@ func groundslam() -> void:
 	attacked = true
 	groundslamhitbox.rotate(groundslamhitbox.get_angle_to(get_global_mouse_position()) +0.5*PI)
 	groundslamhitbox.visible = true
-	attackcooldown.start()
 	await get_tree().create_timer(0.3).timeout
 	for i in groundslamattackzone:
-		i.get_parent().health -= round(damage + 4)
+		i.get_parent().health -= int(roundi(damage + 4))
 		i.get_parent().get_node("effects").play("blink")
 	groundslamhitbox.visible = false
 	var abilitychargetween = get_tree().create_tween()
@@ -99,6 +99,7 @@ func _input(event):
 		attackprogress.value = 0
 		
 	if event.is_action_released("rclick") and get_meta("active") and (not get_meta("isDead")) and attackcharge.visible and !attacked:
+		attackcooldown.start()
 		if attackcharge.value == 100 and charms[0][1] and abilitychargeprogress.visible == false: #max charged attack
 			groundslam()
 			
@@ -115,7 +116,7 @@ func _input(event):
 			await get_tree().create_timer(0.15).timeout
 			for i in inattackzone:
 				i.get_parent().get_node("effects").play("blink")
-				i.get_parent().health -= damage #jelenleg nem túl szép dolog TODO ezt fixelni, hogy maxdamagere scaleljen
+				i.get_parent().health -= int(damage) #jelenleg nem túl szép dolog TODO ezt fixelni, hogy maxdamagere scaleljen, ez szerintem majd release után lesz csak
 			await get_tree().create_timer(0.15).timeout
 			swordhitbox.visible = false
 			var attackcooldowntween = get_tree().create_tween()
@@ -140,9 +141,9 @@ func _physics_process(_delta: float) -> void:
 				var angletocursor = rad_to_deg(self.get_angle_to(navagent.get_next_path_position())) - 90
 				if angletocursor < 0:
 					angletocursor += 360 
-				currentsprite = round(angletocursor / 45) #all characters have a walk8 animation that matches up with the walk0 animation so the debugger stops bitching
+				currentsprite = roundi(angletocursor / 45) #all characters have a walk8 animation that matches up with the walk0 animation so the debugger stops bitching
 		if velocity != Vector2(0,0):
-			animatedsprite.play(str("walk",currentsprite))
+			animatedsprite.play(str("walk", int(currentsprite)))
 		else:
 			animatedsprite.stop()
 		move_and_slide()

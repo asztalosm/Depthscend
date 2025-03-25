@@ -1,8 +1,8 @@
 [gd_scene load_steps=12 format=3 uid="uid://8gie7rovk5r1"]
 
-[ext_resource type="Script" path="res://Scenes/Characters/Enemies/attack_dummy.gd" id="1_g77i0"]
+[ext_resource type="Script" uid="uid://c5r5w3x11k25m" path="res://Scenes/Characters/Enemies/attack_dummy.gd" id="1_g77i0"]
 [ext_resource type="Texture2D" uid="uid://buxwbnp4lfyht" path="res://Textures/trainingdummy.png" id="1_lxhti"]
-[ext_resource type="Shader" path="res://Shaders/effects.gdshader" id="2_xv453"]
+[ext_resource type="Shader" uid="uid://ctk76iejukosx" path="res://Shaders/effects.gdshader" id="2_xv453"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0u1pt"]
 
@@ -68,9 +68,9 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_f7l5p"]
 _data = {
-"RESET": SubResource("Animation_xx6t6"),
-"blink": SubResource("Animation_tjwjx"),
-"heal": SubResource("Animation_gbov7")
+&"RESET": SubResource("Animation_xx6t6"),
+&"blink": SubResource("Animation_tjwjx"),
+&"heal": SubResource("Animation_gbov7")
 }
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
@@ -129,7 +129,7 @@ vertical_alignment = 1
 [node name="effects" type="AnimationPlayer" parent="."]
 root_node = NodePath("../Sprite2D")
 libraries = {
-"": SubResource("AnimationLibrary_f7l5p")
+&"": SubResource("AnimationLibrary_f7l5p")
 }
 
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]

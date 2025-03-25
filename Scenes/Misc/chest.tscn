@@ -1,9 +1,9 @@
 [gd_scene load_steps=17 format=3 uid="uid://s1qmh0m1std2"]
 
-[ext_resource type="Script" path="res://Scenes/Maps/chest.gd" id="1_4bogj"]
+[ext_resource type="Script" uid="uid://o5jmilgl8tq2" path="res://Scenes/Maps/chest.gd" id="1_4bogj"]
 [ext_resource type="Texture2D" uid="uid://bsctk1k4l0bgg" path="res://Textures/chest_front.png" id="2_2m0nn"]
 [ext_resource type="Texture2D" uid="uid://dd5ovhv0axtr1" path="res://Textures/e.png" id="3_pm31u"]
-[ext_resource type="Script" path="res://Scenes/Misc/pickupcharm.gd" id="4_4qjqb"]
+[ext_resource type="Script" uid="uid://cboobkj267qvg" path="res://Scenes/Misc/pickupcharm.gd" id="4_4qjqb"]
 [ext_resource type="Shader" uid="uid://by2nkcd3qher7" path="res://Shaders/charmfloat.tres" id="5_xjwqx"]
 [ext_resource type="Texture2D" uid="uid://wuxc0mq1sgpu" path="res://Sprites/character3.png" id="7_qkppi"]
 [ext_resource type="AudioStream" uid="uid://cw3tlilpowwul" path="res://Sounds/abilitypickup.wav" id="8_daj8x"]

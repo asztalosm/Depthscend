@@ -29,7 +29,7 @@ func attack():
 	canhitlist.clear()
 			
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if health > 0:
 		pass
 	else:

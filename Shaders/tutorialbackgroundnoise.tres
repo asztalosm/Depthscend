@@ -1,6 +1,7 @@
 [gd_resource type="NoiseTexture2D" load_steps=3 format=3 uid="uid://dn5iqofebi80s"]
 
 [sub_resource type="Gradient" id="Gradient_7tlnt"]
+resource_local_to_scene = true
 colors = PackedColorArray(0.714, 0.827333, 0.85, 1, 0.4428, 0.65026, 0.82, 1)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_0h0lv"]

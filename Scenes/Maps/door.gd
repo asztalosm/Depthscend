@@ -1,16 +1,33 @@
 extends Node2D
 var dooropenable = false
-var character = null
+var characters = []
+var dooropened = false
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("kb_E") and character != null:
+	if event.is_action_pressed("kb_E") and characters != [] and !dooropened and get_parent().get_node("Enemies").get_child_count() == 0:
 		$StaticBody2D.queue_free()
+		dooropened = true
 		$AnimatedSprite2D.play("default")
+		$TextureRect.queue_free()
 
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.get_parent().has_meta("active"):
-		if area.get_parent().get_meta("active") and get_parent().get_node("Enemies").get_child_count() == 0:
+		if area.get_parent().get_meta("active"):
 			dooropenable = true
-			character = area.get_parent()
-			$InteractKey.visible = true
+			characters.append(area.get_parent())
+			$AnimatedSprite2D.modulate = Color(1,1,1)
+			if get_node_or_null("TextureRect"):
+				$TextureRect.visible = true
+			
+
+
+func _on_area_2d_area_exited(area: Area2D) -> void:if area.get_parent().has_meta("active"):
+	if area.get_parent().has_meta("active"):
+		if area.get_parent().get_meta("active") and get_parent().get_node("Enemies").get_child_count() == 0:
+			characters.erase(area.get_parent())
+			if len(characters) == 0:
+				dooropenable = false
+			$AnimatedSprite2D.modulate = Color(0.7,0.7,0.7)
+			if get_node_or_null("TextureRect"):
+				$TextureRect.visible = false
