@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=4 uid="uid://dfy3v7er3vajh"]
+[gd_scene load_steps=24 format=4 uid="uid://dfy3v7er3vajh"]
 
 [ext_resource type="PackedScene" uid="uid://32mqbxap2xs3" path="res://Scenes/Characters/Playable/characters.tscn" id="1_rvwj5"]
 [ext_resource type="Texture2D" uid="uid://bdsc4toy3vt8p" path="res://Tilemaps/spiketrap.png" id="6_42vq1"]
@@ -10,9 +10,11 @@
 [ext_resource type="PackedScene" uid="uid://dj0kc27h6y3m2" path="res://Scenes/Characters/Enemies/bob.tscn" id="10_brl8e"]
 [ext_resource type="PackedScene" uid="uid://dpcveyqyw3du4" path="res://Scenes/Misc/damage_area.tscn" id="10_cqn1i"]
 [ext_resource type="PackedScene" uid="uid://0h8umjnlho02" path="res://Scenes/Characters/Enemies/slime.tscn" id="11_5n5wb"]
+[ext_resource type="PackedScene" uid="uid://dmtedsek4dwqd" path="res://Scenes/Characters/Enemies/seaworm.tscn" id="11_5y8r5"]
 [ext_resource type="PackedScene" uid="uid://dwou5g30xc3eq" path="res://Scenes/Characters/Enemies/squink.tscn" id="11_dd1nh"]
 [ext_resource type="PackedScene" uid="uid://xatav2k6bek3" path="res://Scenes/Characters/Enemies/inklet.tscn" id="12_p8udt"]
 [ext_resource type="PackedScene" uid="uid://df4q105ajn3ot" path="res://Scenes/Characters/Enemies/mushroom.tscn" id="13_2atuj"]
+[ext_resource type="PackedScene" uid="uid://cgkn33vgnrydk" path="res://Scenes/Characters/Enemies/mandrake.tscn" id="14_xrkvy"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_k5rra"]
 vertices = PackedVector2Array(705, 623, 929, 623, 929, 705, 897, 705, 175, 703, 175, 625, 135.992, 346.492, -92.4688, -5936.27, 1057, 353.383, 1007, 481, 481, 481, 1057, 593, 1007, 593, 143.203, 575.023, 481, 591, 705, 591, 129, 625, 112.43, 605.781, 897, 769, 865, 769, 783, 705, 865, 929, 833, 929, 783, 799, 833, 1089, 737, 1089, 737, 1121, 575, 1121, 575, 1089, 447, 1089, 447, 799, 305, 705, 305, 1045.37, 215.492, 1076.91, 142.344, 1045.8, 129, 703)
@@ -128,7 +130,8 @@ position = Vector2(60, 29)
 position = Vector2(525, 54)
 scale = Vector2(1.5, 1.5)
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="Enemies"]
+[node name="seaworm" parent="Enemies" instance=ExtResource("11_5y8r5")]
+position = Vector2(-140, 395)
 
 [node name="Slime" parent="Enemies" instance=ExtResource("11_5n5wb")]
 position = Vector2(638, 43)
@@ -137,9 +140,12 @@ position = Vector2(638, 43)
 position = Vector2(1043, 46)
 
 [node name="Mushroom" parent="Enemies" instance=ExtResource("13_2atuj")]
-position = Vector2(526, 387)
+position = Vector2(739, 224)
 scale = Vector2(0.75, 0.75)
 
 [node name="Mushroom2" parent="Enemies" instance=ExtResource("13_2atuj")]
-position = Vector2(825, 327)
+position = Vector2(867, 209)
 scale = Vector2(0.75, 0.75)
+
+[node name="Mandrake" parent="Enemies" instance=ExtResource("14_xrkvy")]
+position = Vector2(745, 63.0001)

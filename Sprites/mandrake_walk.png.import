@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bfpmmqnoqujd4"
-path="res://.godot/imported/door_front4.png-39cad1ee264cfb917b2d4fd548e697e8.ctex"
+uid="uid://cvllxecolgdir"
+path="res://.godot/imported/mandrake_walk.png-24d6e587afedb795942a0b05cb4aed2c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/door_front4.png"
-dest_files=["res://.godot/imported/door_front4.png-39cad1ee264cfb917b2d4fd548e697e8.ctex"]
+source_file="res://Sprites/mandrake_walk.png"
+dest_files=["res://.godot/imported/mandrake_walk.png-24d6e587afedb795942a0b05cb4aed2c.ctex"]
 
 [params]
 

@@ -24,7 +24,7 @@ func heal() -> void:
 			characters.get_node("effects").play("heal")
 	queue_free()
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if health <= 0:
 		heal()
 

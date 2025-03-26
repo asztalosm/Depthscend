@@ -111,11 +111,13 @@ _data = {
 }
 
 [node name="Bob" type="CharacterBody2D"]
+scale = Vector2(1.5, 1.5)
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_bn5m6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("SegmentShape2D_8rwdh")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -124,6 +126,7 @@ sprite_frames = SubResource("SpriteFrames_jwtc2")
 frame = 2
 
 [node name="Detection" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detection"]
 shape = SubResource("CircleShape2D_24h75")
@@ -172,6 +175,7 @@ wait_time = 0.2
 autostart = true
 
 [node name="Hitbox" type="Area2D" parent="."]
+visible = false
 collision_layer = 256
 collision_mask = 256
 monitoring = false

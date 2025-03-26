@@ -10,19 +10,20 @@ func _input(event: InputEvent) -> void:
 		$AnimatedSprite2D.play("default")
 		$TextureRect.queue_free()
 
+func _process(delta: float) -> void:
+	if dooropenable == true and get_parent().get_node("Enemies").get_child_count() == 0 and len(characters) > 0:
+			$AnimatedSprite2D.modulate = Color(1,1,1)
+			if get_node_or_null("TextureRect"):
+				$TextureRect.visible = true
+
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.get_parent().has_meta("active"):
 		if area.get_parent().get_meta("active"):
-			dooropenable = true
 			characters.append(area.get_parent())
-			$AnimatedSprite2D.modulate = Color(1,1,1)
-			if get_node_or_null("TextureRect"):
-				$TextureRect.visible = true
-			
 
 
-func _on_area_2d_area_exited(area: Area2D) -> void:if area.get_parent().has_meta("active"):
+func _on_area_2d_area_exited(area: Area2D) -> void:
 	if area.get_parent().has_meta("active"):
 		if area.get_parent().get_meta("active") and get_parent().get_node("Enemies").get_child_count() == 0:
 			characters.erase(area.get_parent())

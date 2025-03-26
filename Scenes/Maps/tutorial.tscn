@@ -1,4 +1,4 @@
-[gd_scene load_steps=248 format=4 uid="uid://dmy87sdckqipc"]
+[gd_scene load_steps=252 format=4 uid="uid://dmy87sdckqipc"]
 
 [ext_resource type="PackedScene" uid="uid://btd7uso6md01v" path="res://Scenes/Characters/Playable/character_1.tscn" id="1_b33b2"]
 [ext_resource type="Shader" uid="uid://b66eiy20hh3vh" path="res://Scenes/Maps/noise.tres" id="1_cal8e"]
@@ -101,6 +101,11 @@
 [ext_resource type="Texture2D" uid="uid://dqukroj1ppl7v" path="res://Textures/close.png" id="89_30gex"]
 [ext_resource type="Texture2D" uid="uid://c4br6ciyhmwfu" path="res://Textures/closeclicked.png" id="90_hofrh"]
 [ext_resource type="Texture2D" uid="uid://x50sb57oenj6" path="res://Textures/closehover.png" id="91_dnu8u"]
+[ext_resource type="Texture2D" uid="uid://c3si5j7ypf1sy" path="res://Textures/settingshover.png" id="99_47qvc"]
+[ext_resource type="Texture2D" uid="uid://dcjljb037yhoc" path="res://Textures/skip.png" id="102_gtcfm"]
+[ext_resource type="Texture2D" uid="uid://belbb4vfbvp8f" path="res://Textures/skippressed.png" id="103_fki0o"]
+[ext_resource type="Texture2D" uid="uid://cwpqthwlyoiwg" path="res://Textures/skiphover.png" id="104_47qvc"]
+[ext_resource type="Script" uid="uid://bmhbg0heb6xul" path="res://Scenes/Maps/skip_button.gd" id="106_moobd"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_a30o5"]
 shader = ExtResource("1_nbv70")
@@ -1364,8 +1369,6 @@ width = 32
 height = 32
 fill = 1
 fill_from = Vector2(0.5, 0.5)
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ufs77"]
 
 [node name="Tutorial" type="Node2D"]
 script = ExtResource("1_e65p2")
@@ -2672,7 +2675,6 @@ process_material = SubResource("ParticleProcessMaterial_ji73l")
 [node name="Characters" type="Node2D" parent="."]
 scale = Vector2(1.01308, 1.00303)
 script = ExtResource("1_vyhsh")
-giveaccesstochar2 = true
 
 [node name="character1" parent="Characters" instance=ExtResource("1_b33b2")]
 z_index = 99
@@ -3334,15 +3336,16 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 831.5
+offset_left = 883.5
 offset_top = 652.0
-offset_right = 1088.5
+offset_right = 1140.5
 offset_bottom = 908.0
 grow_horizontal = 2
 grow_vertical = 2
+disabled = true
 texture_normal = ExtResource("87_flpdi")
 texture_pressed = ExtResource("88_0dohp")
-texture_hover = SubResource("CompressedTexture2D_ufs77")
+texture_hover = ExtResource("99_47qvc")
 
 [node name="MenuButton" type="TextureButton" parent="Characters/GUI/PauseMenu"]
 layout_mode = 0
@@ -3353,6 +3356,19 @@ offset_bottom = 896.0
 texture_normal = ExtResource("89_30gex")
 texture_pressed = ExtResource("90_hofrh")
 texture_hover = ExtResource("91_dnu8u")
+
+[node name="SkipButton" type="TextureButton" parent="Characters/GUI/PauseMenu"]
+layout_mode = 0
+offset_left = 1700.0
+offset_top = 20.0
+offset_right = 1900.0
+offset_bottom = 220.0
+texture_normal = ExtResource("102_gtcfm")
+texture_pressed = ExtResource("103_fki0o")
+texture_hover = ExtResource("104_47qvc")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("106_moobd")
 
 [connection signal="timeout" from="Map/Fence/Breakablefence/Timer" to="Map/Fence/Breakablefence" method="_on_timer_timeout"]
 [connection signal="area_entered" from="Map/Room1/DoorButton" to="Map/Room1/DoorButton" method="_on_area_entered"]
@@ -3373,3 +3389,4 @@ texture_hover = ExtResource("91_dnu8u")
 [connection signal="area_exited" from="Map/Portal/Area2D" to="Map/Portal" method="_on_area_2d_area_exited"]
 [connection signal="pressed" from="Characters/GUI/PauseMenu/ResumeButton" to="Characters/GUI" method="_on_resume_button_pressed"]
 [connection signal="pressed" from="Characters/GUI/PauseMenu/MenuButton" to="Characters/GUI" method="_on_menu_button_pressed"]
+[connection signal="pressed" from="Characters/GUI/PauseMenu/SkipButton" to="Characters/GUI/PauseMenu/SkipButton" method="_on_pressed"]

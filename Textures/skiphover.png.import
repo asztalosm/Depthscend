@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c8hxsgptes4k8"
-path="res://.godot/imported/door_front3.png-4fca6ea7de84784faefa0592059fa22e.ctex"
+uid="uid://cwpqthwlyoiwg"
+path="res://.godot/imported/skiphover.png-f283f9fcd7bcc5a540937fd0b09b9838.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/door_front3.png"
-dest_files=["res://.godot/imported/door_front3.png-4fca6ea7de84784faefa0592059fa22e.ctex"]
+source_file="res://Textures/skiphover.png"
+dest_files=["res://.godot/imported/skiphover.png-f283f9fcd7bcc5a540937fd0b09b9838.ctex"]
 
 [params]
 

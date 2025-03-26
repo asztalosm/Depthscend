@@ -39,9 +39,13 @@ func _process(_delta: float) -> void:
 		if _target.health > 0:
 			_on_timer_timeout()
 		else:
+			detection.scale.x = 0.01
+			detection.scale.y = 0.01
+			detection.global_position = Vector2(30000, 0)
 			notTargeting = true #targetelést reseteli ha idő közben meghal az eredetileg támadott target
 			detection.scale.x = 1
 			detection.scale.y = 1
+			detection.position = Vector2.ZERO
 		if health > 0:
 			dir = navagent.get_next_path_position() - global_position
 			velocity = Vector2(0,0)
@@ -84,8 +88,6 @@ func _on_attack_cooldown_timeout() -> void:
 		attackedenemy.health -= damage
 		$AttackAnim.play("default")
 		$AttackAnim.global_position = attackedenemy.global_position
-		
-		
 
 
 func _on_attackhitbox_area_exited(area: Area2D) -> void:

@@ -6,7 +6,7 @@ extends CharacterBody2D
 @export var cantakedamage = true
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if target != null:
 		navagent.target_position = target.position + Vector2(0,-24)
 		if health > 0:
