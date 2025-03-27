@@ -5,7 +5,7 @@ var err = config.load("user://config.cfg")
 
 func _ready() -> void:
 	if err != OK:
-		config.set_value("playerdata", "hasplayedtutorial", false)
+		config.set_value("playerdata", "hasplayedtutorial", "false")
 		config.save("user://config.cfg")
 
 
