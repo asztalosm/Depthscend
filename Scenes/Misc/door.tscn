@@ -1,39 +1,73 @@
-[gd_scene load_steps=10 format=3 uid="uid://c5avtdy53gaj6"]
+[gd_scene load_steps=15 format=3 uid="uid://c5avtdy53gaj6"]
 
 [ext_resource type="Script" uid="uid://ufvy47vi8xw0" path="res://Scenes/Maps/door.gd" id="1_vknry"]
 [ext_resource type="Texture2D" uid="uid://c3xd7f7ssai6i" path="res://Sprites/door.png" id="2_2kg5e"]
+[ext_resource type="Texture2D" uid="uid://humjh5rcvxnh" path="res://Sprites/doorpurple.png" id="3_2kg5e"]
 [ext_resource type="Texture2D" uid="uid://dd5ovhv0axtr1" path="res://Textures/e.png" id="3_k6bti"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fj4l3"]
 size = Vector2(63, 14.7013)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_8vam1"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_2kg5e"]
 atlas = ExtResource("2_2kg5e")
-region = Rect2(0, 0, 64, 32)
+region = Rect2(0, 0, 64, 40)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_goq0r"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_61dj4"]
 atlas = ExtResource("2_2kg5e")
-region = Rect2(64, 0, 64, 32)
+region = Rect2(64, 0, 64, 40)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_s8c00"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_gwqfl"]
 atlas = ExtResource("2_2kg5e")
-region = Rect2(128, 0, 64, 32)
+region = Rect2(128, 0, 64, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ba6wg"]
+atlas = ExtResource("2_2kg5e")
+region = Rect2(192, 0, 64, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k6bti"]
+atlas = ExtResource("3_2kg5e")
+region = Rect2(0, 0, 64, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_66xo4"]
+atlas = ExtResource("3_2kg5e")
+region = Rect2(64, 0, 64, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b44ca"]
+atlas = ExtResource("3_2kg5e")
+region = Rect2(128, 0, 64, 40)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_nv8ub"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_8vam1")
+"texture": SubResource("AtlasTexture_2kg5e")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_goq0r")
+"texture": SubResource("AtlasTexture_61dj4")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_s8c00")
+"texture": SubResource("AtlasTexture_gwqfl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ba6wg")
 }],
 "loop": false,
 "name": &"default",
 "speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k6bti")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_66xo4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b44ca")
+}],
+"loop": true,
+"name": &"purpledoor",
+"speed": 5.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_72s2n"]
@@ -54,7 +88,7 @@ shape = SubResource("RectangleShape2D_fj4l3")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 modulate = Color(0.7, 0.7, 0.7, 1)
-position = Vector2(22, 11)
+position = Vector2(22, 6.80645)
 sprite_frames = SubResource("SpriteFrames_nv8ub")
 
 [node name="Area2D" type="Area2D" parent="."]

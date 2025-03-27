@@ -121,6 +121,8 @@ size = Vector2(45, 42.5671)
 
 [node name="seaworm" type="CharacterBody2D"]
 rotation = 2.44346
+collision_layer = 0
+collision_mask = 0
 script = ExtResource("1_11bq8")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -211,5 +213,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [connection signal="area_entered" from="Detection" to="." method="_on_detection_area_entered"]
+[connection signal="area_exited" from="Detection" to="." method="_on_detection_area_exited"]
 [connection signal="area_entered" from="AttackHitbox" to="." method="_on_attack_hitbox_area_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

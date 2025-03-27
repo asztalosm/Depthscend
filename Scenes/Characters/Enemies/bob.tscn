@@ -8,6 +8,7 @@
 b = Vector2(0, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hq75m"]
+resource_local_to_scene = true
 shader = ExtResource("2_75rb5")
 shader_parameter/shading_option = 0
 shader_parameter/opacitystrength = 1.0

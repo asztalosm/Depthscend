@@ -2,8 +2,8 @@ extends CharacterBody2D
 @onready var navagent = $NavigationAgent2D
 @export var speed = 200
 @export var accel = 35
-@export var health = 8
-@export var maxhealth = 8
+@export var health = 12
+@export var maxhealth = 12
 @export var damage = 2
 var dir := Vector2.ZERO
 var notTargeting = true

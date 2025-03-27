@@ -1,8 +1,8 @@
 extends CharacterBody2D
-@export var health = 5
-@export var maxhealth = 5
+@export var health = 7
+@export var maxhealth = 7
 @export var damage = 1
-@export var speed = 230
+@export var speed = 245
 @export var cantakedamage = true
 var isactive = false
 var dir := Vector2.ZERO

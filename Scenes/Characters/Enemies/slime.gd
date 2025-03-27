@@ -4,7 +4,7 @@ extends CharacterBody2D
 @export var accel = 35
 @export var health = 6
 @export var maxhealth = 6
-@export var damage = 2
+@export var damage = 3
 var dir := Vector2.ZERO
 var notTargeting = true
 var _target = self
