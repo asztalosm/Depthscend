@@ -1,0 +1,96 @@
+[gd_scene load_steps=13 format=3 uid="uid://df4q105ajn3ot"]
+
+[ext_resource type="Script" uid="uid://cdprywdlqf0q2" path="res://Scenes/Characters/Enemies/mushroom.gd" id="1_1138n"]
+[ext_resource type="Texture2D" uid="uid://bq1dmw06gsho0" path="res://Sprites/mushroom.png" id="2_0cjam"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bjkxb"]
+atlas = ExtResource("2_0cjam")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ow7qy"]
+atlas = ExtResource("2_0cjam")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bwryx"]
+atlas = ExtResource("2_0cjam")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tm5i7"]
+atlas = ExtResource("2_0cjam")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xukvd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bjkxb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ow7qy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bwryx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tm5i7")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_s1ewq"]
+resource_name = "blink"
+
+[sub_resource type="Animation" id="Animation_1138n"]
+resource_name = "heal"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_whalt"]
+_data = {
+&"blink": SubResource("Animation_s1ewq"),
+&"heal": SubResource("Animation_1138n")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1138n"]
+radius = 146.789
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0cjam"]
+size = Vector2(48, 56.6667)
+
+[node name="Mushroom" type="CharacterBody2D"]
+script = ExtResource("1_1138n")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -18.6667)
+sprite_frames = SubResource("SpriteFrames_xukvd")
+
+[node name="effects" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_whalt")
+}
+
+[node name="HealRange" type="Area2D" parent="."]
+visible = false
+position = Vector2(0, -18.6667)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HealRange"]
+shape = SubResource("CircleShape2D_1138n")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(0, -18.3333)
+shape = SubResource("RectangleShape2D_0cjam")
+disabled = true
+
+[node name="HitBox" type="Area2D" parent="."]
+visible = false
+collision_layer = 256
+collision_mask = 0
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(0, -18.3333)
+shape = SubResource("RectangleShape2D_0cjam")
+
+[connection signal="area_entered" from="HealRange" to="." method="_on_heal_range_area_entered"]
+[connection signal="area_exited" from="HealRange" to="." method="_on_heal_range_area_exited"]

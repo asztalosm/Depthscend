@@ -1,0 +1,223 @@
+[gd_scene load_steps=25 format=3 uid="uid://d1maoccsy4oe4"]
+
+[ext_resource type="Script" path="res://Scenes/Characters/Playable/Scripts/character_2.gd" id="1_asb81"]
+[ext_resource type="Texture2D" uid="uid://d4nvqwhn6dsuh" path="res://Textures/attackcooldown.png" id="2_3xrjg"]
+[ext_resource type="Texture2D" uid="uid://cd2x0jjcgnwr1" path="res://Sprites/mischievouslilguy.svg" id="2_ndwyl"]
+[ext_resource type="Texture2D" uid="uid://b7ydd1qrc3bft" path="res://Sprites/spear-charge-Sheet.png" id="3_5d4dj"]
+[ext_resource type="Texture2D" uid="uid://cik58vwvyde7r" path="res://Sprites/dashguide.png" id="5_kgrup"]
+[ext_resource type="Texture2D" uid="uid://biue221d7v66s" path="res://Textures/attackchargeunder.png" id="6_u1dnc"]
+[ext_resource type="Texture2D" uid="uid://dypdy82cmtx1t" path="res://Textures/attackchargeprogress.png" id="7_qu5eb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_its7r"]
+size = Vector2(32, 54)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xko1q"]
+size = Vector2(22, 2)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ed2k3"]
+size = Vector2(39, 93)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ssact"]
+atlas = ExtResource("3_5d4dj")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d76qs"]
+atlas = ExtResource("3_5d4dj")
+region = Rect2(16, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_22a17"]
+atlas = ExtResource("3_5d4dj")
+region = Rect2(32, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3at54"]
+atlas = ExtResource("3_5d4dj")
+region = Rect2(48, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bos7c"]
+atlas = ExtResource("3_5d4dj")
+region = Rect2(64, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xumaj"]
+atlas = ExtResource("3_5d4dj")
+region = Rect2(80, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bp65x"]
+atlas = ExtResource("3_5d4dj")
+region = Rect2(96, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4hqxn"]
+atlas = ExtResource("3_5d4dj")
+region = Rect2(112, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4uqu4"]
+atlas = ExtResource("3_5d4dj")
+region = Rect2(128, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ducmo"]
+atlas = ExtResource("3_5d4dj")
+region = Rect2(144, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_apsx2"]
+atlas = ExtResource("3_5d4dj")
+region = Rect2(160, 0, 16, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_540r5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ssact")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d76qs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_22a17")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3at54")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bos7c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xumaj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bp65x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4hqxn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4uqu4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ducmo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_apsx2")
+}],
+"loop": false,
+"name": &"default",
+"speed": 24.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xu5q2"]
+size = Vector2(8, 2)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_opwov"]
+radius = 64.1249
+
+[node name="character2" type="CharacterBody2D"]
+position = Vector2(963, 964)
+collision_layer = 0
+collision_mask = 5
+script = ExtResource("1_asb81")
+metadata/active = false
+metadata/isDead = false
+
+[node name="AttackProgress" type="TextureProgressBar" parent="."]
+offset_left = -31.0
+offset_top = -42.0
+offset_right = 1.0
+offset_bottom = -10.0
+scale = Vector2(2, 2)
+value = 100.0
+fill_mode = 4
+texture_under = ExtResource("2_3xrjg")
+texture_progress = ExtResource("2_3xrjg")
+tint_under = Color(1, 1, 1, 0.176471)
+tint_progress = Color(1, 1, 1, 0.705882)
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_desired_distance = 4.0
+target_desired_distance = 24.0
+simplify_path = true
+radius = 70.0
+
+[node name="HitCollision" type="Area2D" parent="."]
+position = Vector2(2, -31)
+collision_layer = 34
+collision_mask = 34
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitCollision"]
+position = Vector2(-2, 5)
+shape = SubResource("RectangleShape2D_its7r")
+debug_color = Color(1, 1, 1, 0.42)
+
+[node name="ZoneHitBox" type="Area2D" parent="."]
+position = Vector2(-0.25, -7)
+collision_layer = 17
+collision_mask = 0
+monitoring = false
+
+[node name="WallCollision" type="CollisionShape2D" parent="ZoneHitBox"]
+position = Vector2(1.25, 7)
+shape = SubResource("RectangleShape2D_xko1q")
+
+[node name="AttackCooldown" type="Timer" parent="."]
+wait_time = 0.4
+autostart = true
+
+[node name="SwordHitbox" type="Area2D" parent="."]
+position = Vector2(0, -26)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SwordHitbox"]
+position = Vector2(0, -46)
+shape = SubResource("RectangleShape2D_ed2k3")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SwordHitbox"]
+position = Vector2(0, -12.5)
+scale = Vector2(2, 1.96875)
+sprite_frames = SubResource("SpriteFrames_540r5")
+frame = 10
+frame_progress = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 0)
+shape = SubResource("RectangleShape2D_xu5q2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(2, -31)
+texture = ExtResource("2_ndwyl")
+
+[node name="Dash" type="Node2D" parent="."]
+
+[node name="Guide" type="TextureRect" parent="Dash"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -16.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(2, 2)
+texture = ExtResource("5_kgrup")
+stretch_mode = 1
+
+[node name="AttackChargeProgress" type="TextureProgressBar" parent="."]
+visible = false
+offset_left = -32.0
+offset_top = -72.0
+offset_bottom = -68.0
+scale = Vector2(2, 2)
+texture_under = ExtResource("6_u1dnc")
+texture_progress = ExtResource("7_qu5eb")
+tint_under = Color(0, 0, 0, 0.427451)
+tint_progress = Color(1, 1, 1, 0.705882)
+
+[node name="AutoAttackRange" type="Area2D" parent="."]
+position = Vector2(0, -6)
+collision_layer = 256
+collision_mask = 256
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AutoAttackRange"]
+position = Vector2(0, -20)
+shape = SubResource("CircleShape2D_opwov")
+
+[connection signal="timeout" from="AttackCooldown" to="." method="_on_attack_cooldown_timeout"]
+[connection signal="area_entered" from="AutoAttackRange" to="." method="_on_auto_attack_range_area_entered"]
+[connection signal="area_exited" from="AutoAttackRange" to="." method="_on_auto_attack_range_area_exited"]

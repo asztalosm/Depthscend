@@ -1,0 +1,162 @@
+[gd_scene load_steps=16 format=3 uid="uid://s1qmh0m1std2"]
+
+[ext_resource type="Script" path="res://Scenes/Maps/chest.gd" id="1_4bogj"]
+[ext_resource type="Texture2D" uid="uid://bsctk1k4l0bgg" path="res://Textures/chest_front.png" id="2_2m0nn"]
+[ext_resource type="Texture2D" uid="uid://dd5ovhv0axtr1" path="res://Textures/e.png" id="3_pm31u"]
+[ext_resource type="Script" path="res://Scenes/Misc/pickupcharm.gd" id="4_4qjqb"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_i3sba"]
+radius = 52.1536
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ebiy4"]
+radius = 55.1298
+
+[sub_resource type="VisualShaderNodeFloatFunc" id="VisualShaderNodeFloatFunc_b2jpm"]
+output_port_for_preview = 0
+function = 0
+
+[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_a5qsb"]
+default_input_values = [0, 0.0, 1, 0.5]
+operator = 2
+
+[sub_resource type="VisualShaderNodeVectorCompose" id="VisualShaderNodeVectorCompose_tjoya"]
+output_port_for_preview = 0
+
+[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_y50ai"]
+default_input_values = [0, 0.0, 1, 5.0]
+operator = 2
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_vb1sa"]
+output_port_for_preview = 0
+input_name = "time"
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_6cg0r"]
+expanded_output_ports = [0]
+input_name = "vertex"
+
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_40xq5"]
+default_input_values = [0, Vector2(0, 0), 1, Vector2(0, 0)]
+op_type = 0
+
+[sub_resource type="VisualShader" id="VisualShader_4cyic"]
+code = "shader_type canvas_item;
+render_mode blend_mix;
+
+
+
+
+void vertex() {
+// Input:5
+	vec2 n_out5p0 = VERTEX;
+
+
+// Input:2
+	float n_out2p0 = TIME;
+
+
+// FloatOp:12
+	float n_in12p1 = 0.50000;
+	float n_out12p0 = n_out2p0 * n_in12p1;
+
+
+// FloatFunc:11
+	float n_out11p0 = sin(n_out12p0);
+
+
+// FloatOp:14
+	float n_in14p1 = 5.00000;
+	float n_out14p0 = n_out11p0 * n_in14p1;
+
+
+// VectorCompose:13
+	float n_in13p0 = 0.00000;
+	float n_in13p2 = 0.00000;
+	vec3 n_out13p0 = vec3(n_in13p0, n_out14p0, n_in13p2);
+
+
+// VectorOp:6
+	vec2 n_out6p0 = n_out5p0 + vec2(n_out13p0.xy);
+
+
+// Output:0
+	VERTEX = n_out6p0;
+
+
+}
+"
+graph_offset = Vector2(-880.372, 191.481)
+mode = 1
+flags/light_only = false
+nodes/vertex/0/position = Vector2(580, 100)
+nodes/vertex/2/node = SubResource("VisualShaderNodeInput_vb1sa")
+nodes/vertex/2/position = Vector2(-1620, 460)
+nodes/vertex/5/node = SubResource("VisualShaderNodeInput_6cg0r")
+nodes/vertex/5/position = Vector2(-500, 60)
+nodes/vertex/6/node = SubResource("VisualShaderNodeVectorOp_40xq5")
+nodes/vertex/6/position = Vector2(360, 120)
+nodes/vertex/11/node = SubResource("VisualShaderNodeFloatFunc_b2jpm")
+nodes/vertex/11/position = Vector2(-960, 720)
+nodes/vertex/12/node = SubResource("VisualShaderNodeFloatOp_a5qsb")
+nodes/vertex/12/position = Vector2(-1200, 680)
+nodes/vertex/13/node = SubResource("VisualShaderNodeVectorCompose_tjoya")
+nodes/vertex/13/position = Vector2(-418.001, 543.431)
+nodes/vertex/14/node = SubResource("VisualShaderNodeFloatOp_y50ai")
+nodes/vertex/14/position = Vector2(-737.18, 654.278)
+nodes/vertex/connections = PackedInt32Array(6, 0, 0, 0, 5, 0, 6, 0, 2, 0, 12, 0, 12, 0, 11, 0, 11, 0, 14, 0, 14, 0, 13, 1, 13, 0, 6, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yifcq"]
+shader = SubResource("VisualShader_4cyic")
+
+[node name="Chest" type="Area2D"]
+position = Vector2(308.745, 546.008)
+scale = Vector2(2, 2)
+monitorable = false
+script = ExtResource("1_4bogj")
+
+[node name="ChestTexture" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_2m0nn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(20, 24)
+shape = SubResource("CircleShape2D_i3sba")
+
+[node name="UseButton" type="TextureRect" parent="."]
+visible = false
+offset_left = 7.0
+offset_top = -17.5
+offset_right = 71.0
+offset_bottom = 46.5
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("3_pm31u")
+
+[node name="Charm" type="Area2D" parent="."]
+position = Vector2(6, 0)
+scale = Vector2(0.75, 0.75)
+collision_layer = 0
+collision_mask = 32
+script = ExtResource("4_4qjqb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Charm"]
+position = Vector2(20, -4)
+shape = SubResource("CircleShape2D_ebiy4")
+disabled = true
+
+[node name="UseButton" type="TextureRect" parent="Charm"]
+offset_left = 0.169998
+offset_top = -32.672
+offset_right = 32.17
+offset_bottom = -0.671997
+texture = ExtResource("3_pm31u")
+expand_mode = 1
+
+[node name="TextureRect" type="TextureRect" parent="Charm"]
+material = SubResource("ShaderMaterial_yifcq")
+offset_right = 32.0
+offset_bottom = 32.0
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]
+[connection signal="area_entered" from="Charm" to="Charm" method="_on_area_entered"]
+[connection signal="area_exited" from="Charm" to="Charm" method="_on_area_exited"]

@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://cuajbybksa5gs"]
+
+[ext_resource type="Material" uid="uid://l0vtkmdkp7jy" path="res://Shaders/characterstatuseffect.tres" id="1_2g0ve"]
+[ext_resource type="Script" uid="uid://cu75kubtkxe0k" path="res://Shaders/characterstatuseffects.gd" id="2_838la"]
+
+[node name="GPUParticles2D" type="GPUParticles2D"]
+emitting = false
+process_material = ExtResource("1_2g0ve")
+lifetime = 1.5
+one_shot = true
+script = ExtResource("2_838la")

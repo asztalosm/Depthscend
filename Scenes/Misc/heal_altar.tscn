@@ -1,0 +1,62 @@
+[gd_scene load_steps=10 format=3 uid="uid://dqa846j4l3y5t"]
+
+[ext_resource type="Script" uid="uid://ya5ql0n8nkg8" path="res://Scenes/Misc/heal_altar.gd" id="1_4hwg5"]
+[ext_resource type="Texture2D" uid="uid://b5xldxaaaml3r" path="res://Textures/healaltar.png" id="2_7ogw3"]
+[ext_resource type="Texture2D" uid="uid://dd5ovhv0axtr1" path="res://Textures/e.png" id="3_ptwyx"]
+[ext_resource type="AudioStream" uid="uid://cw3tlilpowwul" path="res://Sounds/abilitypickup.wav" id="4_0epbh"]
+[ext_resource type="Shader" uid="uid://by2nkcd3qher7" path="res://Shaders/charmfloat.tres" id="5_7ogw3"]
+[ext_resource type="Texture2D" uid="uid://bw1svlgkwghuu" path="res://Textures/healorb.png" id="5_ye62d"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xnjq1"]
+radius = 79.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0f0pv"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ptwyx"]
+resource_local_to_scene = true
+shader = ExtResource("5_7ogw3")
+
+[node name="HealAltar" type="Area2D"]
+monitorable = false
+script = ExtResource("1_4hwg5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -20)
+shape = SubResource("CircleShape2D_xnjq1")
+
+[node name="ChestTexture" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_0f0pv")
+offset_left = -24.0
+offset_top = -48.0
+offset_right = 24.0
+texture = ExtResource("2_7ogw3")
+
+[node name="UseButton" type="TextureRect" parent="."]
+visible = false
+offset_left = -16.0
+offset_top = -3.0
+offset_right = 16.0
+offset_bottom = 29.0
+texture = ExtResource("3_ptwyx")
+expand_mode = 1
+
+[node name="AbilityPickup" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(-24, -48)
+stream = ExtResource("4_0epbh")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0.901961)
+material = SubResource("ShaderMaterial_ptwyx")
+offset_left = -12.0
+offset_top = -59.0
+offset_right = 12.0
+offset_bottom = -35.0
+texture = ExtResource("5_ye62d")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
