@@ -1,0 +1,58 @@
+[gd_resource type="VisualShader" load_steps=8 format=3 uid="uid://cahtsi54iispt"]
+
+[sub_resource type="VisualShaderNodeSwitch" id="VisualShaderNodeSwitch_ltu2x"]
+default_input_values = [0, false, 1, Quaternion(1, 1, 1, 1), 2, Quaternion(0, 0, 0, 0)]
+op_type = 5
+
+[sub_resource type="VisualShaderNodeColorParameter" id="VisualShaderNodeColorParameter_bmurm"]
+parameter_name = "flash"
+default_value_enabled = true
+default_value = Color(1, 1, 1, 0.686275)
+
+[sub_resource type="VisualShaderNodeBooleanParameter" id="VisualShaderNodeBooleanParameter_3ojmd"]
+output_port_for_preview = 0
+parameter_name = "hit"
+default_value_enabled = true
+
+[sub_resource type="VisualShaderNodeBooleanParameter" id="VisualShaderNodeBooleanParameter_ksgo3"]
+output_port_for_preview = 0
+parameter_name = "heal"
+default_value_enabled = true
+
+[sub_resource type="VisualShaderNodeColorParameter" id="VisualShaderNodeColorParameter_sytmh"]
+parameter_name = "healflash"
+default_value_enabled = true
+default_value = Color(0.6485, 1, 0.43, 0.564706)
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_ilkke"]
+input_name = "color"
+
+[sub_resource type="VisualShaderNodeSwitch" id="VisualShaderNodeSwitch_tk4nb"]
+default_input_values = [0, false, 1, Quaternion(1, 1, 1, 1), 2, Quaternion(0, 0, 0, 0)]
+op_type = 5
+
+[resource]
+code = "shader_type canvas_item;
+render_mode blend_mix;
+
+
+
+"
+mode = 1
+flags/light_only = false
+nodes/fragment/0/position = Vector2(1060, 100)
+nodes/fragment/2/node = SubResource("VisualShaderNodeColorParameter_bmurm")
+nodes/fragment/2/position = Vector2(-320, 320)
+nodes/fragment/3/node = SubResource("VisualShaderNodeBooleanParameter_3ojmd")
+nodes/fragment/3/position = Vector2(-580, 140)
+nodes/fragment/6/node = SubResource("VisualShaderNodeBooleanParameter_ksgo3")
+nodes/fragment/6/position = Vector2(-340, -300)
+nodes/fragment/7/node = SubResource("VisualShaderNodeColorParameter_sytmh")
+nodes/fragment/7/position = Vector2(-700, -80)
+nodes/fragment/8/node = SubResource("VisualShaderNodeInput_ilkke")
+nodes/fragment/8/position = Vector2(-340, 580)
+nodes/fragment/9/node = SubResource("VisualShaderNodeSwitch_tk4nb")
+nodes/fragment/9/position = Vector2(360, 380)
+nodes/fragment/10/node = SubResource("VisualShaderNodeSwitch_ltu2x")
+nodes/fragment/10/position = Vector2(360, 60)
+nodes/fragment/connections = PackedInt32Array(3, 0, 9, 0, 8, 0, 9, 2, 2, 0, 9, 1, 7, 0, 10, 1, 8, 0, 10, 2, 6, 0, 10, 0)

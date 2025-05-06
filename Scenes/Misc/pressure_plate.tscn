@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://3j7ndeg0tq8r"]
+
+[ext_resource type="Script" uid="uid://le4bctvugn28" path="res://Scenes/Misc/pressure_plate.gd" id="1_8w7qg"]
+[ext_resource type="Texture2D" uid="uid://cti8jtr8btlax" path="res://Tilemaps/pressureplate.png" id="2_l3h4s"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kxji6"]
+size = Vector2(60, 60)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8w7qg"]
+size = Vector2(18, 100.5)
+
+[node name="PressurePlate" type="Area2D"]
+modulate = Color(0.7, 0.7, 0.7, 1)
+script = ExtResource("1_8w7qg")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 64.0
+offset_bottom = 64.0
+texture = ExtResource("2_l3h4s")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(32, 32)
+shape = SubResource("RectangleShape2D_kxji6")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-36, 35)
+shape = SubResource("RectangleShape2D_8w7qg")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

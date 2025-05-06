@@ -1,0 +1,138 @@
+[gd_scene load_steps=17 format=3 uid="uid://s1qmh0m1std2"]
+
+[ext_resource type="Script" uid="uid://o5jmilgl8tq2" path="res://Scenes/Maps/chest.gd" id="1_4bogj"]
+[ext_resource type="Texture2D" uid="uid://bsctk1k4l0bgg" path="res://Textures/chest_front.png" id="2_2m0nn"]
+[ext_resource type="Texture2D" uid="uid://dd5ovhv0axtr1" path="res://Textures/e.png" id="3_pm31u"]
+[ext_resource type="Script" uid="uid://cboobkj267qvg" path="res://Scenes/Misc/pickupcharm.gd" id="4_4qjqb"]
+[ext_resource type="Shader" uid="uid://by2nkcd3qher7" path="res://Shaders/charmfloat.tres" id="5_xjwqx"]
+[ext_resource type="Texture2D" uid="uid://wuxc0mq1sgpu" path="res://Sprites/character3.png" id="7_qkppi"]
+[ext_resource type="AudioStream" uid="uid://cw3tlilpowwul" path="res://Sounds/abilitypickup.wav" id="8_daj8x"]
+[ext_resource type="Texture2D" uid="uid://dt3h5o74o6pmy" path="res://Textures/checkmark.png" id="8_op0oq"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_i3sba"]
+radius = 52.1536
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7idib"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ebiy4"]
+radius = 55.1298
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yifcq"]
+shader = ExtResource("5_xjwqx")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_q04u6"]
+shader = ExtResource("5_xjwqx")
+
+[sub_resource type="Gradient" id="Gradient_x1vjh"]
+offsets = PackedFloat32Array(0, 0.930894, 0.963415)
+colors = PackedColorArray(0.270588, 0.270588, 0.270588, 1, 0.16, 0.16, 0.16, 1, 0.14, 0.14, 0.14, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_60v7n"]
+gradient = SubResource("Gradient_x1vjh")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="SystemFont" id="SystemFont_ko703"]
+font_names = PackedStringArray("Nirmala UI")
+font_weight = 375
+font_stretch = 200
+force_autohinter = true
+hinting = 2
+subpixel_positioning = 0
+
+[node name="Chest" type="Area2D"]
+modulate = Color(0.803922, 0.803922, 0.803922, 1)
+position = Vector2(308.745, 546.008)
+scale = Vector2(2, 2)
+monitorable = false
+script = ExtResource("1_4bogj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(20, 24)
+shape = SubResource("CircleShape2D_i3sba")
+
+[node name="ChestTexture" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_7idib")
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_2m0nn")
+
+[node name="UseButton" type="TextureRect" parent="."]
+visible = false
+offset_left = 12.0
+offset_top = -11.0
+offset_right = 44.0
+offset_bottom = 21.0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_pm31u")
+expand_mode = 1
+
+[node name="Charm" type="Area2D" parent="."]
+position = Vector2(6, 0)
+collision_layer = 0
+collision_mask = 32
+script = ExtResource("4_4qjqb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Charm"]
+position = Vector2(20, -4)
+shape = SubResource("CircleShape2D_ebiy4")
+disabled = true
+
+[node name="CharmTexture" type="TextureRect" parent="Charm"]
+visible = false
+material = SubResource("ShaderMaterial_yifcq")
+offset_left = 3.0
+offset_right = 27.0
+offset_bottom = 24.0
+expand_mode = 1
+
+[node name="CharacterBG" type="TextureRect" parent="Charm"]
+visible = false
+material = SubResource("ShaderMaterial_q04u6")
+offset_left = 8.0
+offset_top = -16.0
+offset_right = 21.0
+offset_bottom = -3.0
+texture = SubResource("GradientTexture2D_60v7n")
+expand_mode = 1
+
+[node name="CharacterTexture" type="TextureRect" parent="Charm/CharacterBG"]
+use_parent_material = true
+layout_mode = 0
+offset_left = 1.1275
+offset_top = -10.004
+offset_right = 11.1275
+offset_bottom = -0.0039978
+texture = ExtResource("7_qkppi")
+expand_mode = 1
+
+[node name="CheckmarkTexture" type="TextureRect" parent="Charm/CharacterBG/CharacterTexture"]
+visible = false
+use_parent_material = true
+layout_mode = 0
+offset_left = 6.0
+offset_top = -2.0
+offset_right = 12.0
+offset_bottom = 4.0
+texture = ExtResource("8_op0oq")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="Charm/CharacterBG"]
+use_parent_material = true
+layout_mode = 0
+offset_top = -1.0
+offset_right = 13.0
+offset_bottom = 13.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = SubResource("SystemFont_ko703")
+theme_override_font_sizes/font_size = 10
+text = "E"
+horizontal_alignment = 1
+
+[node name="AbilityPickup" type="AudioStreamPlayer2D" parent="Charm"]
+stream = ExtResource("8_daj8x")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]
+[connection signal="area_entered" from="Charm" to="Charm" method="_on_area_entered"]
+[connection signal="area_exited" from="Charm" to="Charm" method="_on_area_exited"]

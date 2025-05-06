@@ -1,0 +1,733 @@
+[gd_scene load_steps=31 format=3 uid="uid://8ng0rc5wbh4s"]
+
+[ext_resource type="Script" uid="uid://dsslsq04em7la" path="res://Scenes/Misc/gui.gd" id="1_an32m"]
+[ext_resource type="Texture2D" uid="uid://bcc8v1uvhrgct" path="res://Textures/healthbarunder.svg" id="1_svkje"]
+[ext_resource type="Texture2D" uid="uid://bvr7ya6vawx5l" path="res://Textures/healthbarover.svg" id="2_ss4vm"]
+[ext_resource type="Texture2D" uid="uid://bwhgb085kx00b" path="res://Textures/healthbar.svg" id="3_te1u5"]
+[ext_resource type="Texture2D" uid="uid://1j35ej6eobpg" path="res://Sprites/character1.png" id="4_jurpo"]
+[ext_resource type="Texture2D" uid="uid://dpw82p20srsto" path="res://Textures/skull2.png" id="4_um7kf"]
+[ext_resource type="Texture2D" uid="uid://cgtg1spmscyn2" path="res://Sprites/character2.png" id="5_31hxs"]
+[ext_resource type="Texture2D" uid="uid://wuxc0mq1sgpu" path="res://Sprites/character3.png" id="6_2oosv"]
+[ext_resource type="Script" uid="uid://dm2gdfi7f3hfg" path="res://Scenes/Misc/death_screen.gd" id="8_q5yta"]
+[ext_resource type="Texture2D" uid="uid://dw8qqu3rjubnt" path="res://Textures/logo_2.png" id="9_t6rlq"]
+[ext_resource type="Texture2D" uid="uid://byoffwtx3sneo" path="res://Textures/resume.png" id="10_p4h5x"]
+[ext_resource type="Texture2D" uid="uid://rxvc01do6ry3" path="res://Textures/settings.png" id="10_rrtll"]
+[ext_resource type="Texture2D" uid="uid://2v4vsqe0do7c" path="res://Textures/reset.png" id="10_xgtcn"]
+[ext_resource type="Texture2D" uid="uid://cw1t1eah4fs2h" path="res://Textures/settingsclicked.png" id="11_6potb"]
+[ext_resource type="Texture2D" uid="uid://cu28ulibfhod7" path="res://Textures/resetpressed.png" id="11_llaft"]
+[ext_resource type="Texture2D" uid="uid://d33nvpbphprcr" path="res://Textures/resumeclicked.png" id="11_mnh3a"]
+[ext_resource type="Texture2D" uid="uid://bvu1xavd2gfaa" path="res://Textures/resethover.png" id="12_mopqj"]
+[ext_resource type="Texture2D" uid="uid://e5b76inod22u" path="res://Textures/resumehover.png" id="12_mru62"]
+[ext_resource type="Texture2D" uid="uid://dqukroj1ppl7v" path="res://Textures/close.png" id="13_jjrms"]
+[ext_resource type="Texture2D" uid="uid://c4br6ciyhmwfu" path="res://Textures/closeclicked.png" id="14_fjwmg"]
+[ext_resource type="Texture2D" uid="uid://x50sb57oenj6" path="res://Textures/closehover.png" id="15_mq8yg"]
+
+[sub_resource type="Gradient" id="Gradient_7eh2s"]
+offsets = PackedFloat32Array(0.890244, 1)
+colors = PackedColorArray(0.08, 0.08, 0.08, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_u7pjh"]
+gradient = SubResource("Gradient_7eh2s")
+width = 32
+height = 32
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="Gradient" id="Gradient_0ilhg"]
+offsets = PackedFloat32Array(0.894309, 1)
+colors = PackedColorArray(0.57, 0.57, 0.57, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_4h3u6"]
+gradient = SubResource("Gradient_0ilhg")
+width = 32
+height = 32
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="Gradient" id="Gradient_bmonh"]
+offsets = PackedFloat32Array(0, 0.96748, 0.987805)
+colors = PackedColorArray(0.22, 0.113667, 0, 0, 0.28, 0.11116, 0.0924, 0.968627, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_fdxk1"]
+gradient = SubResource("Gradient_bmonh")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="Gradient" id="Gradient_fhtrm"]
+offsets = PackedFloat32Array(0.796748, 0.934959, 1)
+colors = PackedColorArray(0.11, 0.11, 0.11, 1, 0.11, 0.11, 0.11, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_nvoyc"]
+gradient = SubResource("Gradient_fhtrm")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_i05dy"]
+
+[node name="GUI" type="CanvasLayer"]
+script = ExtResource("1_an32m")
+
+[node name="CurrentCharacter" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 24.0
+offset_top = 28.0
+offset_right = 136.0
+offset_bottom = 139.0
+scale = Vector2(0.75, 0.75)
+
+[node name="HealthBG" type="ColorRect" parent="CurrentCharacter"]
+layout_mode = 0
+offset_left = 136.0
+offset_top = 74.0
+offset_right = 436.0
+offset_bottom = 104.0
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="HealthLabel" type="Label" parent="CurrentCharacter"]
+layout_mode = 0
+offset_left = 136.0
+offset_top = 16.0
+offset_right = 435.0
+offset_bottom = 83.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 48
+text = "0/0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Health" type="TextureProgressBar" parent="CurrentCharacter"]
+layout_mode = 0
+offset_left = 136.0
+offset_top = 74.0
+offset_right = 436.0
+offset_bottom = 104.0
+mouse_filter = 0
+max_value = 70.0
+step = 0.0
+value = 30.0
+texture_under = ExtResource("1_svkje")
+texture_over = ExtResource("2_ss4vm")
+texture_progress = ExtResource("3_te1u5")
+tint_under = Color(0.592157, 0.592157, 0.592157, 1)
+tint_over = Color(0.509286, 0.509286, 0.509286, 1)
+tint_progress = Color(0.592157, 0.592157, 0.592157, 1)
+
+[node name="Icon" type="Control" parent="CurrentCharacter"]
+anchors_preset = 0
+offset_left = 8.0
+offset_top = 8.00001
+offset_right = 104.0
+offset_bottom = 104.0
+mouse_filter = 1
+
+[node name="Border2" type="TextureRect" parent="CurrentCharacter/Icon"]
+layout_mode = 0
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 104.0
+offset_bottom = 104.0
+texture = SubResource("GradientTexture2D_u7pjh")
+
+[node name="Background" type="ColorRect" parent="CurrentCharacter/Icon"]
+clip_contents = true
+layout_mode = 0
+offset_right = 96.0
+offset_bottom = 96.0
+color = Color(0.26, 0.26, 0.26, 0.6)
+
+[node name="Icon" type="TextureRect" parent="CurrentCharacter/Icon"]
+layout_mode = 0
+offset_right = 96.0
+offset_bottom = 96.0
+texture = ExtResource("4_jurpo")
+expand_mode = 1
+
+[node name="CharacterNumber" type="Control" parent="CurrentCharacter/Icon"]
+anchors_preset = 0
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 12.0
+offset_bottom = 12.0
+
+[node name="Border7" type="TextureRect" parent="CurrentCharacter/Icon/CharacterNumber"]
+layout_mode = 0
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 36.0
+offset_bottom = 36.0
+texture = SubResource("GradientTexture2D_u7pjh")
+
+[node name="Background2" type="TextureRect" parent="CurrentCharacter/Icon/CharacterNumber"]
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 32.0
+texture = SubResource("GradientTexture2D_4h3u6")
+
+[node name="Label" type="Label" parent="CurrentCharacter/Icon/CharacterNumber"]
+layout_mode = 0
+offset_top = -7.0
+offset_right = 32.0
+offset_bottom = 38.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 32
+text = "1"
+horizontal_alignment = 1
+clip_text = true
+
+[node name="Border5" type="ColorRect" parent="CurrentCharacter/Icon/CharacterNumber"]
+clip_contents = true
+layout_mode = 0
+offset_top = -3.0
+offset_right = 32.0
+offset_bottom = 1.0
+color = Color(0.0807833, 0.0807833, 0.0807833, 1)
+
+[node name="Border4" type="ColorRect" parent="CurrentCharacter/Icon/CharacterNumber"]
+clip_contents = true
+layout_mode = 0
+offset_top = 31.0
+offset_right = 32.0
+offset_bottom = 35.0
+color = Color(0.0807833, 0.0807833, 0.0807833, 1)
+
+[node name="Border2" type="ColorRect" parent="CurrentCharacter/Icon/CharacterNumber"]
+clip_contents = true
+layout_mode = 0
+offset_left = -3.0
+offset_right = 1.0
+offset_bottom = 32.0
+color = Color(0.0807833, 0.0807833, 0.0807833, 1)
+
+[node name="Border3" type="ColorRect" parent="CurrentCharacter/Icon/CharacterNumber"]
+clip_contents = true
+layout_mode = 0
+offset_left = 31.0
+offset_right = 35.0
+offset_bottom = 32.0
+color = Color(0.0807833, 0.0807833, 0.0807833, 1)
+
+[node name="Border6" type="ColorRect" parent="CurrentCharacter/Icon/CharacterNumber"]
+clip_contents = true
+layout_mode = 0
+offset_top = 31.0
+offset_right = 32.0
+offset_bottom = 35.0
+color = Color(0.0807833, 0.0807833, 0.0807833, 1)
+
+[node name="InactiveCharacters" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 32.0
+offset_top = 112.0
+offset_right = 96.0
+offset_bottom = 176.0
+scale = Vector2(0.75, 0.75)
+
+[node name="OtherCharacter1" type="Control" parent="InactiveCharacters"]
+anchors_preset = 0
+offset_right = 288.0
+offset_bottom = 64.0
+
+[node name="Icon" type="Control" parent="InactiveCharacters/OtherCharacter1"]
+layout_mode = 3
+anchors_preset = 0
+offset_top = 64.0
+offset_right = 96.0
+offset_bottom = 160.0
+scale = Vector2(0.665802, 0.666668)
+
+[node name="Border2" type="TextureRect" parent="InactiveCharacters/OtherCharacter1/Icon"]
+layout_mode = 0
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 104.0
+offset_bottom = 104.0
+texture = SubResource("GradientTexture2D_u7pjh")
+
+[node name="Background" type="ColorRect" parent="InactiveCharacters/OtherCharacter1/Icon"]
+clip_contents = true
+layout_mode = 0
+offset_right = 96.0
+offset_bottom = 96.0
+color = Color(0.26, 0.26, 0.26, 0.6)
+
+[node name="Icon" type="TextureRect" parent="InactiveCharacters/OtherCharacter1/Icon"]
+layout_mode = 0
+offset_right = 96.0
+offset_bottom = 96.0
+texture = ExtResource("5_31hxs")
+expand_mode = 1
+
+[node name="CharacterNumber" type="Control" parent="InactiveCharacters/OtherCharacter1/Icon"]
+anchors_preset = 0
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 12.0
+offset_bottom = 12.0
+
+[node name="Border7" type="TextureRect" parent="InactiveCharacters/OtherCharacter1/Icon/CharacterNumber"]
+layout_mode = 0
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 36.0
+offset_bottom = 36.0
+texture = SubResource("GradientTexture2D_u7pjh")
+
+[node name="Background2" type="TextureRect" parent="InactiveCharacters/OtherCharacter1/Icon/CharacterNumber"]
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 32.0
+texture = SubResource("GradientTexture2D_4h3u6")
+
+[node name="Label" type="Label" parent="InactiveCharacters/OtherCharacter1/Icon/CharacterNumber"]
+layout_mode = 0
+offset_top = -7.0
+offset_right = 32.0
+offset_bottom = 38.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 32
+text = "2"
+horizontal_alignment = 1
+clip_text = true
+
+[node name="Border5" type="ColorRect" parent="InactiveCharacters/OtherCharacter1/Icon/CharacterNumber"]
+clip_contents = true
+layout_mode = 0
+offset_top = -3.0
+offset_right = 32.0
+offset_bottom = 1.0
+color = Color(0.0807833, 0.0807833, 0.0807833, 1)
+
+[node name="Border4" type="ColorRect" parent="InactiveCharacters/OtherCharacter1/Icon/CharacterNumber"]
+clip_contents = true
+layout_mode = 0
+offset_top = 31.0
+offset_right = 32.0
+offset_bottom = 35.0
+color = Color(0.0807833, 0.0807833, 0.0807833, 1)
+
+[node name="Border2" type="ColorRect" parent="InactiveCharacters/OtherCharacter1/Icon/CharacterNumber"]
+clip_contents = true
+layout_mode = 0
+offset_left = -3.0
+offset_right = 1.0
+offset_bottom = 32.0
+color = Color(0.0807833, 0.0807833, 0.0807833, 1)
+
+[node name="Border3" type="ColorRect" parent="InactiveCharacters/OtherCharacter1/Icon/CharacterNumber"]
+clip_contents = true
+layout_mode = 0
+offset_left = 31.0
+offset_right = 35.0
+offset_bottom = 32.0
+color = Color(0.0807833, 0.0807833, 0.0807833, 1)
+
+[node name="Border6" type="ColorRect" parent="InactiveCharacters/OtherCharacter1/Icon/CharacterNumber"]
+clip_contents = true
+layout_mode = 0
+offset_top = 31.0
+offset_right = 32.0
+offset_bottom = 35.0
+color = Color(0.0807833, 0.0807833, 0.0807833, 1)
+
+[node name="Health" type="Control" parent="InactiveCharacters/OtherCharacter1"]
+anchors_preset = 0
+offset_left = -4.0
+offset_top = 16.0
+offset_right = 386.0
+offset_bottom = 188.0
+scale = Vector2(0.7, 0.7)
+
+[node name="HealthBG" type="ColorRect" parent="InactiveCharacters/OtherCharacter1/Health"]
+layout_mode = 0
+offset_left = 128.0
+offset_top = 130.0
+offset_right = 428.0
+offset_bottom = 160.0
+color = Color(0, 0, 0, 1)
+
+[node name="HealthLabel" type="Label" parent="InactiveCharacters/OtherCharacter1/Health"]
+layout_mode = 0
+offset_left = 128.0
+offset_top = 72.2857
+offset_right = 427.0
+offset_bottom = 139.286
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 48
+text = "0/0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Health" type="TextureProgressBar" parent="InactiveCharacters/OtherCharacter1/Health"]
+layout_mode = 0
+offset_left = 128.0
+offset_top = 130.0
+offset_right = 428.0
+offset_bottom = 160.0
+max_value = 70.0
+step = 0.0
+value = 30.0
+texture_under = ExtResource("1_svkje")
+texture_over = ExtResource("2_ss4vm")
+texture_progress = ExtResource("3_te1u5")
+tint_under = Color(0.592157, 0.592157, 0.592157, 1)
+tint_over = Color(0.509286, 0.509286, 0.509286, 1)
+tint_progress = Color(0.592157, 0.592157, 0.592157, 1)
+
+[node name="OtherCharacter2" type="Control" parent="InactiveCharacters"]
+layout_mode = 3
+anchors_preset = 0
+offset_top = 96.0
+offset_right = 53.0
+offset_bottom = 149.0
+
+[node name="Icon" type="Control" parent="InactiveCharacters/OtherCharacter2"]
+layout_mode = 3
+anchors_preset = 0
+offset_top = 64.0
+offset_right = 96.0
+offset_bottom = 160.0
+scale = Vector2(0.665802, 0.666668)
+
+[node name="Border2" type="TextureRect" parent="InactiveCharacters/OtherCharacter2/Icon"]
+layout_mode = 0
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 104.0
+offset_bottom = 104.0
+texture = SubResource("GradientTexture2D_u7pjh")
+
+[node name="Background" type="ColorRect" parent="InactiveCharacters/OtherCharacter2/Icon"]
+clip_contents = true
+layout_mode = 0
+offset_right = 96.0
+offset_bottom = 96.0
+color = Color(0.26, 0.26, 0.26, 0.6)
+
+[node name="Icon" type="TextureRect" parent="InactiveCharacters/OtherCharacter2/Icon"]
+layout_mode = 0
+offset_right = 96.0
+offset_bottom = 96.0
+texture = ExtResource("6_2oosv")
+expand_mode = 1
+
+[node name="CharacterNumber" type="Control" parent="InactiveCharacters/OtherCharacter2/Icon"]
+anchors_preset = 0
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 12.0
+offset_bottom = 12.0
+
+[node name="Border7" type="TextureRect" parent="InactiveCharacters/OtherCharacter2/Icon/CharacterNumber"]
+layout_mode = 0
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 36.0
+offset_bottom = 36.0
+texture = SubResource("GradientTexture2D_u7pjh")
+
+[node name="Background2" type="TextureRect" parent="InactiveCharacters/OtherCharacter2/Icon/CharacterNumber"]
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 32.0
+texture = SubResource("GradientTexture2D_4h3u6")
+
+[node name="Label" type="Label" parent="InactiveCharacters/OtherCharacter2/Icon/CharacterNumber"]
+layout_mode = 0
+offset_top = -7.0
+offset_right = 32.0
+offset_bottom = 38.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 32
+text = "3"
+horizontal_alignment = 1
+clip_text = true
+
+[node name="Border5" type="ColorRect" parent="InactiveCharacters/OtherCharacter2/Icon/CharacterNumber"]
+clip_contents = true
+layout_mode = 0
+offset_top = -3.0
+offset_right = 32.0
+offset_bottom = 1.0
+color = Color(0.0807833, 0.0807833, 0.0807833, 1)
+
+[node name="Border4" type="ColorRect" parent="InactiveCharacters/OtherCharacter2/Icon/CharacterNumber"]
+clip_contents = true
+layout_mode = 0
+offset_top = 31.0
+offset_right = 32.0
+offset_bottom = 35.0
+color = Color(0.0807833, 0.0807833, 0.0807833, 1)
+
+[node name="Border2" type="ColorRect" parent="InactiveCharacters/OtherCharacter2/Icon/CharacterNumber"]
+clip_contents = true
+layout_mode = 0
+offset_left = -3.0
+offset_right = 1.0
+offset_bottom = 32.0
+color = Color(0.0807833, 0.0807833, 0.0807833, 1)
+
+[node name="Border3" type="ColorRect" parent="InactiveCharacters/OtherCharacter2/Icon/CharacterNumber"]
+clip_contents = true
+layout_mode = 0
+offset_left = 31.0
+offset_right = 35.0
+offset_bottom = 32.0
+color = Color(0.0807833, 0.0807833, 0.0807833, 1)
+
+[node name="Border6" type="ColorRect" parent="InactiveCharacters/OtherCharacter2/Icon/CharacterNumber"]
+clip_contents = true
+layout_mode = 0
+offset_top = 31.0
+offset_right = 32.0
+offset_bottom = 35.0
+color = Color(0.0807833, 0.0807833, 0.0807833, 1)
+
+[node name="Health" type="Control" parent="InactiveCharacters/OtherCharacter2"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -4.0
+offset_top = 16.0
+offset_right = 386.0
+offset_bottom = 188.0
+scale = Vector2(0.7, 0.7)
+
+[node name="HealthBG" type="ColorRect" parent="InactiveCharacters/OtherCharacter2/Health"]
+layout_mode = 0
+offset_left = 128.0
+offset_top = 130.0
+offset_right = 428.0
+offset_bottom = 160.0
+color = Color(0, 0, 0, 1)
+
+[node name="HealthLabel" type="Label" parent="InactiveCharacters/OtherCharacter2/Health"]
+layout_mode = 0
+offset_left = 128.0
+offset_top = 71.619
+offset_right = 427.0
+offset_bottom = 138.619
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 48
+text = "0/0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Health" type="TextureProgressBar" parent="InactiveCharacters/OtherCharacter2/Health"]
+layout_mode = 0
+offset_left = 128.0
+offset_top = 130.0
+offset_right = 428.0
+offset_bottom = 160.0
+max_value = 70.0
+step = 0.0
+value = 30.0
+texture_under = ExtResource("1_svkje")
+texture_over = ExtResource("2_ss4vm")
+texture_progress = ExtResource("3_te1u5")
+tint_under = Color(0.592157, 0.592157, 0.592157, 1)
+tint_over = Color(0.509286, 0.509286, 0.509286, 1)
+tint_progress = Color(0.592157, 0.592157, 0.592157, 1)
+
+[node name="DeathScreen" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("8_q5yta")
+
+[node name="ColorRect" type="ColorRect" parent="DeathScreen"]
+layout_mode = 0
+offset_right = 1919.0
+offset_bottom = 1079.0
+color = Color(0, 0, 0, 0.705882)
+
+[node name="TextureRect" type="TextureRect" parent="DeathScreen"]
+layout_mode = 0
+offset_left = 880.0
+offset_top = 240.0
+offset_right = 1040.0
+offset_bottom = 400.0
+texture = ExtResource("4_um7kf")
+
+[node name="TextureRect2" type="TextureRect" parent="DeathScreen"]
+layout_mode = 0
+offset_left = 795.0
+offset_top = 275.0
+offset_right = 915.0
+offset_bottom = 395.0
+texture = ExtResource("4_um7kf")
+
+[node name="TextureRect3" type="TextureRect" parent="DeathScreen"]
+layout_mode = 0
+offset_left = 1005.0
+offset_top = 286.0
+offset_right = 1114.0
+offset_bottom = 395.0
+texture = ExtResource("4_um7kf")
+
+[node name="ColorRect2" type="ColorRect" parent="DeathScreen"]
+layout_mode = 0
+offset_left = 780.0
+offset_top = 390.0
+offset_right = 1140.0
+offset_bottom = 410.0
+color = Color(0.168627, 0.168627, 0.168627, 0.654902)
+
+[node name="Reset" type="TextureButton" parent="DeathScreen"]
+layout_mode = 0
+offset_left = 796.0
+offset_top = 410.0
+offset_right = 926.0
+offset_bottom = 540.0
+texture_normal = ExtResource("10_xgtcn")
+texture_pressed = ExtResource("11_llaft")
+texture_hover = ExtResource("12_mopqj")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Quit" type="TextureButton" parent="DeathScreen"]
+layout_mode = 0
+offset_left = 994.0
+offset_top = 410.0
+offset_right = 1124.0
+offset_bottom = 540.0
+texture_normal = ExtResource("13_jjrms")
+texture_pressed = ExtResource("14_fjwmg")
+texture_hover = ExtResource("15_mq8yg")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="HoverStats" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = 368.0
+offset_top = 12.0
+offset_right = 572.0
+offset_bottom = 116.0
+
+[node name="Border" type="TextureRect" parent="HoverStats"]
+layout_mode = 0
+offset_right = 204.0
+offset_bottom = 104.0
+texture = SubResource("GradientTexture2D_fdxk1")
+
+[node name="BackGround" type="TextureRect" parent="HoverStats"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 200.0
+offset_bottom = 100.0
+texture = SubResource("GradientTexture2D_nvoyc")
+
+[node name="GridContainer" type="GridContainer" parent="HoverStats"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 72.0
+offset_bottom = 56.0
+columns = 2
+
+[node name="StatTemplate" type="Control" parent="HoverStats"]
+visible = false
+custom_minimum_size = Vector2(96, 48)
+anchors_preset = 0
+offset_left = 12.0
+offset_top = 12.0
+offset_right = 76.0
+offset_bottom = 48.0
+
+[node name="TextureRect" type="TextureRect" parent="HoverStats/StatTemplate"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="HoverStats/StatTemplate"]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 8.0
+offset_right = 80.0
+offset_bottom = 31.0
+text = "0"
+
+[node name="Charmholder" type="TextureRect" parent="HoverStats"]
+layout_mode = 0
+offset_left = 208.0
+offset_top = 4.0
+offset_right = 304.0
+offset_bottom = 100.0
+
+[node name="PauseMenu" type="Control" parent="."]
+process_mode = 3
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="PauseMenu"]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0, 0, 0, 0.470588)
+
+[node name="Logo2" type="Sprite2D" parent="PauseMenu"]
+position = Vector2(960, 140)
+scale = Vector2(2.16154, 2.16154)
+texture = ExtResource("9_t6rlq")
+
+[node name="ResumeButton" type="TextureButton" parent="PauseMenu"]
+layout_mode = 0
+offset_left = 540.0
+offset_top = 672.0
+offset_right = 764.0
+offset_bottom = 896.0
+texture_normal = ExtResource("10_p4h5x")
+texture_pressed = ExtResource("11_mnh3a")
+texture_hover = ExtResource("12_mru62")
+
+[node name="SettingsButton" type="TextureButton" parent="PauseMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 831.5
+offset_top = 652.0
+offset_right = 1088.5
+offset_bottom = 908.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("10_rrtll")
+texture_pressed = ExtResource("11_6potb")
+texture_hover = SubResource("CompressedTexture2D_i05dy")
+
+[node name="MenuButton" type="TextureButton" parent="PauseMenu"]
+layout_mode = 0
+offset_left = 1168.0
+offset_top = 672.0
+offset_right = 1424.0
+offset_bottom = 928.0
+texture_normal = ExtResource("13_jjrms")
+texture_pressed = ExtResource("14_fjwmg")
+texture_hover = ExtResource("15_mq8yg")
+
+[connection signal="mouse_entered" from="CurrentCharacter" to="." method="_on_current_character_mouse_entered"]
+[connection signal="mouse_exited" from="CurrentCharacter" to="." method="_on_current_character_mouse_exited"]
+[connection signal="pressed" from="DeathScreen/Reset" to="DeathScreen" method="_on_reset_pressed"]
+[connection signal="pressed" from="DeathScreen/Quit" to="DeathScreen" method="_on_quit_pressed"]
+[connection signal="pressed" from="PauseMenu/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="PauseMenu/MenuButton" to="." method="_on_menu_button_pressed"]

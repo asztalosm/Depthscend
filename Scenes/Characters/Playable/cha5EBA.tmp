@@ -1,0 +1,281 @@
+[gd_scene load_steps=34 format=3 uid="uid://bbr64q8hg7fde"]
+
+[ext_resource type="Script" path="res://Scenes/Characters/Playable/Scripts/character_3.gd" id="1_myxxc"]
+[ext_resource type="Texture2D" uid="uid://c83ynlvklq4jb" path="res://Textures/healunder.svg" id="4_0q8xu"]
+[ext_resource type="Texture2D" uid="uid://dfvwd26hcv560" path="res://Sprites/priestess_leftfront.png" id="4_swb62"]
+[ext_resource type="Texture2D" uid="uid://cv3ay8ds8ioid" path="res://Textures/healprogress.svg" id="5_3gmsv"]
+[ext_resource type="Texture2D" uid="uid://dancm16xg0ycy" path="res://Sprites/priestess_front.png" id="6_wy0vq"]
+[ext_resource type="Texture2D" uid="uid://dr48scpyc15qm" path="res://Sprites/priestess_rightfront.png" id="7_lyjsc"]
+[ext_resource type="Texture2D" uid="uid://nmabpowaofkf" path="res://Sprites/priestess_right.png" id="8_56bqi"]
+[ext_resource type="Texture2D" uid="uid://d04jwuunbk8bb" path="res://Sprites/priestess_rightback.png" id="9_f3r8r"]
+[ext_resource type="Texture2D" uid="uid://c3p42dghvch30" path="res://Sprites/priestess_back.png" id="10_lm7dk"]
+[ext_resource type="Texture2D" uid="uid://cw1ojo8ktm6f3" path="res://Sprites/priestess_leftback.png" id="11_ctfn3"]
+[ext_resource type="Texture2D" uid="uid://b7gj8h0060h00" path="res://Sprites/priestess_left.png" id="12_3apww"]
+[ext_resource type="Texture2D" uid="uid://d4nvqwhn6dsuh" path="res://Textures/attackcooldown.png" id="13_whrlw"]
+[ext_resource type="Texture2D" uid="uid://bwdgv3n1rf1fj" path="res://Sprites/priestess_front_attack.png" id="14_kthqj"]
+[ext_resource type="Texture2D" uid="uid://biue221d7v66s" path="res://Textures/attackchargeunder.png" id="14_qmb1x"]
+[ext_resource type="Texture2D" uid="uid://dypdy82cmtx1t" path="res://Textures/attackchargeprogress.png" id="15_bng6n"]
+[ext_resource type="Texture2D" uid="uid://bu326gtcwkxn0" path="res://Sprites/priestess_rightfront_attack.png" id="15_q6q6i"]
+[ext_resource type="Texture2D" uid="uid://d2y0e5hopjiy" path="res://Sprites/priestess_left_attack.png" id="16_chwop"]
+[ext_resource type="Texture2D" uid="uid://poy62beis1c" path="res://Sprites/priestess_leftback_attack.png" id="17_8s7se"]
+[ext_resource type="Texture2D" uid="uid://thy5scas7yu8" path="res://Sprites/priestess_back_attack.png" id="18_iy0k3"]
+[ext_resource type="Texture2D" uid="uid://dgi1u1ed5oe1c" path="res://Sprites/priestess_rightback_attack.png" id="19_ulhq3"]
+[ext_resource type="Texture2D" uid="uid://b0402g4ouhrl5" path="res://Sprites/priestess_right_attack.png" id="20_28lic"]
+[ext_resource type="Texture2D" uid="uid://m4gmd65rfnx" path="res://Sprites/priestess_leftfront_attack.png" id="21_0ghdn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2xmsr"]
+size = Vector2(43, 118)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cdwh7"]
+size = Vector2(32, 5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3i43i"]
+size = Vector2(6, 6)
+
+[sub_resource type="Gradient" id="Gradient_nn7bc"]
+offsets = PackedFloat32Array(0, 0.231707)
+colors = PackedColorArray(1, 0, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_mnavg"]
+gradient = SubResource("Gradient_nn7bc")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="Gradient" id="Gradient_66lxp"]
+offsets = PackedFloat32Array(0, 0.99187)
+colors = PackedColorArray(1, 0, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_6eaq0"]
+gradient = SubResource("Gradient_66lxp")
+width = 4
+height = 4
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ptyjm"]
+radius = 75.5149
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4sqb4"]
+radius = 263.002
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_h1jj7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_wy0vq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_lyjsc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_3apww")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_ctfn3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_lm7dk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_f3r8r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_56bqi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_swb62")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_kthqj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_q6q6i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_chwop")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_8s7se")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_iy0k3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_ulhq3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_28lic")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_0ghdn")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r38ka"]
+size = Vector2(15.25, 5)
+
+[node name="character3" type="CharacterBody2D"]
+position = Vector2(1177, 964)
+collision_layer = 0
+collision_mask = 5
+script = ExtResource("1_myxxc")
+metadata/active = false
+metadata/isDead = false
+
+[node name="AttackProgress" type="TextureProgressBar" parent="."]
+offset_left = -32.0
+offset_top = -43.0
+offset_bottom = -11.0
+scale = Vector2(2, 2)
+value = 100.0
+fill_mode = 4
+texture_under = ExtResource("13_whrlw")
+texture_progress = ExtResource("13_whrlw")
+tint_under = Color(1, 1, 1, 0.176471)
+tint_progress = Color(1, 1, 1, 0.705882)
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_desired_distance = 4.0
+target_desired_distance = 30.0
+simplify_path = true
+radius = 70.0
+debug_path_custom_point_size = 0.0
+debug_path_custom_line_width = 1.0
+
+[node name="HitCollision" type="Area2D" parent="."]
+position = Vector2(5, -59)
+collision_layer = 34
+collision_mask = 34
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitCollision"]
+position = Vector2(-10.5, 1)
+shape = SubResource("RectangleShape2D_2xmsr")
+
+[node name="ZoneHitbox" type="Area2D" parent="."]
+position = Vector2(5, -59)
+collision_layer = 16
+collision_mask = 0
+monitoring = false
+
+[node name="WallCollision" type="CollisionShape2D" parent="ZoneHitbox"]
+position = Vector2(-5, 58.5)
+shape = SubResource("RectangleShape2D_cdwh7")
+
+[node name="Projectile" type="Area2D" parent="."]
+z_index = 200
+z_as_relative = false
+position = Vector2(5, -59)
+scale = Vector2(2, 2)
+collision_layer = 0
+collision_mask = 768
+input_pickable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Projectile"]
+shape = SubResource("RectangleShape2D_3i43i")
+
+[node name="ColorRect" type="ColorRect" parent="Projectile"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -2.0
+offset_top = -2.0
+offset_right = 2.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0, 1, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="PointLight2D" type="PointLight2D" parent="Projectile"]
+z_index = 200
+z_as_relative = false
+texture = SubResource("GradientTexture2D_mnavg")
+
+[node name="TextureRect" type="TextureRect" parent="Projectile"]
+offset_left = -3.0
+offset_top = -3.0
+offset_right = 3.0
+offset_bottom = 3.0
+texture = SubResource("GradientTexture2D_6eaq0")
+
+[node name="Area2D" type="Area2D" parent="Projectile"]
+collision_layer = 0
+collision_mask = 256
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Projectile/Area2D"]
+shape = SubResource("CircleShape2D_ptyjm")
+
+[node name="HealRange" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -15.0
+offset_top = -51.0
+offset_right = 25.0
+offset_bottom = -11.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="HealRange"]
+layout_mode = 0
+offset_left = -232.0
+offset_top = -260.0
+offset_right = 280.0
+offset_bottom = 252.0
+rotation = -6.28319
+pivot_offset = Vector2(128, 128)
+fill_mode = 4
+texture_under = ExtResource("4_0q8xu")
+texture_progress = ExtResource("5_3gmsv")
+tint_under = Color(0, 0.4, 0, 0.627451)
+tint_over = Color(1, 1, 1, 0.666667)
+tint_progress = Color(1, 1, 1, 0.8)
+
+[node name="HealRangeHitbox" type="Area2D" parent="."]
+position = Vector2(-15, -51)
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HealRangeHitbox"]
+position = Vector2(25, -4)
+shape = SubResource("CircleShape2D_4sqb4")
+
+[node name="HealCooldown" type="Timer" parent="."]
+wait_time = 15.0
+autostart = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-11, -59)
+sprite_frames = SubResource("SpriteFrames_h1jj7")
+
+[node name="AttackCooldown" type="Timer" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_r38ka")
+
+[node name="AttackChargeProgress" type="TextureProgressBar" parent="."]
+offset_left = -32.0
+offset_top = -142.0
+offset_bottom = -138.0
+scale = Vector2(2, 2)
+texture_under = ExtResource("14_qmb1x")
+texture_progress = ExtResource("15_bng6n")
+tint_under = Color(0, 0, 0, 0.427451)
+tint_progress = Color(1, 1, 1, 0.705882)
+
+[connection signal="area_entered" from="Projectile" to="." method="_on_projectile_area_entered"]
+[connection signal="body_entered" from="Projectile" to="." method="_on_projectile_body_entered"]
+[connection signal="area_entered" from="Projectile/Area2D" to="Projectile" method="_on_area_2d_area_entered"]
+[connection signal="area_entered" from="HealRangeHitbox" to="." method="_on_heal_range_hitbox_area_entered"]
+[connection signal="area_exited" from="HealRangeHitbox" to="." method="_on_heal_range_hitbox_area_exited"]
+[connection signal="timeout" from="HealCooldown" to="." method="_on_heal_cooldown_timeout"]
+[connection signal="timeout" from="AttackCooldown" to="." method="_on_attack_cooldown_timeout"]

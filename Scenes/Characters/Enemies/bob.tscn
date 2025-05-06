@@ -1,0 +1,195 @@
+[gd_scene load_steps=15 format=3 uid="uid://dj0kc27h6y3m2"]
+
+[ext_resource type="Script" uid="uid://dpg6h87coewcg" path="res://Scenes/Characters/Enemies/Scripts/bob.gd" id="1_bn5m6"]
+[ext_resource type="Texture2D" uid="uid://ct4isul5kj730" path="res://Sprites/bob.png" id="2_8lfgc"]
+[ext_resource type="Shader" uid="uid://ctk76iejukosx" path="res://Shaders/effects.gdshader" id="2_75rb5"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_8rwdh"]
+b = Vector2(0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hq75m"]
+resource_local_to_scene = true
+shader = ExtResource("2_75rb5")
+shader_parameter/shading_option = 0
+shader_parameter/opacitystrength = 1.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l5g2w"]
+atlas = ExtResource("2_8lfgc")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hbmrp"]
+atlas = ExtResource("2_8lfgc")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jwtc2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l5g2w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l5g2w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hbmrp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hbmrp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hbmrp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hbmrp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hbmrp")
+}],
+"loop": false,
+"name": &"default",
+"speed": 6.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_24h75"]
+radius = 551.178
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ro3wc"]
+size = Vector2(57, 60)
+
+[sub_resource type="Animation" id="Animation_spvll"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:material:shader_parameter/shading_option")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_04o5g"]
+resource_name = "blink"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:material:shader_parameter/shading_option")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [1, 0]
+}
+
+[sub_resource type="Animation" id="Animation_21gao"]
+resource_name = "heal"
+length = 0.3
+step = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:material:shader_parameter/shading_option")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [2, 0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_688so"]
+_data = {
+&"RESET": SubResource("Animation_spvll"),
+&"blink": SubResource("Animation_04o5g"),
+&"heal": SubResource("Animation_21gao")
+}
+
+[node name="Bob" type="CharacterBody2D"]
+scale = Vector2(1.5, 1.5)
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_bn5m6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("SegmentShape2D_8rwdh")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_hq75m")
+sprite_frames = SubResource("SpriteFrames_jwtc2")
+frame = 2
+
+[node name="Detection" type="Area2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detection"]
+shape = SubResource("CircleShape2D_24h75")
+
+[node name="Health" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = -3.0
+offset_top = -2.0
+offset_right = 36.0
+offset_bottom = 38.0
+scale = Vector2(1.5, 1.5)
+
+[node name="HealthBar" type="ColorRect" parent="Health"]
+layout_mode = 0
+offset_left = -29.0
+offset_top = -31.0
+offset_right = 31.0
+offset_bottom = -26.0
+color = Color(1, 0, 0, 0.588235)
+
+[node name="Label" type="Label" parent="Health"]
+layout_mode = 0
+offset_left = -29.0
+offset_top = -43.0
+offset_right = 71.0
+offset_bottom = -20.0
+scale = Vector2(0.6, 0.6)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 4
+text = "0/0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AttackCooldown" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(0, 0)
+
+[node name="RayCastCheck" type="Timer" parent="."]
+wait_time = 0.2
+autostart = true
+
+[node name="Hitbox" type="Area2D" parent="."]
+visible = false
+collision_layer = 256
+collision_mask = 256
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(-2.5, 1)
+shape = SubResource("RectangleShape2D_ro3wc")
+
+[node name="effects" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_688so")
+}
+
+[connection signal="area_entered" from="Detection" to="." method="_on_detection_area_entered"]
+[connection signal="area_exited" from="Detection" to="." method="_on_detection_area_exited"]
+[connection signal="timeout" from="RayCastCheck" to="." method="_on_ray_cast_check_timeout"]

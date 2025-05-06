@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://32mqbxap2xs3"]
+
+[ext_resource type="Script" uid="uid://b7xhokxibtdc5" path="res://Scenes/Misc/characterscript.gd" id="1_pohhn"]
+[ext_resource type="PackedScene" uid="uid://d1maoccsy4oe4" path="res://Scenes/Characters/Playable/character_2.tscn" id="2_cj02r"]
+[ext_resource type="PackedScene" uid="uid://btd7uso6md01v" path="res://Scenes/Characters/Playable/character_1.tscn" id="3_4n2d1"]
+[ext_resource type="PackedScene" uid="uid://bbr64q8hg7fde" path="res://Scenes/Characters/Playable/character_3.tscn" id="4_l2wkl"]
+[ext_resource type="PackedScene" uid="uid://8ng0rc5wbh4s" path="res://Scenes/Misc/gui.tscn" id="6_x6elr"]
+
+[node name="Characters" type="Node2D"]
+script = ExtResource("1_pohhn")
+
+[node name="character3" parent="." instance=ExtResource("4_l2wkl")]
+z_index = 99
+position = Vector2(728, 968)
+
+[node name="character2" parent="." instance=ExtResource("2_cj02r")]
+z_index = 99
+position = Vector2(648, 968)
+
+[node name="character1" parent="." instance=ExtResource("3_4n2d1")]
+z_index = 99
+position = Vector2(520, 952)
+
+[node name="GUI" parent="." instance=ExtResource("6_x6elr")]
+process_mode = 3
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(520, 952)
+process_callback = 0
+position_smoothing_enabled = true
+position_smoothing_speed = 16.0
