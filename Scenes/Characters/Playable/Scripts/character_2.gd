@@ -252,6 +252,7 @@ func _physics_process(_delta: float) -> void:
 			attackcooldown.wait_time = 0.5
 	else: #megöli a játékost
 		visible = false
+		$HitCollision.set_deferred("disabled", true)
 		set_meta("active", false)
 		set_meta("isDead", true)
 

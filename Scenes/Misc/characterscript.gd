@@ -18,6 +18,9 @@ extends Node2D
 @onready var thirdcharactericonnumber = $GUI/InactiveCharacters/OtherCharacter2/Icon/CharacterNumber/Label
 @export var globalcurrentchar = 0
 var secondtaken = false #második playerslot
+var cursorimg = load("res://Textures/dotcursor.png")
+var ctrlcursorimg = load("res://Textures/ctrlcursor.png")
+var ctrlheld = false
 
 func _ready() -> void:
 	exportchars = characters #ugly hack
@@ -35,9 +38,16 @@ func _input(event: InputEvent) -> void:
 				charactericon.texture = load("res://Sprites/character%d.png" % (int(globalcurrentchar+1)))
 				for currentchar in range(characters.size()):
 					characters[currentchar].set_meta("active", currentchar == i)
-					
-
-
+		if event.is_action_pressed("ctrl"):
+			Input.set_custom_mouse_cursor(ctrlcursorimg)
+			ctrlheld = true
+		if event.is_action_released("ctrl"):
+			Input.set_custom_mouse_cursor(cursorimg)
+			ctrlheld = false
+		if event.is_action_pressed("click") and ctrlheld:
+			#if !characters[i].get_meta("isDead"):
+			characters[i].hasnavigationtarget = true
+			characters[i].navagent.target_position = get_global_mouse_position() + Vector2(randi_range(-60, 60),randi_range(-60, 60))
 # folyamatosan futó funkció ami a jelenleg kiválasztott karaktert követi, életet is kiírja hudra
 func _process(_delta: float) -> void:
 	if characters[0].get_meta("isDead") and characters[1].get_meta("isDead") and characters[2].get_meta("isDead"):

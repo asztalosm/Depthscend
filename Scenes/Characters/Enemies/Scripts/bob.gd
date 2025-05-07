@@ -38,16 +38,24 @@ func _process(_delta: float) -> void:
 	if !notTargeting or health != maxhealth:
 		hudhealthlabel.get_parent().visible = true
 	hudhealthlabel.text = str(health) + "/" + str(maxhealth)
+	for characters in detectionlist:
+		if characters.get_meta("isDead"):
+			detectionlist.erase(characters)
+	if attackcooldown.time_left == 0 and len(detectionlist) > 0:
+		_on_ray_cast_check_timeout()
+	
 
 
 func _on_ray_cast_check_timeout() -> void:
 	for character in detectionlist:
-		raycast.target_position = character.global_position - position #sets raycast target relative to itself because target_position is not global_position :sob:
-		if raycast.is_colliding():
-			canhitlist.erase(character)
-		else:
-			canhitlist.append(character)
-	attack()
+		if !character.get_meta("isDead"):
+			raycast.target_position = character.global_position - raycast.global_position #sets raycast target relative to itself because target_position is not global_position :sob:
+			if raycast.is_colliding():
+				canhitlist.erase(character)
+				if raycast.get_collider().get_parent().get_parent().name == "Characters":
+					canhitlist.append(raycast.get_collider().get_parent())
+			if canhitlist != []:
+				attack()
 
 func _on_detection_area_entered(area: Area2D) -> void:
 	if area.get_parent().get_parent().name == "Characters":

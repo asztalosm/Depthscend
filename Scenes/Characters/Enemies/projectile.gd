@@ -8,7 +8,7 @@ extends CharacterBody2D
 
 func _process(_delta: float) -> void:
 	if target != null:
-		navagent.target_position = target.position + Vector2(0,-24)
+		navagent.target_position = target.global_position + Vector2(0,-24)
 		if health > 0:
 			var dir = navagent.get_next_path_position() - global_position
 			velocity = Vector2(0,0)

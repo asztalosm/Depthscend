@@ -304,7 +304,7 @@ position = Vector2(200, -200)
 position = Vector2(785, 1104)
 
 [node name="character2" parent="Characters" index="1"]
-position = Vector2(649, 1096)
+position = Vector2(769, -33)
 
 [node name="character1" parent="Characters" index="2"]
 position = Vector2(494, 1072)

@@ -170,6 +170,7 @@ one_shot = true
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 target_position = Vector2(0, 0)
+collide_with_areas = true
 
 [node name="RayCastCheck" type="Timer" parent="."]
 wait_time = 0.2
@@ -192,4 +193,5 @@ libraries = {
 
 [connection signal="area_entered" from="Detection" to="." method="_on_detection_area_entered"]
 [connection signal="area_exited" from="Detection" to="." method="_on_detection_area_exited"]
+[connection signal="timeout" from="AttackCooldown" to="." method="_on_attack_cooldown_timeout"]
 [connection signal="timeout" from="RayCastCheck" to="." method="_on_ray_cast_check_timeout"]
